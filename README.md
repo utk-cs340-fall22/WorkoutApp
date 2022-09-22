@@ -1,12 +1,12 @@
 # WorkoutApp
-##Group Members
-*Andrew Hines
-*Jacob Howard
-*Alex Shirran
-*Justin B
-*Michael Gibson
+## Group Members
+* Andrew Hines
+* Jacob Howard
+* Alex Shirran
+* Justin B
+* Michael Gibson
 
-##Sprint 1 Backlog
+## Sprint 1 Backlog
 
 
 
