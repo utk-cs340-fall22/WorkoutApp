@@ -13,6 +13,8 @@
 * Create basic Django site.
 * Create Input Workout Page.
 * Create Debugging Page that displays all currently logged workouts.
+*
+*
 
 
 
