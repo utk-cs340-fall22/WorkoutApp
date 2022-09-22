@@ -8,6 +8,7 @@
 
 
 ## Sprint 1 Backlog
+* All members ensure they can pull, edit, and push to the repo
 * All members familiarize themselves with Django
 * Create basic Django site
 * Create Input Workout Page
