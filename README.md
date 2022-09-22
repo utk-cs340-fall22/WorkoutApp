@@ -6,6 +6,7 @@
 * Justin Bowers
 * Michael Gibson
 
+
 ## Sprint 1 Backlog
 * All members ensure they can pull, edit, and push to the repo.
 * All members familiarize themselves with Django.
