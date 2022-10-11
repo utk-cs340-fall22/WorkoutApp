@@ -43,7 +43,7 @@ def CreateAccount(request):
         myuser.save() 
 
         messages.success(request, "Your Account has been successfully created.")
-
+        return redirect('home')
     return render(request, "CreateAccount.html")
 
 def SignIn(request):
