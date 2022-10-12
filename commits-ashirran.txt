@@ -1,0 +1,4 @@
+Commits on Oct 9, 2022
+  Added folder with website skeleton with my finished issues
+Commits on Oct 11, 2022
+  Fixed the sign in and create account sections of website
