@@ -77,3 +77,8 @@ def ChartHistory(request):
 
 def MoreInfo(request):
     pass
+
+# Jacob Howard working here.
+def CreateWorkout(request):
+    return render(request, "CreateWorkout.html")
+
