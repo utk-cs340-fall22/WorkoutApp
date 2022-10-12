@@ -57,6 +57,7 @@ def SignIn(request):
         if user is not None:
             login(request, user)
             fname = user.first_name
+            return redirect('ProfilePage')
             return render(request, "homepage.html", {'fname' : fname})
         else:
             messages.error(request, "Credentials Are Incorrect")
@@ -68,6 +69,11 @@ def SignOut(request):
     logout(request)
     messages.success(request, "Logged Out Successfully!")
     return redirect('home')
+
+def ProfilePage(request):
+    user = request.user
+    fname = user.first_name
+    return render(request, "homepage.html", {'fname' : fname})
 
 def CreateCharts(request):
     pass

@@ -23,6 +23,7 @@ urlpatterns = [
     path('CreateAccount', views.CreateAccount, name='CreateAccount'),
     path('SignIn', views.SignIn, name='SignIn'),
     path('SignOut', views.SignOut, name='SignOut'),
+    path('ProfilePage', views.ProfilePage, name='ProfilePage'),
     path('CreateCharts', views.CreateCharts, name='CreateCharts'),
     path('ChartHistory', views.ChartHistory, name='ChartHistory'),
     path('MoreInfo', views.MoreInfo, name='MoreInfo'),
