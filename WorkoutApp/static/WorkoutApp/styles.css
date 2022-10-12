@@ -11,7 +11,7 @@ a{
 }
 #floatingNav{
     border:2px solid black;
-    background-color: powderblue;
+    
 }
 #floatingNav a{
     float: left;
