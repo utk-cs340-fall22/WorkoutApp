@@ -26,12 +26,13 @@ def CreateAccount(request):
             messages.error(request, "Email already exists!")
             return redirect('home')
         
-        if len(username)>10:
+        if len(username)>15:
             messages.error(request, "Username must be under 10 characters.")
+            return redirect('home')
 
         if password != confirm_password:
             messages.error(request, "Passwords do not match.")
-
+            return redirect('home')
         if not username.isalnum():
             messages.error(request, "Username must not contain special characters.")
             return redirect('home')
@@ -39,7 +40,7 @@ def CreateAccount(request):
         myuser = User.objects.create_user(username, email, password)
         myuser.first_name = fname
         myuser.last_name = lname
-        myuser.is_active = False
+        myuser.is_active = True
         myuser.save() 
 
         messages.success(request, "Your Account has been successfully created.")
@@ -56,7 +57,7 @@ def SignIn(request):
         if user is not None:
             login(request, user)
             fname = user.first_name
-            return render(request, "Login/index.html", {'fname' : fname})
+            return render(request, "homepage.html", {'fname' : fname})
         else:
             messages.error(request, "Credentials Are Incorrect")
             return redirect('home')
