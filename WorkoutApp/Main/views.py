@@ -73,7 +73,7 @@ def SignOut(request):
 def ProfilePage(request):
     user = request.user
     fname = user.first_name
-    return render(request, "homepage.html", {'fname' : fname})
+    return render(request, "ProfilePage.html", {'fname' : fname})
 
 def CreateCharts(request):
     pass
