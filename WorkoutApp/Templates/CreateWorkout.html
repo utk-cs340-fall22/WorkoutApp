@@ -23,19 +23,18 @@
         {% endfor %}
         
         <h3>Workout Editor</h3>
-        
+        <h3>Current {{ Exercisename }}</h3>
         <h3>List of Exercises</h3>
 
-        <label for="freeform"> Add an exercise:</label>
-        <br>
-        <textarea id="freeform"
-        name="freeform" rows="1" cols="30" placeholder="exercise name - mm/dd/year"
-        maxlength="100"></textarea>
-        <br>
-        
-        <button type="submit"> <a>Submit</a></button>
+        <form action="/CreateExercise" method="post">
+            {% csrf_token %}
+            
+            <label for="">Exercise</label>
+            <input type="text" id="CExercise" name="CExercise" placeholder="Create a Exercise" required>
+            <br>
 
-
+            <button type="submit">Create Exercise!</button>
+        </form>
         <!--jhowar63
         Cancel button returns user to the homepage.
         <h3>Future Cancel (return to home page) Button</h3> -->

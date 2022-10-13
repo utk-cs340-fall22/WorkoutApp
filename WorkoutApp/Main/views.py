@@ -1,3 +1,4 @@
+from asyncio.windows_events import NULL
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import messages
@@ -84,7 +85,15 @@ def ChartHistory(request):
 def MoreInfo(request):
     pass
 
+def CreateExercise(request):
+    exercisename = request.POST.get('CExercise')
+    if exercisename != '':
+        messages.success(request, "Exercise made!")
+    return render(request, "CreateWorkout.html", {'Exercisename' : exercisename})
+
 # Jacob Howard working here.
 def CreateWorkout(request):
+
     return render(request, "CreateWorkout.html")
+    #return render(request, "CreateWorkout.html")
 

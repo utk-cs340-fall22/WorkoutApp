@@ -28,4 +28,5 @@ urlpatterns = [
     path('ChartHistory', views.ChartHistory, name='ChartHistory'),
     path('MoreInfo', views.MoreInfo, name='MoreInfo'),
     path('CreateWorkout', views.CreateWorkout, name='CreateWorkout'),
+    path('CreateExercise', views.CreateExercise, name='CreateExerceise'),
 ]
