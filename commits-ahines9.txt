@@ -1,0 +1,319 @@
+homepage.html
+
+
+27c95b50 (mdew-abc     2022-10-13 09:25:50 -0400  13)         {% load static %}
+27c95b50 (mdew-abc     2022-10-13 09:25:50 -0400  14)         <link rel="stylesheet" href="{% static 'WorkoutApp/styles.css' %}" />
+27c95b50 (mdew-abc     2022-10-13 09:25:50 -0400  15)         
+27c95b50 (mdew-abc     2022-10-13 09:25:50 -0400  16)         
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400  19)         <div id="header">
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400  20)             
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400  21)         <!--need to make a professional looking header here-->
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400  22)         <!--includes logo and site name-->
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400  23) 
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400  24)         </div>
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400  25) 
+27c95b50 (mdew-abc     2022-10-13 09:25:50 -0400  26)         <div id="floatingNav">
+27c95b50 (mdew-abc     2022-10-13 09:25:50 -0400  27)             <button type="submit"><a href="/"> Home </a></button>
+27c95b50 (mdew-abc     2022-10-13 09:25:50 -0400  28)             <button type="submit"><a href="/CreateWorkout"> Add Workout </a></button>
+27c95b50 (mdew-abc     2022-10-13 09:25:50 -0400  29)             <button type="submit"><a href="/ProfilePage"> Profile Page </a></button>
+27c95b50 (mdew-abc     2022-10-13 09:25:50 -0400  30) 
+27c95b50 (mdew-abc     2022-10-13 09:25:50 -0400  31)             {% if user.is_authenticated %}
+27c95b50 (mdew-abc     2022-10-13 09:25:50 -0400  32)             <button type="submit"> <a href="/SignOut"> Sign Out </a> </button>
+27c95b50 (mdew-abc     2022-10-13 09:25:50 -0400  33)             
+27c95b50 (mdew-abc     2022-10-13 09:25:50 -0400  34)             {% else %}
+27c95b50 (mdew-abc     2022-10-13 09:25:50 -0400  35)             <button type="submit"> <a href="/SignIn"> Sign In </a> </button>
+27c95b50 (mdew-abc     2022-10-13 09:25:50 -0400  36)             {% endif %}
+27c95b50 (mdew-abc     2022-10-13 09:25:50 -0400  37) 
+27c95b50 (mdew-abc     2022-10-13 09:25:50 -0400  38)         </div>
+27c95b50 (mdew-abc     2022-10-13 09:25:50 -0400  39) 
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400  42)             <strong>Message:</strong> {{ message}}
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400  43)             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400  44)             <span aria-hidden="true">&times;</span>
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400  45)             </button>
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400  49)         {% if user.is_authenticated %}
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400  50)         <h3> Hello {{ fname }} , Welcome to WorkoutApp</h3>
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400  52)         {% else %}
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400  56)         {% endif %}
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400  57) 
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400  58)         <p>
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400  59)             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400  60)             ut labore et dolore magna aliqua. Amet nisl purus in mollis. Iaculis eu non diam phasellus
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400  61)             vestibulum lorem sed risus ultricies. Lacus vel facilisis volutpat est velit egestas dui id.
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400  62)             Est lorem ipsum dolor sit. Ut sem nulla pharetra diam sit amet nisl suscipit adipiscing.
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400  63)             Facilisis leo vel fringilla est ullamcorper eget nulla facilisi. Enim lobortis scelerisque
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400  64)             fermentum dui faucibus in. Interdum posuere lorem ipsum dolor sit amet. Pellentesque nec nam
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400  65)             aliquam sem et tortor.
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400  66)         </p>
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400  67) 
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400  68)         <p>
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400  69)             Viverra accumsan in nisl nisi scelerisque eu ultrices vitae. Viverra maecenas accumsan lacus vel facilisis volutpat est.
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400  70)             Ipsum dolor sit amet consectetur adipiscing elit ut aliquam. Sit amet consectetur adipiscing elit ut aliquam purus.
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400  71)             Risus viverra adipiscing at in. Viverra justo nec ultrices dui sapien eget mi proin. Vehicula ipsum a arcu cursus vitae congue mauris.
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400  72)             Parturient montes nascetur ridiculus mus. Arcu cursus euismod quis viverra nibh cras. Nascetur ridiculus mus mauris vitae ultricies leo.
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400  73)             Id cursus metus aliquam eleifend mi in nulla posuere sollicitudin. Eu scelerisque felis imperdiet proin fermentum. Sed vulputate odio ut
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400  74)             enim blandit volutpat maecenas volutpat.
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400  75)         </p>
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400  76) 
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400  77)         <p>
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400  78)             Vitae aliquet nec ullamcorper sit amet risus nullam eget felis. Imperdiet dui accumsan sit amet nulla
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400  79)             facilisi morbi tempus iaculis. Quam nulla porttitor massa id neque aliquam vestibulum. A lacus vestibulum sed
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400  80)             arcu non odio euismod lacinia. Bibendum enim facilisis gravida neque convallis a cras semper auctor.
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400  81)             Sit amet risus nullam eget felis eget nunc lobortis mattis. Quis enim lobortis scelerisque fermentum.
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400  82)             Nisi vitae suscipit tellus mauris a diam maecenas sed. Commodo nulla facilisi nullam vehicula.
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400  83)             Imperdiet dui accumsan sit amet nulla facilisi. Tortor id aliquet lectus proin nibh nisl condimentum id. Sagittis aliquam malesuada bibendum arcu vitae elementum. Risus nec feugiat in fermentum posuere urna nec tincidunt praesent. Lacinia at quis risus sed vulputate odio. Diam quam nulla porttitor massa id neque aliquam vestibulum morbi. Purus gravida quis blandit turpis cursus in hac. Nunc faucibus a pellentesque sit amet. Rhoncus aenean vel elit scelerisque. Tincidunt ornare massa eget egestas purus viverra.
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400  84)         </p>
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400  85)         <p>
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400  86)             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400  87)             ut labore et dolore magna aliqua. Amet nisl purus in mollis. Iaculis eu non diam phasellus
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400  88)             vestibulum lorem sed risus ultricies. Lacus vel facilisis volutpat est velit egestas dui id.
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400  89)             Est lorem ipsum dolor sit. Ut sem nulla pharetra diam sit amet nisl suscipit adipiscing.
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400  90)             Facilisis leo vel fringilla est ullamcorper eget nulla facilisi. Enim lobortis scelerisque
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400  91)             fermentum dui faucibus in. Interdum posuere lorem ipsum dolor sit amet. Pellentesque nec nam
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400  92)             aliquam sem et tortor.
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400  93)         </p>
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400  94)         <p>
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400  95)             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400  96)             ut labore et dolore magna aliqua. Amet nisl purus in mollis. Iaculis eu non diam phasellus
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400  97)             vestibulum lorem sed risus ultricies. Lacus vel facilisis volutpat est velit egestas dui id.
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400  98)             Est lorem ipsum dolor sit. Ut sem nulla pharetra diam sit amet nisl suscipit adipiscing.
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400  99)             Facilisis leo vel fringilla est ullamcorper eget nulla facilisi. Enim lobortis scelerisque
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400 100)             fermentum dui faucibus in. Interdum posuere lorem ipsum dolor sit amet. Pellentesque nec nam
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400 101)             aliquam sem et tortor.
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400 102)         </p>
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400 103) 
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400 104) 
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400 105) 
+27c95b50 (mdew-abc     2022-10-13 09:25:50 -0400 109)         
+27c95b50 (mdew-abc     2022-10-13 09:25:50 -0400 110)         <!-- 
+27c95b50 (mdew-abc     2022-10-13 09:25:50 -0400 113)         -->
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400 115)         <div id="footer">
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400 116)             
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400 117) 
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400 118)             <!--Implement buttons here, any credit needed, contact us, links to any socials, etc-->
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400 119)     
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400 120)         </div>
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400 121) 
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400 122) 
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400 123)         <!-- Sticky script for floating nav -->
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400 124)         <script>
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400 125)             window.onscroll = function() {myFunction()};
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400 126)             
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400 127)             var navbar = document.getElementById("floatingNav");
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400 128)             var sticky = navbar.offsetTop;
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400 129)             
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400 130)             function myFunction() {
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400 131)               if (window.pageYOffset >= sticky) {
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400 132)                 navbar.classList.add("sticky")
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400 133)               } else {
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400 134)                 navbar.classList.remove("sticky");
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400 135)               }
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400 136)             }
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400 137)         </script>
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400 138) 
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400 139) 
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400 140) 
+
+CreateAccount.html
+27c95b50 (mdew-abc 2022-10-13 09:25:50 -0400 13)         {% load static %}
+27c95b50 (mdew-abc 2022-10-13 09:25:50 -0400 14)         <link rel="stylesheet" href="{% static 'WorkoutApp/styles.css' %}" />
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400 17) 
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400 18)         <div id="header">
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400 19)             
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400 20)             <!--need to make a professional looking header here-->
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400 21)             <!--includes logo and site name-->
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400 22)     
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400 23)         </div>
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400 24) 
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400 67)         <div id="footer">
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400 68)             
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400 69)         <!--Implement buttons here, any credit needed, contact us, links to any socials, etc-->
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400 70)     
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400 71)         </div>
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400 72) 
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400 73) 
+
+ProfilePage.html
+
+27c95b50 (mdew-abc 2022-10-13 09:25:50 -0400  13)         {% load static %}
+27c95b50 (mdew-abc 2022-10-13 09:25:50 -0400  14)         <link rel="stylesheet" href="{% static 'WorkoutApp/styles.css' %}" />
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400  17)         <div id="header">
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400  18)             
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400  19)             <!--need to make a professional looking header here-->
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400  20)             <!--includes logo and site name-->
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400  21)     
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400  22)         </div>
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400  23) 
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400  24) 
+27c95b50 (mdew-abc 2022-10-13 09:25:50 -0400  25)         <div id="floatingNav">
+27c95b50 (mdew-abc 2022-10-13 09:25:50 -0400  26)             <button type="submit"><a href="/"> Home </a></button>
+27c95b50 (mdew-abc 2022-10-13 09:25:50 -0400  27)             <button type="submit"><a href="/CreateWorkout"> Add Workout </a></button>
+27c95b50 (mdew-abc 2022-10-13 09:25:50 -0400  28)             <button type="submit"><a href="/"> Profile Page </a></button>
+27c95b50 (mdew-abc 2022-10-13 09:25:50 -0400  29) 
+27c95b50 (mdew-abc 2022-10-13 09:25:50 -0400  30)             {% if user.is_authenticated %}
+27c95b50 (mdew-abc 2022-10-13 09:25:50 -0400  31)             <button type="submit"> <a href="/SignOut"> Sign Out </a> </button>
+27c95b50 (mdew-abc 2022-10-13 09:25:50 -0400  32)             
+27c95b50 (mdew-abc 2022-10-13 09:25:50 -0400  33)             {% else %}
+27c95b50 (mdew-abc 2022-10-13 09:25:50 -0400  34)             <button type="submit"> <a href="/SignIn"> Sign In </a> </button>
+27c95b50 (mdew-abc 2022-10-13 09:25:50 -0400  35)             {% endif %}
+27c95b50 (mdew-abc 2022-10-13 09:25:50 -0400  36) 
+27c95b50 (mdew-abc 2022-10-13 09:25:50 -0400  37)         </div> 
+27c95b50 (mdew-abc 2022-10-13 09:25:50 -0400  38) 
+d7761117 (Mgibso46 2022-10-12 22:21:08 -0400  39)         {% for message in messages %}
+d7761117 (Mgibso46 2022-10-12 22:21:08 -0400  40)         <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400  41)             <strong>Message:</strong> {{ message}}
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400  42)             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400  43)             <span aria-hidden="true">&times;</span>
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400  44)             </button>
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400  55) 
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400  56) 
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400  57)         <p>
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400  58)             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400  59)             ut labore et dolore magna aliqua. Amet nisl purus in mollis. Iaculis eu non diam phasellus
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400  60)             vestibulum lorem sed risus ultricies. Lacus vel facilisis volutpat est velit egestas dui id.
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400  61)             Est lorem ipsum dolor sit. Ut sem nulla pharetra diam sit amet nisl suscipit adipiscing.
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400  62)             Facilisis leo vel fringilla est ullamcorper eget nulla facilisi. Enim lobortis scelerisque
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400  63)             fermentum dui faucibus in. Interdum posuere lorem ipsum dolor sit amet. Pellentesque nec nam
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400  64)             aliquam sem et tortor.
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400  65)         </p>
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400  66)     
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400  67)         <p>
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400  68)             Viverra accumsan in nisl nisi scelerisque eu ultrices vitae. Viverra maecenas accumsan lacus vel facilisis volutpat est.
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400  69)             Ipsum dolor sit amet consectetur adipiscing elit ut aliquam. Sit amet consectetur adipiscing elit ut aliquam purus.
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400  70)             Risus viverra adipiscing at in. Viverra justo nec ultrices dui sapien eget mi proin. Vehicula ipsum a arcu cursus vitae congue mauris.
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400  71)             Parturient montes nascetur ridiculus mus. Arcu cursus euismod quis viverra nibh cras. Nascetur ridiculus mus mauris vitae ultricies leo.
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400  72)             Id cursus metus aliquam eleifend mi in nulla posuere sollicitudin. Eu scelerisque felis imperdiet proin fermentum. Sed vulputate odio ut
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400  73)             enim blandit volutpat maecenas volutpat.
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400  74)         </p>
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400  75)     
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400  76)         <p>
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400  77)             Vitae aliquet nec ullamcorper sit amet risus nullam eget felis. Imperdiet dui accumsan sit amet nulla
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400  78)             facilisi morbi tempus iaculis. Quam nulla porttitor massa id neque aliquam vestibulum. A lacus vestibulum sed
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400  79)             arcu non odio euismod lacinia. Bibendum enim facilisis gravida neque convallis a cras semper auctor.
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400  80)             Sit amet risus nullam eget felis eget nunc lobortis mattis. Quis enim lobortis scelerisque fermentum.
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400  81)             Nisi vitae suscipit tellus mauris a diam maecenas sed. Commodo nulla facilisi nullam vehicula.
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400  82)             Imperdiet dui accumsan sit amet nulla facilisi. Tortor id aliquet lectus proin nibh nisl condimentum id. Sagittis aliquam malesuada bibendum arcu vitae elementum. Risus nec feugiat in fermentum posuere urna nec tincidunt praesent. Lacinia at quis risus sed vulputate odio. Diam quam nulla porttitor massa id neque aliquam vestibulum morbi. Purus gravida quis blandit turpis cursus in hac. Nunc faucibus a pellentesque sit amet. Rhoncus aenean vel elit scelerisque. Tincidunt ornare massa eget egestas purus viverra.
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400  83)         </p>
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400  84)         <p>
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400  85)             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400  86)             ut labore et dolore magna aliqua. Amet nisl purus in mollis. Iaculis eu non diam phasellus
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400  87)             vestibulum lorem sed risus ultricies. Lacus vel facilisis volutpat est velit egestas dui id.
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400  88)             Est lorem ipsum dolor sit. Ut sem nulla pharetra diam sit amet nisl suscipit adipiscing.
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400  89)             Facilisis leo vel fringilla est ullamcorper eget nulla facilisi. Enim lobortis scelerisque
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400  90)             fermentum dui faucibus in. Interdum posuere lorem ipsum dolor sit amet. Pellentesque nec nam
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400  91)             aliquam sem et tortor.
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400  92)         </p>
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400  93)         <p>
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400  94)             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400  95)             ut labore et dolore magna aliqua. Amet nisl purus in mollis. Iaculis eu non diam phasellus
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400  96)             vestibulum lorem sed risus ultricies. Lacus vel facilisis volutpat est velit egestas dui id.
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400  97)             Est lorem ipsum dolor sit. Ut sem nulla pharetra diam sit amet nisl suscipit adipiscing.
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400  98)             Facilisis leo vel fringilla est ullamcorper eget nulla facilisi. Enim lobortis scelerisque
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400  99)             fermentum dui faucibus in. Interdum posuere lorem ipsum dolor sit amet. Pellentesque nec nam
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400 100)             aliquam sem et tortor.
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400 101)         </p>
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400 102)         
+d7761117 (Mgibso46 2022-10-12 22:21:08 -0400 103)         <!--jhowar63
+d7761117 (Mgibso46 2022-10-12 22:21:08 -0400 104)         Create Workout button will bring authenticated users to the CreateWorkout page
+d7761117 (Mgibso46 2022-10-12 22:21:08 -0400 105)         <h4>Future Create Workout Button</h4> -->
+27c95b50 (mdew-abc 2022-10-13 09:25:50 -0400 106)         
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400 107)         <div id="footer">
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400 108)             
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400 109) 
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400 110)             <!--Implement buttons here, any credit needed, contact us, links to any socials, etc-->
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400 111)     
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400 112)         </div>
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400 113) 
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400 114) 
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400 115)         <!-- Sticky script for floating nav -->
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400 116)         <script>
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400 117)             window.onscroll = function() {myFunction()};
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400 118)             
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400 119)             var navbar = document.getElementById("floatingNav");
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400 120)             var sticky = navbar.offsetTop;
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400 121)             
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400 122)             function myFunction() {
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400 123)               if (window.pageYOffset >= sticky) {
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400 124)                 navbar.classList.add("sticky")
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400 125)               } else {
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400 126)                 navbar.classList.remove("sticky");
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400 127)               }
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400 128)             }
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400 129)         </script>
+
+CreateWorkout.html
+27c95b50 (mdew-abc     2022-10-13 09:25:50 -0400 13)         {% load static %}
+27c95b50 (mdew-abc     2022-10-13 09:25:50 -0400 14)         <link rel="stylesheet" href="{% static 'WorkoutApp/styles.css' %}" />
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400 17)         
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400 18)         <div id="header">
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400 19)             
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400 20)             <!--need to make a professional looking header here-->
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400 21)             <!--includes logo and site name-->
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400 22)     
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400 23)         </div>
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400 24) 
+27c95b50 (mdew-abc     2022-10-13 09:25:50 -0400 25)         <div id="floatingNav">
+27c95b50 (mdew-abc     2022-10-13 09:25:50 -0400 26)             <button type="submit"><a href="/"> Home </a></button>
+27c95b50 (mdew-abc     2022-10-13 09:25:50 -0400 27)             <button type="submit"><a href="/CreateWorkout"> Add Workout </a></button>
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400 28)             <button type="submit"><a href="/ProfilePage"> Profile Page </a></button>
+27c95b50 (mdew-abc     2022-10-13 09:25:50 -0400 29) 
+27c95b50 (mdew-abc     2022-10-13 09:25:50 -0400 30)             {% if user.is_authenticated %}
+27c95b50 (mdew-abc     2022-10-13 09:25:50 -0400 31)             <button type="submit"> <a href="/SignOut"> Sign Out </a> </button>
+27c95b50 (mdew-abc     2022-10-13 09:25:50 -0400 32)             
+27c95b50 (mdew-abc     2022-10-13 09:25:50 -0400 33)             {% else %}
+27c95b50 (mdew-abc     2022-10-13 09:25:50 -0400 34)             <button type="submit"> <a href="/SignIn"> Sign In </a> </button>
+27c95b50 (mdew-abc     2022-10-13 09:25:50 -0400 35)             {% endif %}
+27c95b50 (mdew-abc     2022-10-13 09:25:50 -0400 36) 
+27c95b50 (mdew-abc     2022-10-13 09:25:50 -0400 37)         </div>
+27c95b50 (mdew-abc     2022-10-13 09:25:50 -0400 38) 
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400 64) 
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400 65) 
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400 66)         <div id="footer">
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400 67)             
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400 68)         <!--Implement buttons here, any credit needed, contact us, links to any socials, etc-->
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400 69)     
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400 70)         </div>
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400 71) 
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400 72) 
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400 73)         <!-- Sticky script for floating nav -->
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400 74)         <script>
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400 75)             window.onscroll = function() {myFunction()};
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400 76)             
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400 77)             var navbar = document.getElementById("floatingNav");
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400 78)             var sticky = navbar.offsetTop;
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400 79)             
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400 80)             function myFunction() {
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400 81)               if (window.pageYOffset >= sticky) {
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400 82)                 navbar.classList.add("sticky")
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400 83)               } else {
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400 84)                 navbar.classList.remove("sticky");
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400 85)               }
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400 86)             }
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400 87)         </script>
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400 88) 
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400 89) 
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400 90) 
+
+SignIn.html
+27c95b50 (mdew-abc 2022-10-13 09:25:50 -0400 13)         {% load static %}
+27c95b50 (mdew-abc 2022-10-13 09:25:50 -0400 14)         <link rel="stylesheet" href="{% static 'WorkoutApp/styles.css' %}" />
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400 18)         <div id="header">
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400 19)             
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400 20)             <!--need to make a professional looking header here-->
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400 21)             <!--includes logo and site name-->
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400 22)     
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400 23)         </div>
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400 24)         
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400 50)         <div id="footer">
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400 51)             
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400 52)             <!--Implement buttons here, any credit needed, contact us, links to any socials, etc-->
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400 53)     
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400 54)         </div>
+330be149 (mdew-abc 2022-10-13 10:23:25 -0400 55) 
+
+settings.py
+27c95b50 (mdew-abc     2022-10-13 09:25:50 -0400 121) STATICFILES_DIRS = [
+27c95b50 (mdew-abc     2022-10-13 09:25:50 -0400 122)     BASE_DIR / "static"
+27c95b50 (mdew-abc     2022-10-13 09:25:50 -0400 123) ]
+27c95b50 (mdew-abc     2022-10-13 09:25:50 -0400 124) 
+
+
