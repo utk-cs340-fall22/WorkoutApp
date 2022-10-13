@@ -14,6 +14,14 @@
         <link rel="stylesheet" href="{% static 'WorkoutApp/styles.css' %}" />
     </head>
     <body>
+        <div id="header">
+            
+            <!--need to make a professional looking header here-->
+            <!--includes logo and site name-->
+    
+        </div>
+
+
         <div id="floatingNav">
             <button type="submit"><a href="/"> Home </a></button>
             <button type="submit"><a href="/CreateWorkout"> Add Workout </a></button>
@@ -30,10 +38,10 @@
 
         {% for message in messages %}
         <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
-        <strong>Message:</strong> {{ message}}
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-        </button>
+            <strong>Message:</strong> {{ message}}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
         </div>
         {% endfor %}
         
@@ -44,10 +52,81 @@
         <h4>You are successfully logged in.</h4>
         <h4>Feel free to view your workouts or add on to them<h4> 
 
+
+
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+            ut labore et dolore magna aliqua. Amet nisl purus in mollis. Iaculis eu non diam phasellus
+            vestibulum lorem sed risus ultricies. Lacus vel facilisis volutpat est velit egestas dui id.
+            Est lorem ipsum dolor sit. Ut sem nulla pharetra diam sit amet nisl suscipit adipiscing.
+            Facilisis leo vel fringilla est ullamcorper eget nulla facilisi. Enim lobortis scelerisque
+            fermentum dui faucibus in. Interdum posuere lorem ipsum dolor sit amet. Pellentesque nec nam
+            aliquam sem et tortor.
+        </p>
+    
+        <p>
+            Viverra accumsan in nisl nisi scelerisque eu ultrices vitae. Viverra maecenas accumsan lacus vel facilisis volutpat est.
+            Ipsum dolor sit amet consectetur adipiscing elit ut aliquam. Sit amet consectetur adipiscing elit ut aliquam purus.
+            Risus viverra adipiscing at in. Viverra justo nec ultrices dui sapien eget mi proin. Vehicula ipsum a arcu cursus vitae congue mauris.
+            Parturient montes nascetur ridiculus mus. Arcu cursus euismod quis viverra nibh cras. Nascetur ridiculus mus mauris vitae ultricies leo.
+            Id cursus metus aliquam eleifend mi in nulla posuere sollicitudin. Eu scelerisque felis imperdiet proin fermentum. Sed vulputate odio ut
+            enim blandit volutpat maecenas volutpat.
+        </p>
+    
+        <p>
+            Vitae aliquet nec ullamcorper sit amet risus nullam eget felis. Imperdiet dui accumsan sit amet nulla
+            facilisi morbi tempus iaculis. Quam nulla porttitor massa id neque aliquam vestibulum. A lacus vestibulum sed
+            arcu non odio euismod lacinia. Bibendum enim facilisis gravida neque convallis a cras semper auctor.
+            Sit amet risus nullam eget felis eget nunc lobortis mattis. Quis enim lobortis scelerisque fermentum.
+            Nisi vitae suscipit tellus mauris a diam maecenas sed. Commodo nulla facilisi nullam vehicula.
+            Imperdiet dui accumsan sit amet nulla facilisi. Tortor id aliquet lectus proin nibh nisl condimentum id. Sagittis aliquam malesuada bibendum arcu vitae elementum. Risus nec feugiat in fermentum posuere urna nec tincidunt praesent. Lacinia at quis risus sed vulputate odio. Diam quam nulla porttitor massa id neque aliquam vestibulum morbi. Purus gravida quis blandit turpis cursus in hac. Nunc faucibus a pellentesque sit amet. Rhoncus aenean vel elit scelerisque. Tincidunt ornare massa eget egestas purus viverra.
+        </p>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+            ut labore et dolore magna aliqua. Amet nisl purus in mollis. Iaculis eu non diam phasellus
+            vestibulum lorem sed risus ultricies. Lacus vel facilisis volutpat est velit egestas dui id.
+            Est lorem ipsum dolor sit. Ut sem nulla pharetra diam sit amet nisl suscipit adipiscing.
+            Facilisis leo vel fringilla est ullamcorper eget nulla facilisi. Enim lobortis scelerisque
+            fermentum dui faucibus in. Interdum posuere lorem ipsum dolor sit amet. Pellentesque nec nam
+            aliquam sem et tortor.
+        </p>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+            ut labore et dolore magna aliqua. Amet nisl purus in mollis. Iaculis eu non diam phasellus
+            vestibulum lorem sed risus ultricies. Lacus vel facilisis volutpat est velit egestas dui id.
+            Est lorem ipsum dolor sit. Ut sem nulla pharetra diam sit amet nisl suscipit adipiscing.
+            Facilisis leo vel fringilla est ullamcorper eget nulla facilisi. Enim lobortis scelerisque
+            fermentum dui faucibus in. Interdum posuere lorem ipsum dolor sit amet. Pellentesque nec nam
+            aliquam sem et tortor.
+        </p>
+        
         <!--jhowar63
         Create Workout button will bring authenticated users to the CreateWorkout page
         <h4>Future Create Workout Button</h4> -->
         
+        <div id="footer">
+            
+
+            <!--Implement buttons here, any credit needed, contact us, links to any socials, etc-->
+    
+        </div>
+
+
+        <!-- Sticky script for floating nav -->
+        <script>
+            window.onscroll = function() {myFunction()};
+            
+            var navbar = document.getElementById("floatingNav");
+            var sticky = navbar.offsetTop;
+            
+            function myFunction() {
+              if (window.pageYOffset >= sticky) {
+                navbar.classList.add("sticky")
+              } else {
+                navbar.classList.remove("sticky");
+              }
+            }
+        </script>
 
 
         <script src="" async defer></script>

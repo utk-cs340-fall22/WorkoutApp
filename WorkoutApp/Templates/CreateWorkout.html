@@ -14,10 +14,18 @@
         <link rel="stylesheet" href="{% static 'WorkoutApp/styles.css' %}" />
     </head>
     <body>
+        
+        <div id="header">
+            
+            <!--need to make a professional looking header here-->
+            <!--includes logo and site name-->
+    
+        </div>
+
         <div id="floatingNav">
             <button type="submit"><a href="/"> Home </a></button>
             <button type="submit"><a href="/CreateWorkout"> Add Workout </a></button>
-            <button type="submit"><a href="/"> Profile Page </a></button>
+            <button type="submit"><a href="/ProfilePage"> Profile Page </a></button>
 
             {% if user.is_authenticated %}
             <button type="submit"> <a href="/SignOut"> Sign Out </a> </button>
@@ -53,6 +61,33 @@
         <!--jhowar63
         Cancel button returns user to the homepage.
         <h3>Future Cancel (return to home page) Button</h3> -->
+
+
+        <div id="footer">
+            
+        <!--Implement buttons here, any credit needed, contact us, links to any socials, etc-->
+    
+        </div>
+
+
+        <!-- Sticky script for floating nav -->
+        <script>
+            window.onscroll = function() {myFunction()};
+            
+            var navbar = document.getElementById("floatingNav");
+            var sticky = navbar.offsetTop;
+            
+            function myFunction() {
+              if (window.pageYOffset >= sticky) {
+                navbar.classList.add("sticky")
+              } else {
+                navbar.classList.remove("sticky");
+              }
+            }
+        </script>
+
+
+
         <button type="submit"> <a href="/ProfilePage">Cancel</a> </button>
 
     </body>
