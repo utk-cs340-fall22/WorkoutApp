@@ -6,12 +6,16 @@
 <!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
 <html>
     <head>
-        <link rel="stylesheet" href="styles.css" />
+        
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'WorkoutApp/styles.css' %}" />
+        <!--<link rel="stylesheet" href="styles.css" />-->
     </head>
     <body>
 
@@ -21,9 +25,10 @@
         <h4>You are successfully logged in.</h4>
 
         <div id="floatingNav">
-            <a href="CreateWorkout.html">Add Workout</a>
-            <a href="ProfilePage.html">Profile</a>
-            <button type="submit"> <a href="/SignOut">Sign Out</a> </button>
+            <button type="submit"><a href="/"> Home </a></button>
+            <button type="submit"><a href="/CreateWorkout"> Add Workout </a></button>
+            <button type="submit"><a href="/"> Profile Page </a></button>
+            <button type="submit"> <a href="/SignOut"> Sign Out </a> </button>
         </div>
         
         <p>
