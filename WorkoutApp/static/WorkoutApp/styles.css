@@ -1,0 +1,35 @@
+body{
+    background-color: powderblue;
+}
+h3{
+    color:white;
+    border: 2px solid black;
+    background-color: blue;
+}
+a{
+    
+}
+#floatingNav{
+    border:2px solid black;
+    background-color: powderblue;
+}
+#floatingNav a{
+    float: left;
+    display: block;
+    color:black;
+    text-align:center;
+    padding: 14px;
+    text-decoration: none;
+    background-color:darkcyan;
+}
+.content{
+    padding: 16px;
+}
+.sticky{
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+.sticky + .content{
+    padding-top: 60px;
+}
