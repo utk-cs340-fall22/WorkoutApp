@@ -19,7 +19,6 @@ Group Name: WorkoutApp
 ### What problems you encountered
 - It took me much longer to be comfortable with Django/Python/HTML than I had originally expected. It meant that I was not confident in pushing code till later in the sprint than I had hoped.
 - Justin, Michael, and I spent a long time trying to figure out how to save text entered into a variable that can be stored and then referenced. We have yet to find a permanent solution.
-- 
 
 ### Issues you worked on
 - Begin learning tools used for project. https://github.com/utk-cs340-fall22/WorkoutApp/issues/16#issue-1408573589
