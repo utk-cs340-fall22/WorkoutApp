@@ -1,0 +1,99 @@
+Commits on Oct 12, 2022 -
+    WorkoutApp/Templates/CreateWorkout.html
+    <h3>Future Add Exercise Button</h3>
+        <label for="freeform"> Add an exercise:</label>
+        <br>
+        <textarea id="freeform"
+        name="freeform" rows="1" cols="30" placeholder="exercise name - mm/dd/year"
+        maxlength="100"></textarea>
+        <br>
+
+        <button type="submit"> <a>Submit</a></button>
+
+   
+   
+   
+    WorkoutApp/Main/views.py
+    def ProfilePage(request):
+    user = request.user
+    fname = user.first_name
+    return render(request, "homepage.html", {'fname' : fname})
+    return render(request, "ProfilePage.html", {'fname' : fname})
+
+    def CreateCharts(request):
+        pass
+
+
+    WorkoutApp/Templates/ProfilePage.html  **This was from a merge, and done by Michael**
+    @@ -0,0 +1,41 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+        <strong>Message:</strong> {{ message}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+        {% endfor %}
+
+        <h3>Welcome to WorkoutApp</h3>
+
+
+        <h3>Hello {{ fname }}</h3>
+        <h4>You are successfully logged in.</h4>
+        <h4>Feel free to view your workouts or add on to them<h4> 
+
+        <!--jhowar63
+        Create Workout button will bring authenticated users to the CreateWorkout page
+        <h4>Future Create Workout Button</h4> -->
+        <button type="submit"> <a href="/CreateWorkout">Create Workout</a> </button>
+        <button type="submit"> <a href="/SignOut">Sign Out</a> </button>
+
+
+        <script src="" async defer></script>
+    </body>
+</html>
+
+
+    WorkoutApp/Templates/homepage.html
+       {% if user.is_authenticated %}
+        <h3>Hello {{ fname }}</h3>
+        <h4>You are successfully logged in.</h4>
+
+        <h3>Please create an account</h3>
+        <h4>Or if you have an account, please sign in.</h4>
+
+        <!--jhowar63
+        Create Workout button will bring authenticated users to the CreateWorkout page
+        <h4>Future Create Workout Button</h4> -->
+        <button type="submit"> <a href="/CreateWorkout">Create Workout</a> </button>
+        <button type="submit"> <a href="/SignOut">Sign Out</a> </button>
+
+        {% else %}
+
+        <button type="submit"> <a href="/CreateAccount">Create Account</a> </button>
+        <button type="submit"> <a href="/SignIn">Sign In</a> </button>
+
+        {% endif %}
+
+        <script src="" async defer></script>
+    </body>
+</html>
+
+
+
+    
