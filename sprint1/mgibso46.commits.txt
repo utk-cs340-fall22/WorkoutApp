@@ -1,1 +1,78 @@
+WorkoutApp/Main/veiws.py
 
+e9aff8b4 (Mgibso46     2022-10-10 23:22:27 -0400 48)         return redirect('home')
+ba5fee4c (Mgibso46     2022-10-12 18:35:07 -0400 61)             return redirect('ProfilePage')
+ba5fee4c (Mgibso46     2022-10-12 18:35:07 -0400 74) def ProfilePage(request):
+ba5fee4c (Mgibso46     2022-10-12 18:35:07 -0400 75)     user = request.user
+ba5fee4c (Mgibso46     2022-10-12 18:35:07 -0400 76)     fname = user.first_name
+d7761117 (Mgibso46     2022-10-12 22:21:08 -0400 77)     return render(request, "ProfilePage.html", {'fname' : fname})
+ba5fee4c (Mgibso46     2022-10-12 18:35:07 -0400 78) 
+9a34021c (Mgibso46     2022-10-12 23:56:12 -0400 88) def CreateExercise(request):
+9a34021c (Mgibso46     2022-10-12 23:56:12 -0400 89)     exercisename = request.POST.get('CExercise')
+9a34021c (Mgibso46     2022-10-12 23:56:12 -0400 90)     if exercisename != '':
+9a34021c (Mgibso46     2022-10-12 23:56:12 -0400 91)         messages.success(request, "Exercise made!")
+9a34021c (Mgibso46     2022-10-12 23:56:12 -0400 92)     return render(request, "CreateWorkout.html", {'Exercisename' : exercisename})
+9a34021c (Mgibso46     2022-10-12 23:56:12 -0400 93) 
+9a34021c (Mgibso46     2022-10-12 23:56:12 -0400 98)     #return render(request, "CreateWorkout.html")
+
+WorkoutApp/Main/urls.py
+
+ba5fee4c (Mgibso46     2022-10-12 18:35:07 -0400 26)     path('ProfilePage', views.ProfilePage, name='ProfilePage'),
+9a34021c (Mgibso46     2022-10-12 23:56:12 -0400 31)     path('CreateExercise', views.CreateExercise, name='CreateExerceise'),
+
+WorkoutApp/Templates/ProfilePage.html
+
+d7761117 (Mgibso46 2022-10-12 22:21:08 -0400  1) <!DOCTYPE html>
+d7761117 (Mgibso46 2022-10-12 22:21:08 -0400  2) <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+d7761117 (Mgibso46 2022-10-12 22:21:08 -0400  3) <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+d7761117 (Mgibso46 2022-10-12 22:21:08 -0400  4) <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+d7761117 (Mgibso46 2022-10-12 22:21:08 -0400  5) <!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+d7761117 (Mgibso46 2022-10-12 22:21:08 -0400  6) <html>
+d7761117 (Mgibso46 2022-10-12 22:21:08 -0400  7)     <head>
+d7761117 (Mgibso46 2022-10-12 22:21:08 -0400  8)         <meta charset="utf-8">
+d7761117 (Mgibso46 2022-10-12 22:21:08 -0400  9)         <meta http-equiv="X-UA-Compatible" content="IE=edge">
+d7761117 (Mgibso46 2022-10-12 22:21:08 -0400 10)         <title></title>
+d7761117 (Mgibso46 2022-10-12 22:21:08 -0400 11)         <meta name="description" content="">
+d7761117 (Mgibso46 2022-10-12 22:21:08 -0400 12)         <meta name="viewport" content="width=device-width, initial-scale=1">
+d7761117 (Mgibso46 2022-10-12 22:21:08 -0400 13)         <link rel="stylesheet" href="">
+d7761117 (Mgibso46 2022-10-12 22:21:08 -0400 14)     </head>
+d7761117 (Mgibso46 2022-10-12 22:21:08 -0400 15)     <body>
+d7761117 (Mgibso46 2022-10-12 22:21:08 -0400 16)         {% for message in messages %}
+d7761117 (Mgibso46 2022-10-12 22:21:08 -0400 17)         <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+d7761117 (Mgibso46 2022-10-12 22:21:08 -0400 18)         <strong>Message:</strong> {{ message}}
+d7761117 (Mgibso46 2022-10-12 22:21:08 -0400 19)         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+d7761117 (Mgibso46 2022-10-12 22:21:08 -0400 20)         <span aria-hidden="true">&times;</span>
+d7761117 (Mgibso46 2022-10-12 22:21:08 -0400 21)         </button>
+d7761117 (Mgibso46 2022-10-12 22:21:08 -0400 22)         </div>
+d7761117 (Mgibso46 2022-10-12 22:21:08 -0400 23)         {% endfor %}
+d7761117 (Mgibso46 2022-10-12 22:21:08 -0400 24)         
+d7761117 (Mgibso46 2022-10-12 22:21:08 -0400 25)         <h3>Welcome to WorkoutApp</h3>
+d7761117 (Mgibso46 2022-10-12 22:21:08 -0400 26)         
+0fb4fa90 (Mgibso46 2022-10-12 22:22:11 -0400 27) 
+d7761117 (Mgibso46 2022-10-12 22:21:08 -0400 28)         <h3>Hello {{ fname }}</h3>
+d7761117 (Mgibso46 2022-10-12 22:21:08 -0400 29)         <h4>You are successfully logged in.</h4>
+d7761117 (Mgibso46 2022-10-12 22:21:08 -0400 30)         <h4>Feel free to view your workouts or add on to them<h4> 
+d7761117 (Mgibso46 2022-10-12 22:21:08 -0400 31) 
+d7761117 (Mgibso46 2022-10-12 22:21:08 -0400 32)         <!--jhowar63
+d7761117 (Mgibso46 2022-10-12 22:21:08 -0400 33)         Create Workout button will bring authenticated users to the CreateWorkout page
+d7761117 (Mgibso46 2022-10-12 22:21:08 -0400 34)         <h4>Future Create Workout Button</h4> -->
+d7761117 (Mgibso46 2022-10-12 22:21:08 -0400 35)         <button type="submit"> <a href="/CreateWorkout">Create Workout</a> </button>
+d7761117 (Mgibso46 2022-10-12 22:21:08 -0400 36)         <button type="submit"> <a href="/SignOut">Sign Out</a> </button>
+d7761117 (Mgibso46 2022-10-12 22:21:08 -0400 37) 
+0fb4fa90 (Mgibso46 2022-10-12 22:22:11 -0400 38) 
+d7761117 (Mgibso46 2022-10-12 22:21:08 -0400 39)         <script src="" async defer></script>
+d7761117 (Mgibso46 2022-10-12 22:21:08 -0400 40)     </body>
+d7761117 (Mgibso46 2022-10-12 22:21:08 -0400 41) </html>
+
+WorkoutApp/Templates/CreateWorkout.html
+
+9a34021c (Mgibso46     2022-10-12 23:56:12 -0400 26)         <h3>Current {{ Exercisename }}</h3>
+9a34021c (Mgibso46     2022-10-12 23:56:12 -0400 29)         <form action="/CreateExercise" method="post">
+9a34021c (Mgibso46     2022-10-12 23:56:12 -0400 30)             {% csrf_token %}
+9a34021c (Mgibso46     2022-10-12 23:56:12 -0400 31)             
+9a34021c (Mgibso46     2022-10-12 23:56:12 -0400 32)             <label for="">Exercise</label>
+9a34021c (Mgibso46     2022-10-12 23:56:12 -0400 33)             <input type="text" id="CExercise" name="CExercise" placeholder="Create a Exercise" required>
+9a34021c (Mgibso46     2022-10-12 23:56:12 -0400 34)             <br>
+9a34021c (Mgibso46     2022-10-12 23:56:12 -0400 36)             <button type="submit">Create Exercise!</button>
+9a34021c (Mgibso46     2022-10-12 23:56:12 -0400 37)         </form>
+ef42cffb (Mgibso46     2022-10-12 23:58:16 -0400 41)         <button type="submit"> <a href="/ProfilePage">Cancel</a> </button>
