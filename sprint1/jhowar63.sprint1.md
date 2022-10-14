@@ -7,10 +7,10 @@ Github ID: jhowar63
 Group Name: WorkoutApp
 
 ### What you planned to do
-- Become familiar with the tools that we will be using for the project. https://github.com/utk-cs340-fall22/WorkoutApp/issues/16#issue-1408573589
-- Create a Workout Editor Page. https://github.com/utk-cs340-fall22/WorkoutApp/issues/17#issue-1408600471
-- Create backend Exercises, Workouts, and Workout History. https://github.com/utk-cs340-fall22/WorkoutApp/issues/18#issue-1408600897
-- Create a Workout Library. https://github.com/utk-cs340-fall22/WorkoutApp/issues/19#issue-1408601078
+- Become familiar with the tools that we will be using for the project. https://github.com/utk-cs340-fall22/WorkoutApp/issues/16
+- Create a Workout Editor Page. https://github.com/utk-cs340-fall22/WorkoutApp/issues/17
+- Create backend Exercises, Workouts, and Workout History. https://github.com/utk-cs340-fall22/WorkoutApp/issues/18
+- Create a Workout Library. https://github.com/utk-cs340-fall22/WorkoutApp/issues/19
 
 ### What you did not do
 - I was able to learn how to create and reference instances of models on Django, so start utilizing backend data structures for exercises and workouts.
