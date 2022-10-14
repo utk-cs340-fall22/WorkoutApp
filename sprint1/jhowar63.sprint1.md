@@ -13,7 +13,7 @@ Group Name: WorkoutApp
 - Create a Workout Library. https://github.com/utk-cs340-fall22/WorkoutApp/issues/19
 
 ### What you did not do
-- I was able to learn how to create and reference instances of models on Django, so start utilizing backend data structures for exercises and workouts.
+- I was able to learn how to create and reference instances of models on Django, so I was not able to start utilizing backend data structures for exercises and workouts.
 - We decided to wait on implementing a workout library until we were completely comfortable and finished with the model linking. So I did not work on issue 19.
 
 ### What problems you encountered
