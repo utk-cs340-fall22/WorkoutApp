@@ -1,0 +1,131 @@
+adding Create Workout button and its html page
+https://github.com/utk-cs340-fall22/WorkoutApp/commit/f440fed789fff401e60566494dd5c64626c8463f
+
+WorkoutApp/.gitignore
+
+340env
+env
+.env
+.340env
+
+
+WorkoutApp/Main/urls.py
+
+path('CreateWorkout', views.CreateWorkout, name='CreateWorkout'),
+
+
+WorkoutApp/Main/views.py
+
+# Jacob Howard working here.
+def CreateWorkout(request):
+    return render(request, "CreateWorkout.html")
+
+
+WorkoutApp/Templates/CreateWorkout.html
+
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+        <strong>Message:</strong> {{ message}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+        {% endfor %}
+        
+        <h3>Workout Editor</h3>
+        
+        <h3>List of Exercises</h3>
+
+        <h3>Future Add Exercise Button</h3>
+
+        <h3>Future Cancel (return to home page) Button</h3>
+
+    </body>
+</html>
+
+
+WorkoutApp/Templates/homepage.html
+
+<h4>Future Create Workout Button</h4>
+    <button type="submit"> <a href="/CreateWorkout">Create Workout</a> </button>
+
+adding cancel button on CreateWorkout page
+https://github.com/utk-cs340-fall22/WorkoutApp/commit/d193dfc18545d66a3ba72a7f0768d5937022cc3c
+
+WorkoutApp/.gitignore
+
+340env/
+env/
+.env
+.340env
+
+
+WorkoutApp/Templates/CreateWorkout.html
+
+      <!--jhowar63
+        Cancel button returns user to the homepage.
+        <h3>Future Cancel (return to home page) Button</h3> -->
+        <button type="submit"> <a href="/">Cancel</a> </button>
+
+WorkoutApp/Templates/homepage.html
+
+       <!--jhowar63
+        Create Workout button will bring authenticated users to the CreateWorkout page
+        <h4>Future Create Workout Button</h4> -->
+        <button type="submit"> <a href="/CreateWorkout">Create Workout</a> </button>
+
+
+Creating WorkoutHistory, Workout, Exercise models and migrating them to db
+https://github.com/utk-cs340-fall22/WorkoutApp/commit/b56c9d4a22ef396da5be7badb24f8c3ebdb4aad4
+
+WorkoutApp/Main/apps.py
+
+# jhowar63
+# A tutorial I watched did this when they added models so I am.
+# Not sure if it is necessary or correct.
+# class WorkoutAppConfig(AppConfig):
+   # name = 'WorkoutApp'
+
+
+WorkoutApp/Main/models.py
+
+from unicodedata import name
+
+# jhowar63
+# Working on adding Library for exercises.
+# The general idea is: 
+# Every user will have a WorkoutHistory, that is a collection of Workouts.
+# Every workout will be a collection of Exercises.
+
+class WorkoutHistory(models.Model):
+    pass
+
+class Workout(models.Model):
+    date = models.DateField() # Date of the workout, to keep track chronologically
+
+class Exercise(models.Model):
+    # Should link exercises to larger workout.
+    # on_delete, should delete all exercises associated with workout if workout is deleted.
+    workout = models.ForeignKey(Workout, on_delete=models.CASCADE)
+    name = models.CharField(max_length=50)
+
+
+WorkoutApp/WorkoutApp/settings.py
+
+   'Main.apps.MainConfig', # jhowar63, extension of the addition to apps.py
+
