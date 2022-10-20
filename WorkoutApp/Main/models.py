@@ -1,5 +1,6 @@
 from unicodedata import name
 from django.db import models
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 # Create your models here.
 
@@ -27,7 +28,9 @@ class Exercise(models.Model):
     )
     workout = models.ForeignKey(Workout, on_delete=models.CASCADE)
     name = models.CharField(max_length=50, choices=EXERCISE_NAMES)
-    reps = models.IntegerField()
-    sets = models.IntegerField()
-    weight = models.IntegerField()
-    rpe = models.IntegerField() # make min = 1 and max = 10
+    reps = models.PositiveIntegerField()
+    sets = models.PositiveIntegerField()
+    weight = models.PositiveIntegerField()
+    rpe = models.PositiveIntegerField(
+        validators=[MinValueValidator(1), MaxValueValidator(10)]
+    )
