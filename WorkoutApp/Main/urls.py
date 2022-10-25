@@ -15,18 +15,22 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from .views import UserEditView, PasswordsChangeView
 from . import views
-
+from django.contrib.auth import views as auth_views
 #Creating all the urls for the website
 urlpatterns = [
     path('', views.home, name="home"),
     path('CreateAccount', views.CreateAccount, name='CreateAccount'),
     path('SignIn', views.SignIn, name='SignIn'),
     path('SignOut', views.SignOut, name='SignOut'),
-    path('ProfilePage', views.ProfilePage, name='ProfilePage'),
+    path('ProfilePage', UserEditView.as_view() , name='ProfilePage'),
     path('CreateCharts', views.CreateCharts, name='CreateCharts'),
     path('ChartHistory', views.ChartHistory, name='ChartHistory'),
     path('MoreInfo', views.MoreInfo, name='MoreInfo'),
     path('CreateWorkout', views.CreateWorkout, name='CreateWorkout'),
     path('CreateExercise', views.CreateExercise, name='CreateExerceise'),
+    path('password/', PasswordsChangeView.as_view(template_name='ChangePassword.html')),
+    path('password_success', views.password_success, name='PasswordSuccess'
+    )
 ]

@@ -1,10 +1,30 @@
 #from asyncio.windows_events import NULL
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
+from django.views import generic
+from django.urls import reverse_lazy
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-from telnetlib import LOGOUT
+from django.contrib.auth.forms import UserChangeForm
+from telnetlib import LOGOUT, Telnet
+from django import forms
+from django.contrib.auth.views import PasswordChangeView, PasswordChangeForm
 
+class EditProfileForm(UserChangeForm):
+    class Meta(UserChangeForm.Meta):
+        fields = None
+        exclude = ('groups','is_staff', 'is_active', 'user_permissions', 'is_superuser', 'password', 'last_login')
+
+class UserEditView(generic.UpdateView):
+    form_class = EditProfileForm
+    template_name = 'ProfilePage.html'
+    success_url = reverse_lazy('home')
+    def get_object(self):
+        return self.request.user
+
+class PasswordsChangeView(PasswordChangeView):
+    form_class = PasswordChangeForm
+    success_url = reverse_lazy('PasswordSuccess')
 
 # Create your views here.
 def home(request):
@@ -97,4 +117,7 @@ def CreateWorkout(request):
 
     return render(request, "CreateWorkout.html")
     #return render(request, "CreateWorkout.html")
+
+def password_success(request):
+    return render(request, 'PasswordSuccess.html',{})   
 

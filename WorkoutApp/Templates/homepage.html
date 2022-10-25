@@ -47,7 +47,7 @@
         {% endfor %}
         
         {% if user.is_authenticated %}
-        <h3> Hello {{ fname }} , Welcome to WorkoutApp</h3>
+        <h3> Hello {{ user.first_name }} , Welcome to WorkoutApp</h3>
         
         {% else %}
         <h3>Please create an account</h3>
