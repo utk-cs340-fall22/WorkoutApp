@@ -74,6 +74,7 @@ def SignOut(request):
 def ProfilePage(request):
     user = request.user
     fname = user.first_name
+    #all_workouts = Workout.objects.filter()
     return render(request, "ProfilePage.html", {'fname' : fname})
 
 def CreateCharts(request):

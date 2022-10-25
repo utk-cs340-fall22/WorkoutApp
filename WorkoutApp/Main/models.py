@@ -11,11 +11,19 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 # Every workout will be a collection of Exercises.
 
 class WorkoutHistory(models.Model):
-    pass
+    user = models.CharField(max_length = 50)
+
+    def __str__(self):
+        return str(self.user) + ' WorkoutHistory'
 
 class Workout(models.Model):
     date = models.DateField() # Date of the workout, to keep track chronologically
     user = models.CharField(max_length = 50)
+    workouthistory = models.ForeignKey(WorkoutHistory, on_delete=models.CASCADE)
+    
+#jhowar63 - changing how workouts are named in database.
+    def __str__(self):
+        return str(self.user) + ': ' + str(self.date)
     
 
 class Exercise(models.Model):
