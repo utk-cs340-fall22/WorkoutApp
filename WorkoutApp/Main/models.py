@@ -15,7 +15,7 @@ class WorkoutHistory(models.Model):
 
 class Workout(models.Model):
     date = models.DateField() # Date of the workout, to keep track chronologically
-    user = models.CharField()
+    user = models.CharField(max_length = 50)
     
 
 class Exercise(models.Model):
