@@ -23,14 +23,14 @@
 
         </div>
 
+        <!---->
         <div id="floatingNav">
             <button type="submit"><a href="/"> Home </a></button>
+            
+            {% if user.is_authenticated %}
             <button type="submit"><a href="/CreateWorkout"> Add Workout </a></button>
             <button type="submit"><a href="/ProfilePage"> Profile Page </a></button>
-
-            {% if user.is_authenticated %}
             <button type="submit"> <a href="/SignOut"> Sign Out </a> </button>
-            
             {% else %}
             <button type="submit"> <a href="/SignIn"> Sign In </a> </button>
             {% endif %}
@@ -51,10 +51,12 @@
         
         {% else %}
         <h3>Please create an account</h3>
+        <button type="submit"> <a href="/CreateAccount">Create Account</a> </button>
         <h4>Or if you have an account, please sign in.</h4>
 
         {% endif %}
 
+        <!--
         <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
             ut labore et dolore magna aliqua. Amet nisl purus in mollis. Iaculis eu non diam phasellus
@@ -100,17 +102,15 @@
             fermentum dui faucibus in. Interdum posuere lorem ipsum dolor sit amet. Pellentesque nec nam
             aliquam sem et tortor.
         </p>
-
+        -->
 
 
         <!--jhowar63
         Create Workout button will bring authenticated users to the CreateWorkout page
         <h4>Future Create Workout Button</h4> -->
         
-        <!-- 
-        <button type="submit"> <a href="/CreateAccount">Create Account</a> </button>
-        <button type="submit"> <a href="/SignIn">Sign In</a> </button>
-        -->
+    
+        <!-- <button type="submit"> <a href="/SignIn">Sign In</a> </button> -->
         
         <div id="footer">
             
