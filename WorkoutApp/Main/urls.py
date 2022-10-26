@@ -33,4 +33,5 @@ urlpatterns = [
     path('password/', PasswordsChangeView.as_view(template_name='ChangePassword.html')),
     path('password_success', views.password_success, name='PasswordSuccess'),
     path('ProfilePage/<int:id>/', views.Workout_Details),
+    path('EditProfile', UserEditView.as_view(), name='EditProfile'),
 ]

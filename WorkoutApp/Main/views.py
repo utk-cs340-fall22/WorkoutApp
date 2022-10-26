@@ -20,7 +20,7 @@ class EditProfileForm(UserChangeForm):
 
 class UserEditView(generic.UpdateView):
     form_class = EditProfileForm
-    template_name = 'ProfilePage.html'
+    template_name = 'EditProfile.html'
     success_url = reverse_lazy('home')
     def get_object(self):
         return self.request.user
@@ -151,3 +151,5 @@ def CreateWorkout(request):
 def password_success(request):
     return render(request, 'PasswordSuccess.html',{})   
 
+def EditProfile(request):
+    return render(request, "EditProfile.html")

@@ -42,3 +42,4 @@ class Exercise(models.Model):
     rpe = models.PositiveIntegerField(
         validators=[MinValueValidator(1), MaxValueValidator(10)]
     )
+
