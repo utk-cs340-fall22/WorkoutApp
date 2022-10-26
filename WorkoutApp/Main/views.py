@@ -104,7 +104,7 @@ def ChartHistory(request):
     pass
 
 def MoreInfo(request):
-    pass
+    return render(request, "MoreInfo.html")
 
 def CreateExercise(request):
     exercisename = request.POST.get('CExercise')

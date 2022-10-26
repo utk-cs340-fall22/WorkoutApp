@@ -31,6 +31,5 @@ urlpatterns = [
     path('CreateWorkout', views.CreateWorkout, name='CreateWorkout'),
     path('CreateExercise', views.CreateExercise, name='CreateExerceise'),
     path('password/', PasswordsChangeView.as_view(template_name='ChangePassword.html')),
-    path('password_success', views.password_success, name='PasswordSuccess'
-    )
+    path('password_success', views.password_success, name='PasswordSuccess')
 ]
