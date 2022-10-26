@@ -11,15 +11,15 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 # Every workout will be a collection of Exercises.
 
 class WorkoutHistory(models.Model):
-    user = models.CharField(max_length = 50)
+    user = models.CharField(max_length = 50, primary_key=True)  #jhowar63 - sp2:made this primary key
 
     def __str__(self):
         return str(self.user) + ' WorkoutHistory'
 
 class Workout(models.Model):
-    date = models.DateField() # Date of the workout, to keep track chronologically
+    date = models.DateField(primary_key=True) # jhowar63 - sp1:Date of the workout, to keep track chronologically. sp2:made this pk
     user = models.CharField(max_length = 50)
-    workouthistory = models.ForeignKey(WorkoutHistory, on_delete=models.CASCADE)
+    reffering_workouthistory = models.ForeignKey(WorkoutHistory, on_delete=models.CASCADE)
     
 #jhowar63 - changing how workouts are named in database.
     def __str__(self):
@@ -34,7 +34,7 @@ class Exercise(models.Model):
         ('DL', 'Deadlift'),
         ('OHP', 'Overhead Press'),
     )
-    workout = models.ForeignKey(Workout, on_delete=models.CASCADE)
+    reffering_workout = models.ForeignKey(Workout, on_delete=models.CASCADE)
     name = models.CharField(max_length=50, choices=EXERCISE_NAMES)
     reps = models.PositiveIntegerField()
     sets = models.PositiveIntegerField()

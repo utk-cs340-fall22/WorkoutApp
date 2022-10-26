@@ -9,6 +9,7 @@ from django.contrib.auth.forms import UserChangeForm
 from telnetlib import LOGOUT, Telnet
 from django import forms
 from django.contrib.auth.views import PasswordChangeView, PasswordChangeForm
+from .models import WorkoutHistory, Workout, Exercise
 
 class EditProfileForm(UserChangeForm):
     class Meta(UserChangeForm.Meta):
@@ -93,9 +94,14 @@ def SignOut(request):
 
 def ProfilePage(request):
     user = request.user
-    fname = user.first_name
-    #all_workouts = Workout.objects.filter()
-    return render(request, "ProfilePage.html", {'fname' : fname})
+    username = user.username
+    workouthistory = WorkoutHistory.objects.get(user=str(username))
+    all_workouts = WorkoutHistory.objects.get(user=str(username)).workout_set.all()
+    context = {
+        'workouthistory': workouthistory,
+        'all_workouts' : all_workouts,
+        }
+    return render(request, "ProfilePage.html", context)
 
 def CreateCharts(request):
     pass
