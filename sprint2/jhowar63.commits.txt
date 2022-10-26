@@ -1,0 +1,10 @@
+6979b3eb (Ashirran     2022-10-09 19:34:39 -0400  1) from django.contrib import admin
+78fdd15f (Jacob Howard 2022-10-25 02:36:25 -0400  2) from .models import Workout
+78fdd15f (Jacob Howard 2022-10-25 02:36:25 -0400  3) from .models import WorkoutHistory     # jhowar63 - Adding workouts to admin info
+78fdd15f (Jacob Howard 2022-10-25 02:36:25 -0400  4) #from .models import Exercise    # jhowar63 - Adding workout's exercises to admin info
+6979b3eb (Ashirran     2022-10-09 19:34:39 -0400  5) 
+6979b3eb (Ashirran     2022-10-09 19:34:39 -0400  6) # Register your models here.
+78fdd15f (Jacob Howard 2022-10-25 02:36:25 -0400  7) admin.site.register(WorkoutHistory)
+78fdd15f (Jacob Howard 2022-10-25 02:36:25 -0400  8) admin.site.register(Workout)    # jhowar63 - Adding workouts to admin view
+78fdd15f (Jacob Howard 2022-10-25 02:36:25 -0400  9) #admin.site.register(Exercise)   # jhowar63 - Adding workout's exercises to admin view
+78fdd15f (Jacob Howard 2022-10-25 02:36:25 -0400 10) #might be too much info
