@@ -1,4 +1,6 @@
 #from asyncio.windows_events import NULL
+from django.http import HttpResponse
+from django.http import Http404
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.views import generic
@@ -95,13 +97,35 @@ def SignOut(request):
 def ProfilePage(request):
     user = request.user
     username = user.username
-    workouthistory = WorkoutHistory.objects.get(user=str(username))
-    all_workouts = WorkoutHistory.objects.get(user=str(username)).workout_set.all()
+    workouthistory = None
+    all_workouts = None
+    try:
+        WorkoutHistory.objects.get(user=str(username)) is not None
+        workouthistory = WorkoutHistory.objects.get(user=str(username))
+        all_workouts = WorkoutHistory.objects.get(user=str(username)).workout_set.all()
+    except WorkoutHistory.DoesNotExist:
+        raise Http404("User's WorkoutHistory does not exist")
     context = {
         'workouthistory': workouthistory,
         'all_workouts' : all_workouts,
         }
     return render(request, "ProfilePage.html", context)
+    #we need to create a WorkoutHistory and pair it to user when they create their account.
+    #right now this can result in error if user doesnt have wh.
+
+def Workout_Details(request, id=None):
+    specific_workout = None
+    all_exercises = None
+    try:    
+        specific_workout = Workout.objects.get(id=id)
+        all_exercises = Workout.objects.get(id=id).exercise_set.all()
+    except Workout.DoesNotExist:
+        raise Http404("User's Workout does not exist")
+    context = {
+        'specific_workout': specific_workout,
+        'all_exercises': all_exercises
+        }
+    return render(request, "WorkoutDetails.html", context)
 
 def CreateCharts(request):
     pass

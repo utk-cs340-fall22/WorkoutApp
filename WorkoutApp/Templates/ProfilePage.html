@@ -94,7 +94,7 @@
 
         <u1>
             {%for workout in all_workouts %}
-                <li> {{ workout.date }} </li>
+                <li><a href='/ProfilePage/{{workout.id}}'> {{workout.date}}</a> </li>
             {% endfor %}
 
         </u1>

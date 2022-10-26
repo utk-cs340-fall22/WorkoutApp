@@ -17,7 +17,7 @@ class WorkoutHistory(models.Model):
         return str(self.user) + ' WorkoutHistory'
 
 class Workout(models.Model):
-    date = models.DateField(primary_key=True) # jhowar63 - sp1:Date of the workout, to keep track chronologically. sp2:made this pk
+    date = models.DateField() # jhowar63 - sp1:Date of the workout, to keep track chronologically. sp2:made this pk
     user = models.CharField(max_length = 50)
     reffering_workouthistory = models.ForeignKey(WorkoutHistory, on_delete=models.CASCADE)
     
