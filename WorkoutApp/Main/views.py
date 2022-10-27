@@ -66,7 +66,10 @@ def CreateAccount(request):
         myuser.last_name = lname
         myuser.is_active = True
         myuser.save() 
-
+        workouthistory = WorkoutHistory()
+        workouthistory.user = username
+        workouthistory.save()
+        
         messages.success(request, "Your Account has been successfully created.")
         return redirect('home')
     return render(request, "CreateAccount.html")
@@ -81,7 +84,7 @@ def SignIn(request):
         if user is not None:
             login(request, user)
             fname = user.first_name
-            return redirect('ProfilePage')
+            return redirect('home')
             return render(request, "homepage.html", {'fname' : fname})
         else:
             messages.error(request, "Credentials Are Incorrect")
