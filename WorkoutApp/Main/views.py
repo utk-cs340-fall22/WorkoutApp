@@ -1,4 +1,5 @@
 #from asyncio.windows_events import NULL
+from errno import ENAMETOOLONG
 from django.http import HttpResponse
 from django.http import Http404
 from django.shortcuts import get_object_or_404, render, redirect
@@ -86,7 +87,6 @@ def SignIn(request):
             login(request, user)
             fname = user.first_name
             return redirect('home')
-            return render(request, "homepage.html", {'fname' : fname})
         else:
             messages.error(request, "Credentials Are Incorrect")
             return redirect('home')
@@ -142,19 +142,24 @@ def MoreInfo(request):
 
 def CreateExercise(request):
     exercise = get_object_or_404(Exercise, pk=1)
-
+    user = request.user
+    
     if request.method == 'POST':
         form = ExerciseForm(request.POST)
-        if ExerciseForm.is_valid():
-            exercise.name = form.name
-            exercise.reps = form.reps
-            exercise.sets = form.sets
-            exercise.weight = form.weight
-            exercise.rpe = form.rpe 
-            # exercise.reffering_workout = CreateWorkout()??
-            exercise.save()
-    
-
+        form.name = request.POST.get('Ename')
+        form.reps = request.POST.get('Erep')
+        form.sets = request.POST.get('Esets')
+        form.weight = request.POST.get('Eweight')
+        form.rpe = request.POST.get('Erpe')
+        exercise.name = form.name
+        exercise.reps = form.reps
+        exercise.sets = form.sets
+        exercise.weight = form.weight
+        exercise.rpe = form.rpe 
+        # exercise.reffering_workout = CreateWorkout()??
+        #if ExerciseForm.is_valid():
+        
+    return render(request, "CreateExercise.html", {'Exercises' : form.name})
     """
     exercisename = request.POST.get('CExercise')
     if exercisename != '':
@@ -171,11 +176,14 @@ def CreateWorkout(request):
 def CreateWorkout2(request):
     Workoutname = request.POST.get('CWorkout')
     Workoutinfo = get_object_or_404(Workout, pk=1)
+    user = request.user
     
     Workoutinfo.date = Workoutname
+    Workoutinfo.user = user
+
     if Workoutname != '':
         messages.success(request, "Workout made!")
-    return render(request, "CreateWorkout.html", {'Workoutname' : Workoutname})
+    return render(request, "CreateExercise.html", {'Workoutname' : Workoutinfo.date})
 
 def password_success(request):
     return render(request, 'PasswordSuccess.html',{})   

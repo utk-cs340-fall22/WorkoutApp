@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'WorkoutApp/styles.css' %}" />
+    </head>
+    <body>
+        
+        <div id="header">
+            
+            <!--need to make a professional looking header here-->
+            <!--includes logo and site name-->
+    
+        </div>
+
+        <div id="floatingNav">
+            <button type="submit"><a href="/"> Home </a></button>
+            <button type="submit"><a href="/CreateWorkout"> Add Workout </a></button>
+            <button type="submit"><a href="/ProfilePage"> Profile Page </a></button>
+
+            {% if user.is_authenticated %}
+            <button type="submit"> <a href="/SignOut"> Sign Out </a> </button>
+            
+            {% else %}
+            <button type="submit"> <a href="/SignIn"> Sign In </a> </button>
+            {% endif %}
+
+            <button type="submit"><a href="/MoreInfo"> More Info </a></button>
+        </div>
+
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+        <strong>Message:</strong> {{ message}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+        {% endfor %}
+        
+        <h3>Workout Editor</h3>
+        <h3>Current {{ Exercises }}</h3>
+        <h3>List of Exercises in WorkoutName </h3>
+
+        <form action="/CreateExercise" method="post">
+            {% csrf_token %}
+            
+            <label for="">Workout</label>
+            <input type="text" id="Ename" name="Ename" placeholder="Enter Exercise name" required>
+            <input type="text" id="Erep" name="Crep" placeholder="Rep amount" required>
+            <input type="text" id="Esets" name="Esets" placeholder="Enter set amount" required>
+            <input type="text" id="Eweight" name="Eweight" placeholder="Enter weight" required>
+            <input type="text" id="Erpe" name="Crpe" placeholder="Enter rpe" required>
+            <br>
+
+
+            <button type="submit">Add Exercise!</button>
+        </form>
+        <!--jhowar63
+        Cancel button returns user to the homepage.
+        <h3>Future Cancel (return to home page) Button</h3> -->
+
+
+        <div id="footer">
+            
+        <!--Implement buttons here, any credit needed, contact us, links to any socials, etc-->
+    
+        </div>
+
+
+        <!-- Sticky script for floating nav -->
+        <script>
+            window.onscroll = function() {myFunction()};
+            
+            var navbar = document.getElementById("floatingNav");
+            var sticky = navbar.offsetTop;
+            
+            function myFunction() {
+              if (window.pageYOffset >= sticky) {
+                navbar.classList.add("sticky")
+              } else {
+                navbar.classList.remove("sticky");
+              }
+            }
+        </script>
+
+
+
+        <button type="submit"> <a href="/ProfilePage">Cancel</a> </button>
+
+    </body>
+</html>
