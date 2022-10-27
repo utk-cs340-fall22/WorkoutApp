@@ -30,9 +30,10 @@ urlpatterns = [
     path('MoreInfo', views.MoreInfo, name='MoreInfo'),
     path('CreateWorkout', views.CreateWorkout, name='CreateWorkout'),
     path('CreateWorkout2', views.CreateWorkout2, name='CreateWorkout2'),
-    path('CreateExercise', views.CreateExercise, name='CreateExerceise'),
+    #path('CreateExercise/<int:id>', views.CreateExercise, name='CreateExerceise'),
     path('password/', PasswordsChangeView.as_view(template_name='ChangePassword.html')),
     path('password_success', views.password_success, name='PasswordSuccess'),
     path('ProfilePage/<int:id>/', views.Workout_Details),
+    path('ProfilePage/<int:id>/add-exercise', views.CreateExercise),
     path('EditProfile', UserEditView.as_view(), name='EditProfile'),
 ]
