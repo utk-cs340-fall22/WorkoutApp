@@ -151,13 +151,15 @@ def CreateExercise(request):
         form.sets = request.POST.get('Esets')
         form.weight = request.POST.get('Eweight')
         form.rpe = request.POST.get('Erpe')
-        exercise.name = form.name
-        exercise.reps = form.reps
-        exercise.sets = form.sets
-        exercise.weight = form.weight
-        exercise.rpe = form.rpe 
-        # exercise.reffering_workout = CreateWorkout()??
-        #if ExerciseForm.is_valid():
+        '''if ExerciseForm.is_valid():
+            exercise.name = form.name
+            exercise.reps = form.reps
+            exercise.sets = form.sets
+            exercise.weight = form.weight
+            exercise.rpe = form.rpe 
+            #exercise.reffering_workout = CreateWorkout()??
+            '''
+        
         
     return render(request, "CreateExercise.html", {'Exercises' : form.name})
     """
@@ -181,9 +183,9 @@ def CreateWorkout2(request):
     Workoutinfo.date = Workoutname
     Workoutinfo.user = user
 
-    if Workoutname != '':
+    if Workoutinfo.date != '':
         messages.success(request, "Workout made!")
-    return render(request, "CreateExercise.html", {'Workoutname' : Workoutinfo.date})
+    return render(request, "CreateExercise.html", {'WorkoutName' :Workoutinfo.date})
 
 def password_success(request):
     return render(request, 'PasswordSuccess.html',{})   
