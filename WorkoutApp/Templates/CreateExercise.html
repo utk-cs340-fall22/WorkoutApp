@@ -46,14 +46,22 @@
         </div>
         {% endfor %}
         
-        
-        <h3>Create a Workout!</h3>
-        <h3>List of Workout:</h3>
+        <h3>Workout Editor</h3>
+        <h3>List of Exercises in {{WorkoutName}} </h3>
 
-        <form action="" method="post">
+        <form action="/CreateExercise" method="post">
             {% csrf_token %}
-            {{ form }}
-            <input type="submit" value="Submit">
+            
+            <label for="">Workout</label>
+            <input type="text" id="Ename" name="Ename" placeholder="Enter Exercise name" required>
+            <input type="text" id="Erep" name="Crep" placeholder="Rep amount" required>
+            <input type="text" id="Esets" name="Esets" placeholder="Enter set amount" required>
+            <input type="text" id="Eweight" name="Eweight" placeholder="Enter weight" required>
+            <input type="text" id="Erpe" name="Crpe" placeholder="Enter rpe" required>
+            <br>
+
+
+            <button type="submit">Add Exercise!</button>
         </form>
         <!--jhowar63
         Cancel button returns user to the homepage.

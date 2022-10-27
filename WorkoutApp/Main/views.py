@@ -87,7 +87,6 @@ def SignIn(request):
             login(request, user)
             fname = user.first_name
             return redirect('home')
-            return render(request, "homepage.html", {'fname' : fname})
         else:
             messages.error(request, "Credentials Are Incorrect")
             return redirect('home')
@@ -153,7 +152,7 @@ def CreateExercise(request):
             exercise.sets = form.sets
             exercise.weight = form.weight
             exercise.rpe = form.rpe
-             #needs work
+            #needs work
             exercise.save()
 
             return redirect(request.path_info)
@@ -202,11 +201,14 @@ def CreateWorkout(request):
 def CreateWorkout2(request):
     Workoutname = request.POST.get('CWorkout')
     Workoutinfo = get_object_or_404(Workout, pk=1)
+    user = request.user
     
     Workoutinfo.date = Workoutname
-    if Workoutname != '':
+    Workoutinfo.user = user
+
+    if Workoutinfo.date != '':
         messages.success(request, "Workout made!")
-    return render(request, "CreateWorkout.html", {'Workoutname' : Workoutname})
+    return render(request, "CreateExercise.html", {'WorkoutName' :Workoutinfo.date})
 
 def password_success(request):
     return render(request, 'PasswordSuccess.html',{})   
