@@ -160,8 +160,7 @@ def CreateExercise(request):
             #exercise.reffering_workout = CreateWorkout()??
             '''
         
-        
-    return render(request, "CreateExercise.html", {'Exercises' : form.name})
+    return render(request, "CreateExercise.html", {'Exercises' : form.name}, {'WorkoutName' : "Workout_Name_Here"})
     """
     exercisename = request.POST.get('CExercise')
     if exercisename != '':
