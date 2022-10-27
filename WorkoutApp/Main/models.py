@@ -30,10 +30,12 @@ class Exercise(models.Model):
     # Should link exercises to larger workout.
     # on_delete, should delete all exercises associated with workout if workout is deleted.
     EXERCISE_NAMES = (
-        ('BP', 'Bench Press'),
-        ('DL', 'Deadlift'),
-        ('OHP', 'Overhead Press'),
+        ('BP', 'Bench Press'), ('DL', 'Deadlift'),
+        ('OHP', 'Overhead Press'), ('FS',  'Front Squat'),
+        ('PU',  'Pullup'), ('RDL', 'Romanian Deadlift'),
+        ('DOP', 'Dumbbell Overhead Press'), ('HPT', 'Hip Thrust'),
     )
+    
     reffering_workout = models.ForeignKey(Workout, on_delete=models.CASCADE)
     name = models.CharField(max_length=50, choices=EXERCISE_NAMES)
     reps = models.PositiveIntegerField()
