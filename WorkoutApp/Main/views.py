@@ -12,7 +12,7 @@ from telnetlib import LOGOUT, Telnet
 from django import forms
 from django.contrib.auth.views import PasswordChangeView, PasswordChangeForm
 from .models import WorkoutHistory, Workout, Exercise
-from .forms import ExerciseForm
+from .forms import ExerciseForm, WorkoutForm
 
 class EditProfileForm(UserChangeForm):
     class Meta(UserChangeForm.Meta):
@@ -140,8 +140,8 @@ def ChartHistory(request):
 def MoreInfo(request):
     return render(request, "MoreInfo.html")
 
-def CreateExercise(request, pk):
-    exercise = get_object_or_404(Exercise, pk=pk)
+def CreateExercise(request):
+    exercise = get_object_or_404(Exercise, pk=1)
 
     if request.method == 'POST':
         form = ExerciseForm(request.POST)
@@ -153,9 +153,7 @@ def CreateExercise(request, pk):
             exercise.rpe = form.rpe 
             # exercise.reffering_workout = CreateWorkout()??
             exercise.save()
-
-    return render(request, "CreateWorkout.html", {'Exercisename' : exercise.name})
-
+    
 
     """
     exercisename = request.POST.get('CExercise')
@@ -168,7 +166,16 @@ def CreateExercise(request, pk):
 def CreateWorkout(request):
 
     return render(request, "CreateWorkout.html")
-    #return render(request, "CreateWorkout.html")
+
+
+def CreateWorkout2(request):
+    Workoutname = request.POST.get('CWorkout')
+    Workoutinfo = get_object_or_404(Workout, pk=1)
+    
+    Workoutinfo.date = Workoutname
+    if Workoutname != '':
+        messages.success(request, "Workout made!")
+    return render(request, "CreateWorkout.html", {'Workoutname' : Workoutname})
 
 def password_success(request):
     return render(request, 'PasswordSuccess.html',{})   

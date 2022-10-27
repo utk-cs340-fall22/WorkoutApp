@@ -47,17 +47,17 @@
         {% endfor %}
         
         <h3>Workout Editor</h3>
-        <h3>Current {{ Exercisename }}</h3>
-        <h3>List of Exercises</h3>
+        <h3>Current {{ Workoutname }}</h3>
+        <h3>List of Workout</h3>
 
-        <form action="/CreateExercise" method="post">
+        <form action="/CreateWorkout2" method="post">
             {% csrf_token %}
             
-            <label for="">Exercise</label>
-            <input type="text" id="CExercise" name="CExercise" placeholder="Create a Exercise" required>
+            <label for="">Workout</label>
+            <input type="text" id="CWorkout" name="CWorkout" placeholder="Enter creation date" required>
             <br>
 
-            <button type="submit">Create Exercise!</button>
+            <button type="submit">Create Workout!</button>
         </form>
         <!--jhowar63
         Cancel button returns user to the homepage.
