@@ -120,15 +120,17 @@ def ProfilePage(request):
 def Workout_Details(request, id=None):
     specific_workout = None
     all_exercises = None
+
     try:    
         specific_workout = Workout.objects.get(id=id)
         all_exercises = Workout.objects.get(id=id).exercise_set.all()
     except Workout.DoesNotExist:
         raise Http404("User's Workout does not exist")
+
     context = {
         'specific_workout': specific_workout,
-        'all_exercises': all_exercises
-        }
+        'all_exercises': all_exercises,
+    }
     return render(request, "WorkoutDetails.html", context)
 
 def CreateCharts(request):
@@ -140,19 +142,20 @@ def ChartHistory(request):
 def MoreInfo(request):
     return render(request, "MoreInfo.html")
 
-def CreateExercise(request):
+def CreateExercise(request, id):
 
     if request.method == 'POST':
         form = ExerciseForm(request.POST)
 
         if form.is_valid():
             exercise = Exercise()
-            exercise.name = form.name
-            exercise.reps = form.reps
-            exercise.sets = form.sets
-            exercise.weight = form.weight
-            exercise.rpe = form.rpe
-            #needs work
+            workout = Workout.objects.get(id=id)
+            exercise.name = form.cleaned_data['name']
+            exercise.reps = form.cleaned_data['reps']
+            exercise.sets = form.cleaned_data['sets']
+            exercise.weight = form.cleaned_data['weight']
+            exercise.rpe = form.cleaned_data['rpe']
+            exercise.reffering_workout = workout
             exercise.save()
 
             return redirect(request.path_info)
@@ -161,7 +164,7 @@ def CreateExercise(request):
         form = ExerciseForm()
         
     return render(request,
-                "WorkoutDetails.html",
+                "Createexercise.html",
                 {'form' : form})   
     
 
