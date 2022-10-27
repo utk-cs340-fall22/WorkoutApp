@@ -18,7 +18,7 @@ class WorkoutHistory(models.Model):
 
 class Workout(models.Model):
     date = models.DateField() # jhowar63 - sp1:Date of the workout, to keep track chronologically. sp2:made this pk
-    user = models.CharField(max_length = 50)
+    user = models.CharField(max_length = 50) # use django.contrib.auth USER
     reffering_workouthistory = models.ForeignKey(WorkoutHistory, on_delete=models.CASCADE)
     
 #jhowar63 - changing how workouts are named in database.

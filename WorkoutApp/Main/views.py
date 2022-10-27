@@ -1,7 +1,7 @@
 #from asyncio.windows_events import NULL
 from django.http import HttpResponse
 from django.http import Http404
-from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth.models import User
 from django.views import generic
 from django.urls import reverse_lazy
@@ -12,6 +12,7 @@ from telnetlib import LOGOUT, Telnet
 from django import forms
 from django.contrib.auth.views import PasswordChangeView, PasswordChangeForm
 from .models import WorkoutHistory, Workout, Exercise
+from .forms import ExerciseForm
 
 class EditProfileForm(UserChangeForm):
     class Meta(UserChangeForm.Meta):
@@ -136,11 +137,29 @@ def ChartHistory(request):
 def MoreInfo(request):
     return render(request, "MoreInfo.html")
 
-def CreateExercise(request):
+def CreateExercise(request, pk):
+    exercise = get_object_or_404(Exercise, pk=pk)
+
+    if request.method == 'POST':
+        form = ExerciseForm(request.POST)
+        if ExerciseForm.is_valid():
+            exercise.name = form.name
+            exercise.reps = form.reps
+            exercise.sets = form.sets
+            exercise.weight = form.weight
+            exercise.rpe = form.rpe 
+            # exercise.reffering_workout = CreateWorkout()??
+            exercise.save()
+
+    return render(request, "CreateWorkout.html", {'Exercisename' : exercise.name})
+
+
+    """
     exercisename = request.POST.get('CExercise')
     if exercisename != '':
         messages.success(request, "Exercise made!")
     return render(request, "CreateWorkout.html", {'Exercisename' : exercisename})
+    """
 
 # Jacob Howard working here.
 def CreateWorkout(request):
