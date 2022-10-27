@@ -1,4 +1,5 @@
 #from asyncio.windows_events import NULL
+from datetime import datetime
 from django.http import HttpResponse
 from django.http import Http404
 from django.shortcuts import get_object_or_404, render, redirect
@@ -141,18 +142,28 @@ def MoreInfo(request):
     return render(request, "MoreInfo.html")
 
 def CreateExercise(request):
-    exercise = get_object_or_404(Exercise, pk=1)
 
     if request.method == 'POST':
         form = ExerciseForm(request.POST)
-        if ExerciseForm.is_valid():
+
+        if form.is_valid():
+            exercise = Exercise()
             exercise.name = form.name
             exercise.reps = form.reps
             exercise.sets = form.sets
             exercise.weight = form.weight
-            exercise.rpe = form.rpe 
-            # exercise.reffering_workout = CreateWorkout()??
+            exercise.rpe = form.rpe
+             #needs work
             exercise.save()
+
+            return redirect(request.path_info)
+        
+    else:
+        form = ExerciseForm()
+        
+    return render(request,
+                "WorkoutDetails.html",
+                {'form' : form})   
     
 
     """
@@ -165,7 +176,27 @@ def CreateExercise(request):
 # Jacob Howard working here.
 def CreateWorkout(request):
 
-    return render(request, "CreateWorkout.html")
+    if request.method == 'POST':
+        form = WorkoutForm(request.POST)
+
+        # create a workout instance and fill with form data
+        if form.is_valid():
+            workout = Workout()
+            user = request.user
+            username = user.username
+            workout.date = form.cleaned_data['date']
+            workout.user = username
+            workout.reffering_workouthistory = WorkoutHistory.objects.get(user=str(username))
+            workout.save()
+
+            return redirect('ProfilePage')
+
+    else:
+        form = WorkoutForm()
+
+    return render(request,
+                  "CreateWorkout.html",
+                  {'form' : form})
 
 
 def CreateWorkout2(request):

@@ -50,14 +50,10 @@
         <h3>Current {{ Workoutname }}</h3>
         <h3>List of Workout</h3>
 
-        <form action="/CreateWorkout2" method="post">
+        <form action="" method="post">
             {% csrf_token %}
-            
-            <label for="">Workout</label>
-            <input type="text" id="CWorkout" name="CWorkout" placeholder="Enter creation date" required>
-            <br>
-
-            <button type="submit">Create Workout!</button>
+            {{ form }}
+            <input type="submit" value="Submit">
         </form>
         <!--jhowar63
         Cancel button returns user to the homepage.
