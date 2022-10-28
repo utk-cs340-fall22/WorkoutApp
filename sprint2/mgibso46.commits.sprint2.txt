@@ -1,0 +1,129 @@
+CreateExercise.html
+
+bf44c17a (Mgibso46      2022-10-27 12:57:45 -0400  1) <!DOCTYPE html>
+bf44c17a (Mgibso46      2022-10-27 12:57:45 -0400  2) <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+bf44c17a (Mgibso46      2022-10-27 12:57:45 -0400  3) <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+bf44c17a (Mgibso46      2022-10-27 12:57:45 -0400  4) <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+bf44c17a (Mgibso46      2022-10-27 12:57:45 -0400  5) <!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+bf44c17a (Mgibso46      2022-10-27 12:57:45 -0400  6) <html>
+bf44c17a (Mgibso46      2022-10-27 12:57:45 -0400  7)     <head>
+bf44c17a (Mgibso46      2022-10-27 12:57:45 -0400  8)         <meta charset="utf-8">
+bf44c17a (Mgibso46      2022-10-27 12:57:45 -0400  9)         <meta http-equiv="X-UA-Compatible" content="IE=edge">
+bf44c17a (Mgibso46      2022-10-27 12:57:45 -0400 10)         <title></title>
+bf44c17a (Mgibso46      2022-10-27 12:57:45 -0400 11)         <meta name="description" content="">
+bf44c17a (Mgibso46      2022-10-27 12:57:45 -0400 12)         <meta name="viewport" content="width=device-width, initial-scale=1">
+bf44c17a (Mgibso46      2022-10-27 12:57:45 -0400 13)         {% load static %}
+bf44c17a (Mgibso46      2022-10-27 12:57:45 -0400 14)         <link rel="stylesheet" href="{% static 'WorkoutApp/styles.css' %}" />
+bf44c17a (Mgibso46      2022-10-27 12:57:45 -0400 15)     </head>
+bf44c17a (Mgibso46      2022-10-27 12:57:45 -0400 16)     <body>
+bf44c17a (Mgibso46      2022-10-27 12:57:45 -0400 17)         
+bf44c17a (Mgibso46      2022-10-27 12:57:45 -0400 18)         <div id="header">
+bf44c17a (Mgibso46      2022-10-27 12:57:45 -0400 19)             
+bf44c17a (Mgibso46      2022-10-27 12:57:45 -0400 20)             <!--need to make a professional looking header here-->
+bf44c17a (Mgibso46      2022-10-27 12:57:45 -0400 21)             <!--includes logo and site name-->
+bf44c17a (Mgibso46      2022-10-27 12:57:45 -0400 22)     
+bf44c17a (Mgibso46      2022-10-27 12:57:45 -0400 23)         </div>
+bf44c17a (Mgibso46      2022-10-27 12:57:45 -0400 24) 
+bf44c17a (Mgibso46      2022-10-27 12:57:45 -0400 25)         <div id="floatingNav">
+bf44c17a (Mgibso46      2022-10-27 12:57:45 -0400 26)             <button type="submit"><a href="/"> Home </a></button>
+bf44c17a (Mgibso46      2022-10-27 12:57:45 -0400 27)             <button type="submit"><a href="/CreateWorkout"> Add Workout </a></button>
+bf44c17a (Mgibso46      2022-10-27 12:57:45 -0400 28)             <button type="submit"><a href="/ProfilePage"> Profile Page </a></button>
+bf44c17a (Mgibso46      2022-10-27 12:57:45 -0400 29) 
+bf44c17a (Mgibso46      2022-10-27 12:57:45 -0400 30)             {% if user.is_authenticated %}
+bf44c17a (Mgibso46      2022-10-27 12:57:45 -0400 31)             <button type="submit"> <a href="/SignOut"> Sign Out </a> </button>
+bf44c17a (Mgibso46      2022-10-27 12:57:45 -0400 32)             
+bf44c17a (Mgibso46      2022-10-27 12:57:45 -0400 33)             {% else %}
+bf44c17a (Mgibso46      2022-10-27 12:57:45 -0400 34)             <button type="submit"> <a href="/SignIn"> Sign In </a> </button>
+bf44c17a (Mgibso46      2022-10-27 12:57:45 -0400 35)             {% endif %}
+bf44c17a (Mgibso46      2022-10-27 12:57:45 -0400 36) 
+bf44c17a (Mgibso46      2022-10-27 12:57:45 -0400 37)             <button type="submit"><a href="/MoreInfo"> More Info </a></button>
+bf44c17a (Mgibso46      2022-10-27 12:57:45 -0400 38)         </div>
+bf44c17a (Mgibso46      2022-10-27 12:57:45 -0400 39) 
+bf44c17a (Mgibso46      2022-10-27 12:57:45 -0400 40)         {% for message in messages %}
+bf44c17a (Mgibso46      2022-10-27 12:57:45 -0400 41)         <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+bf44c17a (Mgibso46      2022-10-27 12:57:45 -0400 42)         <strong>Message:</strong> {{ message}}
+bf44c17a (Mgibso46      2022-10-27 12:57:45 -0400 43)         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+bf44c17a (Mgibso46      2022-10-27 12:57:45 -0400 44)         <span aria-hidden="true">&times;</span>
+bf44c17a (Mgibso46      2022-10-27 12:57:45 -0400 45)         </button>
+bf44c17a (Mgibso46      2022-10-27 12:57:45 -0400 46)         </div>
+bf44c17a (Mgibso46      2022-10-27 12:57:45 -0400 47)         {% endfor %}
+bf44c17a (Mgibso46      2022-10-27 12:57:45 -0400 48)         
+bf44c17a (Mgibso46      2022-10-27 12:57:45 -0400 49)         <h3>Workout Editor</h3>
+bf44c17a (Mgibso46      2022-10-27 12:57:45 -0400 50) 
+bf44c17a (Mgibso46      2022-10-27 12:57:45 -0400 52)             {% csrf_token %}
+bf44c17a (Mgibso46      2022-10-27 12:57:45 -0400 55)         </form>
+bf44c17a (Mgibso46      2022-10-27 12:57:45 -0400 56)         <!--jhowar63
+bf44c17a (Mgibso46      2022-10-27 12:57:45 -0400 57)         Cancel button returns user to the homepage.
+bf44c17a (Mgibso46      2022-10-27 12:57:45 -0400 58)         <h3>Future Cancel (return to home page) Button</h3> -->
+bf44c17a (Mgibso46      2022-10-27 12:57:45 -0400 59) 
+bf44c17a (Mgibso46      2022-10-27 12:57:45 -0400 60) 
+bf44c17a (Mgibso46      2022-10-27 12:57:45 -0400 61)         <div id="footer">
+bf44c17a (Mgibso46      2022-10-27 12:57:45 -0400 62)             
+bf44c17a (Mgibso46      2022-10-27 12:57:45 -0400 63)         <!--Implement buttons here, any credit needed, contact us, links to any socials, etc-->
+bf44c17a (Mgibso46      2022-10-27 12:57:45 -0400 64)     
+bf44c17a (Mgibso46      2022-10-27 12:57:45 -0400 65)         </div>
+bf44c17a (Mgibso46      2022-10-27 12:57:45 -0400 66) 
+bf44c17a (Mgibso46      2022-10-27 12:57:45 -0400 67) 
+bf44c17a (Mgibso46      2022-10-27 12:57:45 -0400 68)         <!-- Sticky script for floating nav -->
+bf44c17a (Mgibso46      2022-10-27 12:57:45 -0400 69)         <script>
+bf44c17a (Mgibso46      2022-10-27 12:57:45 -0400 70)             window.onscroll = function() {myFunction()};
+bf44c17a (Mgibso46      2022-10-27 12:57:45 -0400 71)             
+bf44c17a (Mgibso46      2022-10-27 12:57:45 -0400 72)             var navbar = document.getElementById("floatingNav");
+bf44c17a (Mgibso46      2022-10-27 12:57:45 -0400 73)             var sticky = navbar.offsetTop;
+bf44c17a (Mgibso46      2022-10-27 12:57:45 -0400 74)             
+bf44c17a (Mgibso46      2022-10-27 12:57:45 -0400 75)             function myFunction() {
+bf44c17a (Mgibso46      2022-10-27 12:57:45 -0400 76)               if (window.pageYOffset >= sticky) {
+bf44c17a (Mgibso46      2022-10-27 12:57:45 -0400 77)                 navbar.classList.add("sticky")
+bf44c17a (Mgibso46      2022-10-27 12:57:45 -0400 78)               } else {
+bf44c17a (Mgibso46      2022-10-27 12:57:45 -0400 79)                 navbar.classList.remove("sticky");
+bf44c17a (Mgibso46      2022-10-27 12:57:45 -0400 80)               }
+bf44c17a (Mgibso46      2022-10-27 12:57:45 -0400 81)             }
+bf44c17a (Mgibso46      2022-10-27 12:57:45 -0400 82)         </script>
+bf44c17a (Mgibso46      2022-10-27 12:57:45 -0400 83) 
+bf44c17a (Mgibso46      2022-10-27 12:57:45 -0400 84) 
+bf44c17a (Mgibso46      2022-10-27 12:57:45 -0400 85) 
+bf44c17a (Mgibso46      2022-10-27 12:57:45 -0400 86)         <button type="submit"> <a href="/ProfilePage">Cancel</a> </button>
+bf44c17a (Mgibso46      2022-10-27 12:57:45 -0400 87) 
+bf44c17a (Mgibso46      2022-10-27 12:57:45 -0400 88)     </body>
+bf44c17a (Mgibso46      2022-10-27 12:57:45 -0400 89) </html>
+
+MoreInfo.html
+
+85a393cc (Mgibso46 2022-10-27 14:54:04 -0400 30)         <button type="submit"><a href="/CreateWorkout"> Add Workout </a></button>
+85a393cc (Mgibso46 2022-10-27 14:54:04 -0400 31)         <button type="submit"><a href="/ProfilePage"> Profile Page </a></button>
+
+CreateWorkout.html
+
+210350a3 (Mgibso46      2022-10-27 13:15:10 -0400 49)         
+210350a3 (Mgibso46      2022-10-27 13:15:10 -0400 50)         <h3>Create a Workout!</h3>
+210350a3 (Mgibso46      2022-10-27 13:15:10 -0400 51)         <h3>List of Workout:</h3>
+
+Mains/views.py
+
+4ef10690 (Mgibso46      2022-10-27 01:01:04 -0400  16) from .forms import ExerciseForm, WorkoutForm
+5074f98b (Mgibso46      2022-10-26 20:51:05 -0400  71)         workouthistory = WorkoutHistory()
+5074f98b (Mgibso46      2022-10-26 20:51:05 -0400  72)         workouthistory.user = username
+5074f98b (Mgibso46      2022-10-26 20:51:05 -0400  73)         workouthistory.save()
+5074f98b (Mgibso46      2022-10-26 20:51:05 -0400  74)         
+e9aff8b4 (Mgibso46      2022-10-10 23:22:27 -0400  76)         return redirect('home')
+5074f98b (Mgibso46      2022-10-26 20:51:05 -0400  89)             return redirect('home')
+4ef10690 (Mgibso46      2022-10-27 01:01:04 -0400 202) 
+4ef10690 (Mgibso46      2022-10-27 01:01:04 -0400 203) 
+4ef10690 (Mgibso46      2022-10-27 01:01:04 -0400 204) def CreateWorkout2(request):
+4ef10690 (Mgibso46      2022-10-27 01:01:04 -0400 205)     Workoutname = request.POST.get('CWorkout')
+4ef10690 (Mgibso46      2022-10-27 01:01:04 -0400 206)     Workoutinfo = get_object_or_404(Workout, pk=1)
+bf44c17a (Mgibso46      2022-10-27 12:57:45 -0400 207)     user = request.user
+4ef10690 (Mgibso46      2022-10-27 01:01:04 -0400 208)     
+4ef10690 (Mgibso46      2022-10-27 01:01:04 -0400 209)     Workoutinfo.date = Workoutname
+bf44c17a (Mgibso46      2022-10-27 12:57:45 -0400 210)     Workoutinfo.user = user
+bf44c17a (Mgibso46      2022-10-27 12:57:45 -0400 211) 
+210350a3 (Mgibso46      2022-10-27 13:15:10 -0400 212)     if Workoutinfo.date != '':
+4ef10690 (Mgibso46      2022-10-27 01:01:04 -0400 213)         messages.success(request, "Workout made!")
+210350a3 (Mgibso46      2022-10-27 13:15:10 -0400 214)     return render(request, "CreateExercise.html", {'WorkoutName' :Workoutinfo.date})
+
+Main/urls.py
+
+4ef10690 (Mgibso46      2022-10-27 01:01:04 -0400 32)     path('CreateWorkout2', views.CreateWorkout2, name='CreateWorkout2'),
+
+Main/
+
