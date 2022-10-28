@@ -1,0 +1,106 @@
+*** forms.py ***
+0c8b39c4 (Justin Bowers 2022-10-26 21:45:16 -0400  1) from django import forms
+0c8b39c4 (Justin Bowers 2022-10-26 21:45:16 -0400  2) 
+0c8b39c4 (Justin Bowers 2022-10-26 21:45:16 -0400  3) class ExerciseForm(forms.Form):
+0c8b39c4 (Justin Bowers 2022-10-26 21:45:16 -0400  4)     name = forms.CharField(help_text="Exercise name")
+0c8b39c4 (Justin Bowers 2022-10-26 21:45:16 -0400  5)     sets = forms.IntegerField(min_value=0, help_text="Number of sets")
+0c8b39c4 (Justin Bowers 2022-10-26 21:45:16 -0400  6)     reps = forms.IntegerField(min_value=0, help_text="Number of reps")
+0c8b39c4 (Justin Bowers 2022-10-26 21:45:16 -0400  7)     weight = forms.IntegerField(min_value=0, help_text="Weight in lbs")
+0c8b39c4 (Justin Bowers 2022-10-26 21:45:16 -0400  8)     rpe = forms.IntegerField(min_value=0, max_value=10, help_text="RPE")
+0c8b39c4 (Justin Bowers 2022-10-26 21:45:16 -0400  9) 
+0c8b39c4 (Justin Bowers 2022-10-26 21:45:16 -0400 10) class WorkoutForm(forms.Form):
+0c8b39c4 (Justin Bowers 2022-10-26 21:45:16 -0400 11)     date = forms.DateField(help_text='Enter date of workout')
+
+
+*** models.py ***
+209dbf16 (Justin Bowers 2022-10-20 09:41:32 -0400  3) from django.core.validators import MaxValueValidator, MinValueValidator
+0c8b39c4 (Justin Bowers 2022-10-26 21:45:16 -0400 21)     user = models.CharField(max_length = 50) # use django.contrib.auth USER
+6de6fefa (Justin Bowers 2022-10-20 09:19:31 -0400 27)     
+6de6fefa (Justin Bowers 2022-10-20 09:19:31 -0400 32)     EXERCISE_NAMES = (
+7b46b9c0 (Justin Bowers 2022-10-27 16:45:13 -0400 33)         ('BP', 'Bench Press'), ('DL', 'Deadlift'),
+7b46b9c0 (Justin Bowers 2022-10-27 16:45:13 -0400 34)         ('OHP', 'Overhead Press'), ('FS',  'Front Squat'),
+7b46b9c0 (Justin Bowers 2022-10-27 16:45:13 -0400 35)         ('PU',  'Pullup'), ('RDL', 'Romanian Deadlift'),
+7b46b9c0 (Justin Bowers 2022-10-27 16:45:13 -0400 36)         ('DOP', 'Dumbbell Overhead Press'), ('HPT', 'Hip Thrust'),
+6de6fefa (Justin Bowers 2022-10-20 09:19:31 -0400 37)     )
+7b46b9c0 (Justin Bowers 2022-10-27 16:45:13 -0400 38)     
+6de6fefa (Justin Bowers 2022-10-20 09:19:31 -0400 40)     name = models.CharField(max_length=50, choices=EXERCISE_NAMES)
+209dbf16 (Justin Bowers 2022-10-20 09:41:32 -0400 41)     reps = models.PositiveIntegerField()
+209dbf16 (Justin Bowers 2022-10-20 09:41:32 -0400 42)     sets = models.PositiveIntegerField()
+209dbf16 (Justin Bowers 2022-10-20 09:41:32 -0400 43)     weight = models.PositiveIntegerField()
+209dbf16 (Justin Bowers 2022-10-20 09:41:32 -0400 44)     rpe = models.PositiveIntegerField(
+209dbf16 (Justin Bowers 2022-10-20 09:41:32 -0400 45)         validators=[MinValueValidator(1), MaxValueValidator(10)]
+209dbf16 (Justin Bowers 2022-10-20 09:41:32 -0400 46)     )
+
+*** urls.py ***
+f7c6c28f (Justin Bowers 2022-10-27 16:36:51 -0400 33)     #path('CreateExercise/<int:id>', views.CreateExercise, name='CreateExerceise'),
+f7c6c28f (Justin Bowers 2022-10-27 16:36:51 -0400 37)     path('ProfilePage/<int:id>/add-exercise', views.CreateExercise),
+
+*** views.py ***
+8dcc300c (Justin Bowers 2022-10-27 14:27:29 -0400   2) from datetime import datetime
+0c8b39c4 (Justin Bowers 2022-10-26 21:45:16 -0400   5) from django.shortcuts import get_object_or_404, render, redirect
+7b46b9c0 (Justin Bowers 2022-10-27 16:45:13 -0400 123) 
+7b46b9c0 (Justin Bowers 2022-10-27 16:45:13 -0400 129) 
+7b46b9c0 (Justin Bowers 2022-10-27 16:45:13 -0400 132)         'all_exercises': all_exercises,
+7b46b9c0 (Justin Bowers 2022-10-27 16:45:13 -0400 133)     }
+7b46b9c0 (Justin Bowers 2022-10-27 16:45:13 -0400 145) def CreateExercise(request, id):
+0c8b39c4 (Justin Bowers 2022-10-26 21:45:16 -0400 146) 
+0c8b39c4 (Justin Bowers 2022-10-26 21:45:16 -0400 147)     if request.method == 'POST':
+0c8b39c4 (Justin Bowers 2022-10-26 21:45:16 -0400 148)         form = ExerciseForm(request.POST)
+8dcc300c (Justin Bowers 2022-10-27 14:27:29 -0400 149) 
+8dcc300c (Justin Bowers 2022-10-27 14:27:29 -0400 150)         if form.is_valid():
+8dcc300c (Justin Bowers 2022-10-27 14:27:29 -0400 151)             exercise = Exercise()
+7b46b9c0 (Justin Bowers 2022-10-27 16:45:13 -0400 152)             workout = Workout.objects.get(id=id)
+7b46b9c0 (Justin Bowers 2022-10-27 16:45:13 -0400 153)             exercise.name = form.cleaned_data['name']
+7b46b9c0 (Justin Bowers 2022-10-27 16:45:13 -0400 154)             exercise.reps = form.cleaned_data['reps']
+7b46b9c0 (Justin Bowers 2022-10-27 16:45:13 -0400 155)             exercise.sets = form.cleaned_data['sets']
+7b46b9c0 (Justin Bowers 2022-10-27 16:45:13 -0400 156)             exercise.weight = form.cleaned_data['weight']
+7b46b9c0 (Justin Bowers 2022-10-27 16:45:13 -0400 157)             exercise.rpe = form.cleaned_data['rpe']
+7b46b9c0 (Justin Bowers 2022-10-27 16:45:13 -0400 158)             exercise.reffering_workout = workout
+0c8b39c4 (Justin Bowers 2022-10-26 21:45:16 -0400 159)             exercise.save()
+8dcc300c (Justin Bowers 2022-10-27 14:27:29 -0400 160) 
+8dcc300c (Justin Bowers 2022-10-27 14:27:29 -0400 161)             return redirect(request.path_info)
+8dcc300c (Justin Bowers 2022-10-27 14:27:29 -0400 162)         
+8dcc300c (Justin Bowers 2022-10-27 14:27:29 -0400 163)     else:
+8dcc300c (Justin Bowers 2022-10-27 14:27:29 -0400 164)         form = ExerciseForm()
+8dcc300c (Justin Bowers 2022-10-27 14:27:29 -0400 165)         
+8dcc300c (Justin Bowers 2022-10-27 14:27:29 -0400 166)     return render(request,
+7b46b9c0 (Justin Bowers 2022-10-27 16:45:13 -0400 167)                 "Createexercise.html",
+8dcc300c (Justin Bowers 2022-10-27 14:27:29 -0400 168)                 {'form' : form})   
+0c8b39c4 (Justin Bowers 2022-10-26 21:45:16 -0400 170) 
+0c8b39c4 (Justin Bowers 2022-10-26 21:45:16 -0400 171)     """
+0c8b39c4 (Justin Bowers 2022-10-26 21:45:16 -0400 176)     """
+8dcc300c (Justin Bowers 2022-10-27 14:27:29 -0400 181)     if request.method == 'POST':
+8dcc300c (Justin Bowers 2022-10-27 14:27:29 -0400 182)         form = WorkoutForm(request.POST)
+8dcc300c (Justin Bowers 2022-10-27 14:27:29 -0400 183) 
+8dcc300c (Justin Bowers 2022-10-27 14:27:29 -0400 184)         # create a workout instance and fill with form data
+8dcc300c (Justin Bowers 2022-10-27 14:27:29 -0400 185)         if form.is_valid():
+8dcc300c (Justin Bowers 2022-10-27 14:27:29 -0400 186)             workout = Workout()
+8dcc300c (Justin Bowers 2022-10-27 14:27:29 -0400 187)             user = request.user
+8dcc300c (Justin Bowers 2022-10-27 14:27:29 -0400 188)             username = user.username
+8dcc300c (Justin Bowers 2022-10-27 14:27:29 -0400 189)             workout.date = form.cleaned_data['date']
+8dcc300c (Justin Bowers 2022-10-27 14:27:29 -0400 190)             workout.user = username
+8dcc300c (Justin Bowers 2022-10-27 14:27:29 -0400 191)             workout.reffering_workouthistory = WorkoutHistory.objects.get(user=str(username))
+8dcc300c (Justin Bowers 2022-10-27 14:27:29 -0400 192)             workout.save()
+8dcc300c (Justin Bowers 2022-10-27 14:27:29 -0400 193) 
+8dcc300c (Justin Bowers 2022-10-27 14:27:29 -0400 194)             return redirect('ProfilePage')
+8dcc300c (Justin Bowers 2022-10-27 14:27:29 -0400 195) 
+8dcc300c (Justin Bowers 2022-10-27 14:27:29 -0400 196)     else:
+8dcc300c (Justin Bowers 2022-10-27 14:27:29 -0400 197)         form = WorkoutForm()
+8dcc300c (Justin Bowers 2022-10-27 14:27:29 -0400 198) 
+8dcc300c (Justin Bowers 2022-10-27 14:27:29 -0400 199)     return render(request,
+8dcc300c (Justin Bowers 2022-10-27 14:27:29 -0400 200)                   "CreateWorkout.html",
+8dcc300c (Justin Bowers 2022-10-27 14:27:29 -0400 201)                   {'form' : form})
+
+*** WorkoutDetails.html ***
+f7c6c28f (Justin Bowers 2022-10-27 16:36:51 -0400 64)     <a href="http://127.0.0.1:8000/ProfilePage/{{specific_workout.id}}/add-exercise">Add an Exercise</a>
+8dcc300c (Justin Bowers 2022-10-27 14:27:29 -0400 65) 
+
+*** CreateWorkout.html ***
+8dcc300c (Justin Bowers 2022-10-27 14:27:29 -0400 53)         <form action="" method="post">
+8dcc300c (Justin Bowers 2022-10-27 14:27:29 -0400 55)             {{ form }}
+8dcc300c (Justin Bowers 2022-10-27 14:27:29 -0400 56)             <input type="submit" value="Submit">
+
+*** CreateExercise.html ***
+f7c6c28f (Justin Bowers 2022-10-27 16:36:51 -0400 51)         <form action="" method="post">
+f7c6c28f (Justin Bowers 2022-10-27 16:36:51 -0400 53)             {{ form.as_p }}
+f7c6c28f (Justin Bowers 2022-10-27 16:36:51 -0400 54)             <input type="submit" value="Submit">
