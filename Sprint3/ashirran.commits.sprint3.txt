@@ -1,0 +1,101 @@
+forms.py
+6dd3dc0e (Ashirran      2022-11-08 12:36:47 -0500  2) from .models import Exercise, Category
+6dd3dc0e (Ashirran      2022-11-08 12:36:47 -0500  5)     name = forms.CharField(label="Exercise Name", widget=forms.Select(choices=Exercise.EXERCISE_NAMES))
+6dd3dc0e (Ashirran      2022-11-08 12:36:47 -0500  6)     sets = forms.IntegerField(min_value=0, label="Number of Sets")
+6dd3dc0e (Ashirran      2022-11-08 12:36:47 -0500  7)     reps = forms.IntegerField(min_value=0, label="Number of Reps")
+6dd3dc0e (Ashirran      2022-11-08 12:36:47 -0500  8)     weight = forms.IntegerField(min_value=0, label="Weight in lbs")
+6dd3dc0e (Ashirran      2022-11-08 12:36:47 -0500  9)     rpe = forms.IntegerField(min_value=0, max_value=10, label="RPE")
+6dd3dc0e (Ashirran      2022-11-08 12:36:47 -0500 12)     date = forms.DateField(label='Enter Date of Workout')
+6dd3dc0e (Ashirran      2022-11-08 12:36:47 -0500 13) 
+6dd3dc0e (Ashirran      2022-11-08 12:36:47 -0500 14) class ExerciseForm(forms.Form):
+6dd3dc0e (Ashirran      2022-11-08 12:36:47 -0500 15)     name = forms.CharField(label="Exercise Name", widget=forms.Select(choices=Exercise.EXERCISE_NAMES))
+6dd3dc0e (Ashirran      2022-11-08 12:36:47 -0500 16)     sets = forms.IntegerField(min_value=0, label="Number of Sets")
+6dd3dc0e (Ashirran      2022-11-08 12:36:47 -0500 17)     reps = forms.IntegerField(min_value=0, label="Number of Reps")
+6dd3dc0e (Ashirran      2022-11-08 12:36:47 -0500 18)     weight = forms.IntegerField(min_value=0, label="Weight in lbs")
+6dd3dc0e (Ashirran      2022-11-08 12:36:47 -0500 19)     rpe = forms.IntegerField(min_value=0, max_value=10, label="RPE")
+6dd3dc0e (Ashirran      2022-11-08 12:36:47 -0500 20) 
+6dd3dc0e (Ashirran      2022-11-08 12:36:47 -0500 21) class CalorieForm(forms.Form):
+6dd3dc0e (Ashirran      2022-11-08 12:36:47 -0500 22)     date = forms.DateField(label='Enter Date of Meals')
+6dd3dc0e (Ashirran      2022-11-08 12:36:47 -0500 23)     category = forms.CharField(label="Exercise Name", widget=forms.Select(choices=Category.options))
+6dd3dc0e (Ashirran      2022-11-08 12:36:47 -0500 24)     carbohydrate = forms.IntegerField(min_value=0, label="Amount of Carbs")
+6dd3dc0e (Ashirran      2022-11-08 12:36:47 -0500 25)     fats = forms.IntegerField(min_value=0, label="Amount of Fat")
+6dd3dc0e (Ashirran      2022-11-08 12:36:47 -0500 26)     protein = forms.IntegerField(min_value=0, label="Amount of Protein")
+6dd3dc0e (Ashirran      2022-11-08 12:36:47 -0500 27)     calorie= forms.IntegerField(min_value=0, label="Amount of Calories")
+6dd3dc0e (Ashirran      2022-11-08 12:36:47 -0500 28)     quantity = forms.IntegerField(min_value=0, label="Amount Consumed")
+
+models.py
+6dd3dc0e (Ashirran      2022-11-08 12:36:47 -0500 48) class Category(models.Model):
+6dd3dc0e (Ashirran      2022-11-08 12:36:47 -0500 49)     options= (
+6dd3dc0e (Ashirran      2022-11-08 12:36:47 -0500 50)         ('breakfast','breakfast'),
+6dd3dc0e (Ashirran      2022-11-08 12:36:47 -0500 51)         ('lunch','lunch'),
+6dd3dc0e (Ashirran      2022-11-08 12:36:47 -0500 52)         ('dinner','dinner'),
+6dd3dc0e (Ashirran      2022-11-08 12:36:47 -0500 53)         ('snacks','snacks'),
+6dd3dc0e (Ashirran      2022-11-08 12:36:47 -0500 54)     )
+6dd3dc0e (Ashirran      2022-11-08 12:36:47 -0500 55)     date = models.DateField()
+6dd3dc0e (Ashirran      2022-11-08 12:36:47 -0500 56)     category=models.CharField(max_length=50,choices=options)
+6dd3dc0e (Ashirran      2022-11-08 12:36:47 -0500 57)     carbohydrate = models.PositiveIntegerField()
+6dd3dc0e (Ashirran      2022-11-08 12:36:47 -0500 58)     fats = models.PositiveIntegerField()
+6dd3dc0e (Ashirran      2022-11-08 12:36:47 -0500 59)     protein = models.PositiveIntegerField()
+6dd3dc0e (Ashirran      2022-11-08 12:36:47 -0500 60)     calorie= models.PositiveIntegerField()
+6dd3dc0e (Ashirran      2022-11-08 12:36:47 -0500 61)     quantity = models.PositiveIntegerField()
+
+urls.py
+6dd3dc0e (Ashirran      2022-11-08 12:36:47 -0500 39)     path('delete-item/<int:id>', views.deleteItem, name="delete-item"),
+6dd3dc0e (Ashirran      2022-11-08 12:36:47 -0500 40)     path('delete-workout/<int:id>', views.deleteWorkout, name="delete-workout"),
+6dd3dc0e (Ashirran      2022-11-08 12:36:47 -0500 41)     path('Meals', views.calorie_tracker, name='CalorieTracker.html'),
+
+views.py
+6dd3dc0e (Ashirran      2022-11-08 12:36:47 -0500  15) from .models import WorkoutHistory, Workout, Exercise, Category
+6dd3dc0e (Ashirran      2022-11-08 12:36:47 -0500  16) from .forms import ExerciseForm, WorkoutForm, CalorieForm
+6dd3dc0e (Ashirran      2022-11-08 12:36:47 -0500  17) from django.http import HttpResponseRedirect
+6dd3dc0e (Ashirran      2022-11-08 12:36:47 -0500 222) 
+6dd3dc0e (Ashirran      2022-11-08 12:36:47 -0500 223) def deleteItem(request, id):
+6dd3dc0e (Ashirran      2022-11-08 12:36:47 -0500 224)     item = Exercise.objects.get(id=id)
+6dd3dc0e (Ashirran      2022-11-08 12:36:47 -0500 225)     item.delete()
+6dd3dc0e (Ashirran      2022-11-08 12:36:47 -0500 226)     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+6dd3dc0e (Ashirran      2022-11-08 12:36:47 -0500 227) 
+6dd3dc0e (Ashirran      2022-11-08 12:36:47 -0500 228) def deleteWorkout(request,id):
+6dd3dc0e (Ashirran      2022-11-08 12:36:47 -0500 229)     item = Workout.objects.get(id=id)
+6dd3dc0e (Ashirran      2022-11-08 12:36:47 -0500 230)     item.delete()
+6dd3dc0e (Ashirran      2022-11-08 12:36:47 -0500 231)     return redirect('ProfilePage')
+6dd3dc0e (Ashirran      2022-11-08 12:36:47 -0500 232) 
+6dd3dc0e (Ashirran      2022-11-08 12:36:47 -0500 233) def Calorie_Details(request, id=None):
+6dd3dc0e (Ashirran      2022-11-08 12:36:47 -0500 234)     all_days = None
+6dd3dc0e (Ashirran      2022-11-08 12:36:47 -0500 235) 
+6dd3dc0e (Ashirran      2022-11-08 12:36:47 -0500 236)     try:    
+6dd3dc0e (Ashirran      2022-11-08 12:36:47 -0500 237)         all_days = Category.objects.get(id=id)
+6dd3dc0e (Ashirran      2022-11-08 12:36:47 -0500 238)     except Category.DoesNotExist:
+6dd3dc0e (Ashirran      2022-11-08 12:36:47 -0500 239)         raise Http404("User's Workout does not exist")
+6dd3dc0e (Ashirran      2022-11-08 12:36:47 -0500 240) 
+6dd3dc0e (Ashirran      2022-11-08 12:36:47 -0500 241)     context = {
+6dd3dc0e (Ashirran      2022-11-08 12:36:47 -0500 242)         'all_days': all_days
+6dd3dc0e (Ashirran      2022-11-08 12:36:47 -0500 243)     }
+6dd3dc0e (Ashirran      2022-11-08 12:36:47 -0500 244)     return render(request, "CalorieDetails.html", context)
+6dd3dc0e (Ashirran      2022-11-08 12:36:47 -0500 245)     
+6dd3dc0e (Ashirran      2022-11-08 12:36:47 -0500 246) def calorie_tracker(request):
+6dd3dc0e (Ashirran      2022-11-08 12:36:47 -0500 247)     return render(request, "CalorieTracker.html")
+
+homepage.html
+6dd3dc0e (Ashirran     2022-11-08 12:36:47 -0500  63)                 <img src="{% static 'images/gymicons.jpg' %}" style="width:100%; height: 400px">
+6dd3dc0e (Ashirran     2022-11-08 12:36:47 -0500  67)                 <img src="{% static 'images/fitness.jpg' %}" style="width:100%; height: 400px">
+6dd3dc0e (Ashirran     2022-11-08 12:36:47 -0500  71)                 <img src="{% static 'images/training.jpg' %}" style="width:100%; height: 400px">
+6dd3dc0e (Ashirran     2022-11-08 12:36:47 -0500  91)             WorkoutApp is a free workout and calorie tracker that helps you log, track, and view your fitness history.
+
+ProfilePage.html
+6dd3dc0e (Ashirran     2022-11-08 12:36:47 -0500  95) 
+6dd3dc0e (Ashirran     2022-11-08 12:36:47 -0500  96)         <h4> {{ workouthistory.user }}'s Calorie History:</h4>
+6dd3dc0e (Ashirran     2022-11-08 12:36:47 -0500  97) 
+6dd3dc0e (Ashirran     2022-11-08 12:36:47 -0500  98)         <u1>
+6dd3dc0e (Ashirran     2022-11-08 12:36:47 -0500  99)             {%for day in all_days %}
+6dd3dc0e (Ashirran     2022-11-08 12:36:47 -0500 100)                 <li><a href='/ProfilePage/{{day.id}}'> {{day.date}}</a> </li>
+6dd3dc0e (Ashirran     2022-11-08 12:36:47 -0500 101)             {% endfor %}
+6dd3dc0e (Ashirran     2022-11-08 12:36:47 -0500 102) 
+6dd3dc0e (Ashirran     2022-11-08 12:36:47 -0500 103)         </u1>
+6dd3dc0e (Ashirran     2022-11-08 12:36:47 -0500 104)         
+
+WorkoutDetails.html
+6dd3dc0e (Ashirran      2022-11-08 12:36:47 -0500 55)         <h2> {{ exercise.get_name_display }} </h2>
+6dd3dc0e (Ashirran      2022-11-08 12:36:47 -0500 61)             <a href="{% url 'delete-item' id=exercise.id %}"> Delete {{exercise.get_name_display}}</a>
+6dd3dc0e (Ashirran      2022-11-08 12:36:47 -0500 64)     <br><br>
+6dd3dc0e (Ashirran      2022-11-08 12:36:47 -0500 66)     <br>
+6dd3dc0e (Ashirran      2022-11-08 12:36:47 -0500 67)     <a href="{% url 'delete-workout' id=specific_workout.id %}"> Delete Workout: {{specific_workout.date}}</a>
