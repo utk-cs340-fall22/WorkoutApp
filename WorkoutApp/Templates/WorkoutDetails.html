@@ -52,15 +52,18 @@
     <h3> Summary</h3>
     <!-- List of Exercises and other info below-->
     {%for exercise in all_exercises %}
-        <h2> {{exercise.name}} </h2>
+        <h2> {{ exercise.get_name_display }} </h2>
             <h4>
             Sets:       {{exercise.sets}}<br>
             Reps:       {{exercise.reps}}<br>
             Weight:     {{exercise.weight}}<br>
             rpe:        {{exercise.rpe}}<br>
+            <a href="{% url 'delete-item' id=exercise.id %}"> Delete {{exercise.get_name_display}}</a>
             </h4>
     {% endfor %}
-
+    <br><br>
     <a href="http://127.0.0.1:8000/ProfilePage/{{specific_workout.id}}/add-exercise">Add an Exercise</a>
+    <br>
+    <a href="{% url 'delete-workout' id=specific_workout.id %}"> Delete Workout: {{specific_workout.date}}</a>
 
 </html>

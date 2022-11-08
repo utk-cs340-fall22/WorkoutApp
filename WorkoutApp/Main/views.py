@@ -12,8 +12,9 @@ from django.contrib.auth.forms import UserChangeForm
 from telnetlib import LOGOUT, Telnet
 from django import forms
 from django.contrib.auth.views import PasswordChangeView, PasswordChangeForm
-from .models import WorkoutHistory, Workout, Exercise
-from .forms import ExerciseForm, WorkoutForm
+from .models import WorkoutHistory, Workout, Exercise, Category
+from .forms import ExerciseForm, WorkoutForm, CalorieForm
+from django.http import HttpResponseRedirect
 
 class EditProfileForm(UserChangeForm):
     class Meta(UserChangeForm.Meta):
@@ -218,3 +219,29 @@ def password_success(request):
 
 def EditProfile(request):
     return render(request, "EditProfile.html")
+
+def deleteItem(request, id):
+    item = Exercise.objects.get(id=id)
+    item.delete()
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+def deleteWorkout(request,id):
+    item = Workout.objects.get(id=id)
+    item.delete()
+    return redirect('ProfilePage')
+
+def Calorie_Details(request, id=None):
+    all_days = None
+
+    try:    
+        all_days = Category.objects.get(id=id)
+    except Category.DoesNotExist:
+        raise Http404("User's Workout does not exist")
+
+    context = {
+        'all_days': all_days
+    }
+    return render(request, "CalorieDetails.html", context)
+    
+def calorie_tracker(request):
+    return render(request, "CalorieTracker.html")

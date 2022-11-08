@@ -92,7 +92,16 @@
             {% endfor %}
 
         </u1>
-    
+
+        <h4> {{ workouthistory.user }}'s Calorie History:</h4>
+
+        <u1>
+            {%for day in all_days %}
+                <li><a href='/ProfilePage/{{day.id}}'> {{day.date}}</a> </li>
+            {% endfor %}
+
+        </u1>
+        
 
 
     </body>

@@ -36,4 +36,7 @@ urlpatterns = [
     path('ProfilePage/<int:id>/', views.Workout_Details),
     path('ProfilePage/<int:id>/add-exercise', views.CreateExercise),
     path('EditProfile', UserEditView.as_view(), name='EditProfile'),
+    path('delete-item/<int:id>', views.deleteItem, name="delete-item"),
+    path('delete-workout/<int:id>', views.deleteWorkout, name="delete-workout"),
+    path('Meals', views.calorie_tracker, name='CalorieTracker.html'),
 ]

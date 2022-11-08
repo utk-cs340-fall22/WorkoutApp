@@ -45,3 +45,17 @@ class Exercise(models.Model):
         validators=[MinValueValidator(1), MaxValueValidator(10)]
     )
 
+class Category(models.Model):
+    options= (
+        ('breakfast','breakfast'),
+        ('lunch','lunch'),
+        ('dinner','dinner'),
+        ('snacks','snacks'),
+    )
+    date = models.DateField()
+    category=models.CharField(max_length=50,choices=options)
+    carbohydrate = models.PositiveIntegerField()
+    fats = models.PositiveIntegerField()
+    protein = models.PositiveIntegerField()
+    calorie= models.PositiveIntegerField()
+    quantity = models.PositiveIntegerField()
