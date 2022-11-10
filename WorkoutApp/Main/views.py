@@ -1,5 +1,6 @@
 #from asyncio.windows_events import NULL
 from datetime import datetime
+import imp
 from django.http import HttpResponse
 from django.http import Http404
 from django.shortcuts import get_object_or_404, render, redirect
@@ -17,6 +18,7 @@ from .forms import ExerciseForm, WorkoutForm, CalorieForm
 from django.http import HttpResponseRedirect
 import matplotlib as plt
 import numpy as py
+from io import StringIO
 
 class EditProfileForm(UserChangeForm):
     class Meta(UserChangeForm.Meta):
@@ -138,8 +140,29 @@ def Workout_Details(request, id=None):
 
 
 
-def CreateCharts(request):
-    pass
+def CreateCharts(request, id=None):
+    username = request.user.username
+    squat_vals = []
+    dates = []
+    all_workouts = WorkoutHistory.objects.get(user=str(username)).workout_set.all()
+   
+   # add data to the lists
+    for workout in all_workouts:
+        all_exercises = workout.objects.get(id=id).exercise_set.all()
+        for exercise in all_exercises:
+            if exercise.name == "Squat":
+                squat_vals.append(exercise.weight)
+                dates.append(workout.date)
+    
+    fig = plt.figure()
+    plt.plot(dates, squat_vals)
+
+    imgdata = StringIO()
+    fig.savefig(imgdata, format='svg')
+    imgdata.seek(0)
+
+    data = imgdata.getvalue()
+    return data
 
 def ChartHistory(request):
     pass
