@@ -15,6 +15,8 @@ from django.contrib.auth.views import PasswordChangeView, PasswordChangeForm
 from .models import WorkoutHistory, Workout, Exercise, Category
 from .forms import ExerciseForm, WorkoutForm, CalorieForm
 from django.http import HttpResponseRedirect
+import matplotlib as plt
+import numpy as py
 
 class EditProfileForm(UserChangeForm):
     class Meta(UserChangeForm.Meta):
