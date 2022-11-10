@@ -34,6 +34,7 @@ class Exercise(models.Model):
         ('OHP', 'Overhead Press'), ('FS',  'Front Squat'),
         ('PU',  'Pullup'), ('RDL', 'Romanian Deadlift'),
         ('DOP', 'Dumbbell Overhead Press'), ('HPT', 'Hip Thrust'),
+        ('SQT', 'Squat'),
     )
     
     reffering_workout = models.ForeignKey(Workout, on_delete=models.CASCADE)
