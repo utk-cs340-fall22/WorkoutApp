@@ -45,24 +45,9 @@
             </button>
         </div>
         {% endfor %}
-        <h3>{{user.username}}'s Profile</h3>
-        <h4>Edit your profile here!</h4>
-        <button type="submit"> <a href="/EditProfile"> Edit Profile </a></button>
         
+        {{ graph|safe }}
 
-        <!--jhowar63
-        Create Workout button will bring authenticated users to the CreateWorkout page
-        <h4>Future Create Workout Button</h4> -->
-        
-        <div id="footer">
-            
-
-            <!--Implement buttons here, any credit needed, contact us, links to any socials, etc-->
-    
-        </div>
-
-
-        <!-- Sticky script for floating nav -->
         <script>
             window.onscroll = function() {myFunction()};
             
@@ -78,32 +63,6 @@
             }
         </script>
 
-        
-        <script src="" async defer></script>
-
-        <br/><br/>
-        <h4>Feel free to view your workouts or add on to them<h4>
-        <!--add workout stuff here-->
-        <h4> {{ workouthistory.user }}'s Workout History:</h4>
-
-        <u1>
-            {%for workout in all_workouts %}
-                <li><a href='/ProfilePage/{{workout.id}}'> {{workout.date}}</a> </li>
-            {% endfor %}
-
-        </u1>
-
-        <button type="submit"> <a href="http://127.0.0.1:8000/CreateCharts"> View Graph </a></button>
-
-        <h4> {{ workouthistory.user }}'s Calorie History:</h4>
-
-        <u1>
-            {%for day in all_days %}
-                <li><a href='/ProfilePage/{{day.id}}'> {{day.date}}</a> </li>
-            {% endfor %}
-
-        </u1>
-        
 
 
     </body>
