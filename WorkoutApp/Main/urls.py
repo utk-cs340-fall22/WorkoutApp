@@ -38,5 +38,6 @@ urlpatterns = [
     path('EditProfile', UserEditView.as_view(), name='EditProfile'),
     path('delete-item/<int:id>', views.deleteItem, name="delete-item"),
     path('delete-workout/<int:id>', views.deleteWorkout, name="delete-workout"),
+    path('ProfilePage/<int:id>/ConfirmDeletion', views.confirmWorkoutDelete, name="ConfirmDeletion"),
     path('Meals', views.calorie_tracker, name='CalorieTracker.html'),
 ]

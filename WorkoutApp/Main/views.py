@@ -134,6 +134,8 @@ def Workout_Details(request, id=None):
     }
     return render(request, "WorkoutDetails.html", context)
 
+
+
 def CreateCharts(request):
     pass
 
@@ -224,6 +226,22 @@ def deleteItem(request, id):
     item = Exercise.objects.get(id=id)
     item.delete()
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+def confirmWorkoutDelete(request,id=None):
+    specific_workout = None
+    all_exercises = None
+
+    try:    
+        specific_workout = Workout.objects.get(id=id)
+        all_exercises = Workout.objects.get(id=id).exercise_set.all()
+    except Workout.DoesNotExist:
+        raise Http404("User's Workout does not exist")
+
+    context = {
+        'specific_workout': specific_workout,
+        'all_exercises': all_exercises,
+    }
+    return render(request, "ConfirmWorkoutDelete.html", context)
 
 def deleteWorkout(request,id):
     item = Workout.objects.get(id=id)
