@@ -13,6 +13,7 @@ from django.contrib.auth.forms import UserChangeForm
 from telnetlib import LOGOUT, Telnet
 from django import forms
 from django.contrib.auth.views import PasswordChangeView, PasswordChangeForm
+from matplotlib.style import context
 from .models import WorkoutHistory, Workout, Exercise, Category
 from .forms import ExerciseForm, WorkoutForm, CalorieForm
 from django.http import HttpResponseRedirect
@@ -162,7 +163,9 @@ def CreateCharts(request, id=None):
     imgdata.seek(0)
 
     data = imgdata.getvalue()
-    return data
+    
+    context['graph'] = data
+    return render(request, 'CreateCharts.html', context)
 
 def ChartHistory(request):
     pass
