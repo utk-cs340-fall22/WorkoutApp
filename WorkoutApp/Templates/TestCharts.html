@@ -12,12 +12,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         {% load static %}
         <link rel="stylesheet" href="{% static 'WorkoutApp/styles.css' %}" />
-        
-        <!--Chartjs CDN-->
-        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
-
-    </head>
-    <body>
 
         <div id="floatingNav">
             <button type="submit"><a href="/"> Home </a></button>
@@ -42,14 +36,17 @@
             </button>
         </div>
         {% endfor %}
-        
-        <h3>{{user.username}}'s Meal History</h3>
-        <h4>This displays the users meal history.
-            This page will eventually funciton like an individual workout in profile.
-            Displaying info about the days meals.
-        </h4>
-        
 
+        <!--Chartjs CDN-->
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+
+
+    </head>
+    <body>
+        
+        <h3>{{user.username}}'s Test Charts</h3>
+        <h4>This is a temporary solution so that we will have visuals for sprint presentation.
+        </h4>
         <style>
             #chart-wrapper {
               display: inline-block;
@@ -61,7 +58,7 @@
             <canvas id="myChart"></canvas>
         </div>
 
-
+        <h4> Spacer Test </h4>
 
     </body>
 
@@ -71,12 +68,12 @@
             <script>
                 var ctx = document.getElementById('myChart').getContext('2d');
                 var myChart = new Chart(ctx, {
-                    type: 'pie',
+                    type: 'bar',
                     data: {
-                        labels: ['Breakfast', 'Lunch', 'Dinner', 'Snacks'],
+                        labels: ['10-23-2022', '10-30-2022', '10-31-2022', '11-05-2022', '11-08-2020', '11-09-2022'],
                         datasets: [{
                             label: 'Workout Intensity (Average RPE)',
-                            data: [7, 9, 3, 2],
+                            data: [7, 9, 3, 2, 5, 6],
                             backgroundColor: [
                                 'rgba(255, 99, 132, 1)',
                                 'rgba(54, 162, 235, 1)',
@@ -98,15 +95,18 @@
                     },
                     options: {
                         scales: {
+                            yAxes: [{
+                                ticks: {
+                                    suggestedMin: 0,
+                                    suggestedMax: 10,
+                                    beginAtZero: true
+                                }
+                            }]
                         }
                     }
                 });
             </script>
         </div>
     </div>
-
-
-
-
 
 </html>

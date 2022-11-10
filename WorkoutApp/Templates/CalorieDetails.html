@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'WorkoutApp/styles.css' %}" />
+        
+        
+    </head>
+    <body>
+
+        <div id="floatingNav">
+            <button type="submit"><a href="/"> Home </a></button>
+            <button type="submit"><a href="/CreateWorkout"> New Workout </a></button>
+            <button type="submit"><a href="/ProfilePage"> Profile Page </a></button>
+
+            {% if user.is_authenticated %}
+            <button type="submit"> <a href="/SignOut"> Sign Out </a> </button>
+            
+            {% else %}
+            <button type="submit"> <a href="/SignIn"> Sign In </a> </button>
+            {% endif %}
+
+            <button type="submit"><a href="/MoreInfo"> More Info </a></button>
+        </div> 
+
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+            <strong>Message:</strong> {{ message}}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {% endfor %}
+        
+        <h3>{{user.username}}'s Test Charts</h3>
+        <h4>This is a temporary solution so that we will have visuals for sprint presentation.
+        </h4>
+        
+
+
+    </body>
+</html>

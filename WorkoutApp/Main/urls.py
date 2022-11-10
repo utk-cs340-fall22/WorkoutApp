@@ -39,5 +39,6 @@ urlpatterns = [
     path('delete-item/<int:id>', views.deleteItem, name="delete-item"),
     path('delete-workout/<int:id>', views.deleteWorkout, name="delete-workout"),
     path('ProfilePage/<int:id>/ConfirmDeletion', views.confirmWorkoutDelete, name="ConfirmDeletion"),
-    path('Meals', views.calorie_tracker, name='CalorieTracker.html'),
+    path('ProfilePage/Meals', views.calorie_tracker, name='CalorieTracker.html'),
+    path('ProfilePage/TestCharts', views.TestCharts, name='TestCharts')    #jhowar63 - for testing graph stuff.
 ]

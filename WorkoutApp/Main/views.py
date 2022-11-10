@@ -231,6 +231,9 @@ def CreateWorkout(request):
                   "CreateWorkout.html",
                   {'form' : form})
 
+def TestCharts(request):
+    return render(request, "TestCharts.html")
+
 
 def CreateWorkout2(request):
     Workoutname = request.POST.get('CWorkout')
