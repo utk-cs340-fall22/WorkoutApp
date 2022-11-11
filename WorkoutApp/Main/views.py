@@ -185,7 +185,7 @@ def CreateCharts(request):
     fig = px.line(df, x='Dates', y='Weight', color='Exercise')
     div = plotly.offline.plot(fig, auto_open=False, output_type="div")
 
-    context['graph'] = div
+    context = {'graph' : div}
     return render(request, "CreateCharts.html", context)
 
 
