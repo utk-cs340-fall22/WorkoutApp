@@ -7,9 +7,9 @@ Github ID: jhowar63
 Group Name: WorkoutApp
 
 ### What you planned to do
-- This sprint I planned on working primarily with charts to display our information graphically.
-- Originally I planned to do so using matplotlib.
-- I also wanted to spend some time working on how we were going to display information about and on the CalorieTracker pages.
+- This sprint I planned on working primarily with charts to display our information graphically. https://github.com/utk-cs340-fall22/WorkoutApp/issues/49 https://github.com/utk-cs340-fall22/WorkoutApp/issues/50
+  - Originally I planned to do so using matplotlib.
+- I also wanted to spend some time working on how we were going to display information about and on the CalorieTracker pages. https://github.com/utk-cs340-fall22/WorkoutApp/issues/51
 - Spend time testing the website, recording bugs that need to be fixed.
 
 
@@ -22,9 +22,9 @@ Group Name: WorkoutApp
   It did not work or even have all of the functionality we were hoping for, so we decided fairly last minute to switch to plotly.
 
 ### Issues you worked on
-- Create a graph that reflects a users WorkoutHistory
-- Create a graph that displays information regarding a specific workout.
-- Work on the displays and integration of the CalorieTracker.
+- Create a graph that reflects a users WorkoutHistory https://github.com/utk-cs340-fall22/WorkoutApp/issues/49
+- Create a graph that displays information regarding a specific workout. https://github.com/utk-cs340-fall22/WorkoutApp/issues/50
+- Work on the displays and integration of the CalorieTracker. https://github.com/utk-cs340-fall22/WorkoutApp/issues/51
 
 ### Files you worked on
 - WorkoutApp/Main/urls.py
