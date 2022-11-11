@@ -28,6 +28,7 @@ Group Name: WorkoutApp
 
 ### Files you worked on
 - WorkoutApp/Main/urls.py
+- WorkoutApp/Main/views.py
 - WorkoutApp/Templates/CalorieDetails.html
 - WorkoutApp/Templates/CalorieTracker.html
 - WorkoutApp/Templates/ProfilePage.html
