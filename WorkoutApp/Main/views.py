@@ -13,12 +13,15 @@ from telnetlib import LOGOUT, Telnet
 from django import forms
 from django.contrib.auth.views import PasswordChangeView, PasswordChangeForm
 from matplotlib.style import context
+import plotly
 from .models import WorkoutHistory, Workout, Exercise, Category
 from .forms import ExerciseForm, WorkoutForm, CalorieForm
 from django.http import HttpResponseRedirect
 import matplotlib as plt
 import numpy as py
 from io import StringIO
+import plotly.express as px
+import pandas as pd
 
 """
 These three functions are used for user's to change some of their profile
@@ -171,7 +174,22 @@ def Workout_Details(request, id=None):
 
 
 """ WORK IN PROGRESS """
-def CreateCharts(request, id=None):
+def CreateCharts(request):
+
+    df = pd.DataFrame({
+        "Exercise": ["Bench Press", "Bench Press", "Bench Press", "Deadlift", "Deadlift", "Deadlift"],
+        "Weight": [205, 225, 225, 365, 385, 375],
+        "Dates": ["09-10-2022", "10-10-2022", "11-10-2022", "09-10-2022", "10-10-2022", "11-10-2022"]
+    })
+
+    fig = px.line(df, x='Dates', y='Weight', color='Exercise')
+    div = plotly.offline.plot(fig, auto_open=False, output_type="div")
+
+    context['graph'] = div
+    return render(request, "CreateCharts.html", context)
+
+    
+    """
     username = request.user.username
     squat_vals = []
     dates = []
@@ -196,7 +214,7 @@ def CreateCharts(request, id=None):
     
     context['graph'] = data
     return render(request, 'CreateCharts.html', context)
-
+    """
 
 
 """ WORK IN PROGRESS """
