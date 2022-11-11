@@ -1,0 +1,399 @@
+WorkoutApp/Main/urls.py
+
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500 42)     path('ProfilePage/Meals', views.calorie_tracker, name='CalorieTracker.html'),
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500 43)     path('ProfilePage/TestCharts', views.TestCharts, name='TestCharts')    #jhowar63 - for testing graph stuff.
+
+
+WorkoutApp/Templates/CalorieDetails.html
+
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500 234) def TestCharts(request):
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500 235)     return render(request, "TestCharts.html")
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500 236) 
+
+
+WorkoutApp/Templates/CalorieDetails.html
+
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  1) <!DOCTYPE html>
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  2) <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  3) <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  4) <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  5) <!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  6) <html>
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  7)     <head>
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  8)         <meta charset="utf-8">
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  9)         <meta http-equiv="X-UA-Compatible" content="IE=edge">
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500 10)         <title></title>
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500 11)         <meta name="description" content="">
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500 12)         <meta name="viewport" content="width=device-width, initial-scale=1">
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500 13)         {% load static %}
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500 14)         <link rel="stylesheet" href="{% static 'WorkoutApp/styles.css' %}" />
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500 15)         
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500 16)         
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500 17)     </head>
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500 18)     <body>
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500 19) 
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500 20)         <div id="floatingNav">
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500 21)             <button type="submit"><a href="/"> Home </a></button>
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500 22)             <button type="submit"><a href="/CreateWorkout"> New Workout </a></button>
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500 23)             <button type="submit"><a href="/ProfilePage"> Profile Page </a></button>
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500 24) 
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500 25)             {% if user.is_authenticated %}
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500 26)             <button type="submit"> <a href="/SignOut"> Sign Out </a> </button>
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500 27)             
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500 28)             {% else %}
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500 29)             <button type="submit"> <a href="/SignIn"> Sign In </a> </button>
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500 30)             {% endif %}
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500 31) 
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500 32)             <button type="submit"><a href="/MoreInfo"> More Info </a></button>
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500 33)         </div> 
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500 34) 
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500 35)         {% for message in messages %}
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500 36)         <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500 37)             <strong>Message:</strong> {{ message}}
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500 38)             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500 39)             <span aria-hidden="true">&times;</span>
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500 40)             </button>
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500 41)         </div>
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500 42)         {% endfor %}
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500 43)         
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500 44)         <h3>{{user.username}}'s Test Charts</h3>
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500 45)         <h4>This is a temporary solution so that we will have visuals for sprint presentation.
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500 46)         </h4>
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500 47)         
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500 48) 
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500 49) 
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500 50)     </body>
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500 51) </html>
+
+
+WorkoutApp/Templates/CalorieTracker.html
+
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500   1) <!DOCTYPE html>
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500   2) <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500   3) <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500   4) <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500   5) <!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500   6) <html>
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500   7)     <head>
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500   8)         <meta charset="utf-8">
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500   9)         <meta http-equiv="X-UA-Compatible" content="IE=edge">
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  10)         <title></title>
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  11)         <meta name="description" content="">
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  12)         <meta name="viewport" content="width=device-width, initial-scale=1">
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  13)         {% load static %}
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  14)         <link rel="stylesheet" href="{% static 'WorkoutApp/styles.css' %}" />
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  15)         
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  16)         <!--Chartjs CDN-->
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  17)         <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  18) 
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  19)     </head>
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  20)     <body>
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  21) 
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  22)         <div id="floatingNav">
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  23)             <button type="submit"><a href="/"> Home </a></button>
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  24)             <button type="submit"><a href="/CreateWorkout"> New Workout </a></button>
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  25)             <button type="submit"><a href="/ProfilePage"> Profile Page </a></button>
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  26) 
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  27)             {% if user.is_authenticated %}
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  28)             <button type="submit"> <a href="/SignOut"> Sign Out </a> </button>
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  29)             
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  30)             {% else %}
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  31)             <button type="submit"> <a href="/SignIn"> Sign In </a> </button>
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  32)             {% endif %}
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  33) 
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  34)             <button type="submit"><a href="/MoreInfo"> More Info </a></button>
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  35)         </div> 
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  36) 
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  37)         {% for message in messages %}
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  38)         <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  39)             <strong>Message:</strong> {{ message}}
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  40)             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  41)             <span aria-hidden="true">&times;</span>
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  42)             </button>
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  43)         </div>
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  44)         {% endfor %}
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  45)         
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  46)         <h3>{{user.username}}'s Meal History</h3>
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  47)         <h4>This displays the users meal history.
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  48)             This page will eventually funciton like an individual workout in profile.
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  49)             Displaying info about the days meals.
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  50)         </h4>
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  51)         
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  52) 
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  53)         <style>
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  54)             #chart-wrapper {
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  55)               display: inline-block;
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  56)               position: relative;
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  57)               width: 50%;
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  58)             }
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  59)         </style>
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  60)         <div id="chart-wrapper">
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  61)             <canvas id="myChart"></canvas>
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  62)         </div>
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  63) 
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  64) 
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  65) 
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  66)     </body>
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  67) 
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  68)     <div class="col-md-6">
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  69)         <div class="bg-white">
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  70)             <canvas id="myChart" width="400" height="300"></canvas>
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  71)             <script>
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  72)                 var ctx = document.getElementById('myChart').getContext('2d');
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  73)                 var myChart = new Chart(ctx, {
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  74)                     type: 'pie',
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  75)                     data: {
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  76)                         labels: ['Breakfast', 'Lunch', 'Dinner', 'Snacks'],
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  77)                         datasets: [{
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  78)                             label: 'Workout Intensity (Average RPE)',
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  79)                             data: [7, 9, 3, 2],
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  80)                             backgroundColor: [
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  81)                                 'rgba(255, 99, 132, 1)',
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  82)                                 'rgba(54, 162, 235, 1)',
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  83)                                 'rgba(255, 206, 86, 1)',
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  84)                                 'rgba(75, 192, 192, 1)',
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  85)                                 'rgba(153, 102, 255, 1)',
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  86)                                 'rgba(255, 159, 64, 1)'
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  87)                             ],
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  88)                             borderColor: [
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  89)                                 'rgba(255, 99, 132, 1)',
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  90)                                 'rgba(54, 162, 235, 1)',
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  91)                                 'rgba(255, 206, 86, 1)',
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  92)                                 'rgba(75, 192, 192, 1)',
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  93)                                 'rgba(153, 102, 255, 1)',
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  94)                                 'rgba(255, 159, 64, 1)'
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  95)                             ],
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  96)                             borderWidth: 1
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  97)                         }]
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  98)                     },
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  99)                     options: {
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500 100)                         scales: {
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500 101)                         }
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500 102)                     }
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500 103)                 });
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500 104)             </script>
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500 105)         </div>
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500 106)     </div>
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500 107) 
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500 108) 
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500 109) 
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500 110) 
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500 111) 
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500 112) </html>
+
+
+WorkoutApp/Templates/ProfilePage.html
+
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500  15) 
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500  16)         <!--Chartjs CDN-->
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500  17)         <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500  18) 
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500  19) 
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500  56) 
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500  57)         <!-- jhowar63
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500  58)             Here is where we begin with TestCharts
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500  59)             This is not a permanent solution or home.
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500  60)         -->
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500  61)         <button type="submit"> <a href="/ProfilePage/TestCharts"> Test Charts </a></button>
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500  99)         <style>
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500 100)             #chart-wrapper {
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500 101)               display: inline-block;
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500 102)               position: relative;
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500 103)               width: 50%;
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500 104)             }
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500 105)         </style>
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500 106)         <div id="chart-wrapper">
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500 107)             <canvas id="myChart"></canvas>
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500 108)         </div>
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500 109) 
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500 128)         <!-- This is currently named a date bc it does not have the functionality like workout
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500 129)              Eventually it will be like that but for now it's a place holder
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500 130)         -->
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500 131)         <li><a href="/ProfilePage/Meals"> Nov. 9, 2022 </a></li>
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500 134) 
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500 135)     <!-- jhowar63 - Basic Workout History Graph -->
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500 136)     <div class="col-md-6">
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500 137)         <div class="bg-white">
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500 138)             <canvas id="myChart" width="400" height="300"></canvas>
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500 139)             <script>
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500 140)                 var ctx = document.getElementById('myChart').getContext('2d');
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500 141)                 var myChart = new Chart(ctx, {
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500 142)                     type: 'line',
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500 143)                     data: {
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500 144)                         labels: ['10-23-2022', '10-30-2022', '10-31-2022', '11-05-2022', '11-08-2020', '11-09-2022'],
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500 145)                         datasets: [{ 
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500 146)                             data: [1, 4, 3, 6, 4, 7, 5],
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500 147)                             label: "Bench Press",
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500 148)                             borderColor: "#3e95cd",
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500 149)                             fill: false
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500 150)                           }, { 
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500 151)                             data: [1, 2, 3, 4, 5, 6, 7],
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500 152)                             label: "Deadlift",
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500 153)                             borderColor: "#8e5ea2",
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500 154)                             fill: false
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500 155)                           }, { 
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500 156)                             data: [3, 5, 7, 4, 6, 7, 2],
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500 157)                             label: "Overhead Press",
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500 158)                             borderColor: "#3cba9f",
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500 159)                             fill: false
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500 160)                           }, { 
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500 161)                             data: [4, 3, 5, 3, 7, 3, 6],
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500 162)                             label: "Front Squat",
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500 163)                             borderColor: "#e8c3b9",
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500 164)                             fill: false
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500 165)                           }, { 
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500 166)                             data: [2, 4, 6, 4, 6, 4, 6],
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500 167)                             label: "Pull Up",
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500 168)                             borderColor: "#c45850",
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500 169)                             fill: false
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500 170)                           }, { 
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500 171)                             data: [2, 4, 6, 4, 6, 4, 6],
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500 172)                             label: "Romainian Deadlift",
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500 173)                             borderColor: "#h65850",
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500 174)                             fill: false
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500 175)                           }, { 
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500 176)                             data: [2, 4, 6, 4, 6, 4, 6],
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500 177)                             label: "Dumbell Overhead Press",
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500 178)                             borderColor: "#8D77CF",
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500 179)                             fill: false
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500 180)                           }, { 
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500 181)                             data: [2, 4, 6, 4, 6, 4, 6],
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500 182)                             label: "Hip Thrust",
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500 183)                             borderColor: "#CF77C3",
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500 184)                             fill: false
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500 185)                           }
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500 186)                         ]
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500 187)                     },
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500 188)                     options: {
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500 189)                         scales: {
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500 190)                             yAxes: [{
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500 191)                                 ticks: {
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500 192)                                     suggestedMin: 0,
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500 193)                                     suggestedMax: 10,
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500 194)                                     beginAtZero: true
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500 195)                                 }
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500 196)                             }]
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500 197)                         }
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500 198)                     }
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500 199)                 });
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500 200)             </script>
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500 201)         </div>
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500 202)     </div>
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500 203) 
+71b417f3 (Jacob Howard  2022-11-10 02:32:30 -0500 204) 
+
+
+WorkoutApp/Templates/TestCharts.html
+
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500   1) <!DOCTYPE html>
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500   2) <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500   3) <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500   4) <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500   5) <!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500   6) <html>
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500   7)     <head>
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500   8)         <meta charset="utf-8">
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500   9)         <meta http-equiv="X-UA-Compatible" content="IE=edge">
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  10)         <title></title>
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  11)         <meta name="description" content="">
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  12)         <meta name="viewport" content="width=device-width, initial-scale=1">
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  13)         {% load static %}
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  14)         <link rel="stylesheet" href="{% static 'WorkoutApp/styles.css' %}" />
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  15) 
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  16)         <div id="floatingNav">
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  17)             <button type="submit"><a href="/"> Home </a></button>
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  18)             <button type="submit"><a href="/CreateWorkout"> New Workout </a></button>
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  19)             <button type="submit"><a href="/ProfilePage"> Profile Page </a></button>
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  20) 
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  21)             {% if user.is_authenticated %}
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  22)             <button type="submit"> <a href="/SignOut"> Sign Out </a> </button>
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  23)             
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  24)             {% else %}
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  25)             <button type="submit"> <a href="/SignIn"> Sign In </a> </button>
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  26)             {% endif %}
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  27) 
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  28)             <button type="submit"><a href="/MoreInfo"> More Info </a></button>
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  29)         </div> 
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  30) 
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  31)         {% for message in messages %}
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  32)         <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  33)             <strong>Message:</strong> {{ message}}
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  34)             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  35)             <span aria-hidden="true">&times;</span>
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  36)             </button>
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  37)         </div>
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  38)         {% endfor %}
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  39) 
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  40)         <!--Chartjs CDN-->
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  41)         <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  42) 
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  43) 
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  44)     </head>
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  45)     <body>
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  46)         
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  47)         <h3>{{user.username}}'s Test Charts</h3>
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  48)         <h4>This is a temporary solution so that we will have visuals for sprint presentation.
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  49)         </h4>
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  50)         <style>
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  51)             #chart-wrapper {
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  52)               display: inline-block;
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  53)               position: relative;
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  54)               width: 50%;
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  55)             }
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  56)         </style>
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  57)         <div id="chart-wrapper">
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  58)             <canvas id="myChart"></canvas>
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  59)         </div>
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  60) 
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  61)         <h4> Spacer Test </h4>
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  62) 
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  63)     </body>
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  64) 
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  65)     <div class="col-md-6">
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  66)         <div class="bg-white">
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  67)             <canvas id="myChart" width="400" height="300"></canvas>
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  68)             <script>
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  69)                 var ctx = document.getElementById('myChart').getContext('2d');
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  70)                 var myChart = new Chart(ctx, {
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  71)                     type: 'bar',
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  72)                     data: {
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  73)                         labels: ['10-23-2022', '10-30-2022', '10-31-2022', '11-05-2022', '11-08-2020', '11-09-2022'],
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  74)                         datasets: [{
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  75)                             label: 'Workout Intensity (Average RPE)',
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  76)                             data: [7, 9, 3, 2, 5, 6],
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  77)                             backgroundColor: [
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  78)                                 'rgba(255, 99, 132, 1)',
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  79)                                 'rgba(54, 162, 235, 1)',
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  80)                                 'rgba(255, 206, 86, 1)',
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  81)                                 'rgba(75, 192, 192, 1)',
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  82)                                 'rgba(153, 102, 255, 1)',
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  83)                                 'rgba(255, 159, 64, 1)'
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  84)                             ],
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  85)                             borderColor: [
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  86)                                 'rgba(255, 99, 132, 1)',
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  87)                                 'rgba(54, 162, 235, 1)',
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  88)                                 'rgba(255, 206, 86, 1)',
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  89)                                 'rgba(75, 192, 192, 1)',
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  90)                                 'rgba(153, 102, 255, 1)',
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  91)                                 'rgba(255, 159, 64, 1)'
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  92)                             ],
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  93)                             borderWidth: 1
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  94)                         }]
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  95)                     },
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  96)                     options: {
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  97)                         scales: {
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  98)                             yAxes: [{
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500  99)                                 ticks: {
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500 100)                                     suggestedMin: 0,
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500 101)                                     suggestedMax: 10,
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500 102)                                     beginAtZero: true
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500 103)                                 }
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500 104)                             }]
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500 105)                         }
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500 106)                     }
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500 107)                 });
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500 108)             </script>
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500 109)         </div>
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500 110)     </div>
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500 111) 
+71b417f3 (Jacob Howard 2022-11-10 02:32:30 -0500 112) </html>
