@@ -1,0 +1,275 @@
+
+
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500   6) <html lang="en">
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  13)         
+27c95b50 (mdew-abc     2022-10-13 09:25:50 -0400  14)         {% load static %}
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  15)         <!-- Bootstrap CSS -->
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  16)         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  17) 
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  18)         <!-- jQuery from Bootstrap -->
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  19)         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  20)         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  21)         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  22)         
+27c95b50 (mdew-abc     2022-10-13 09:25:50 -0400  23)         
+27c95b50 (mdew-abc     2022-10-13 09:25:50 -0400  24)         
+
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400  27) 
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  28)         
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  29)         <!--Floating Nav-->
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  30)         <nav class="navbar navbar-expand" style="background-color:lightskyblue;">
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  31)             <div class="container-fluid">
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  32)                 <div class="navbar-header">
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  33)                     <a class="navbar-brand" href="/">WorkoutApp</a>
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  34)                 </div>
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  35) 
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  36)                 <ul class="nav navbar-nav">
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  37)                     <button type="submit" class="btn btn-default"> <a href="/"> Home </a> </button>
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  38)                     
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  39)                     {% if user.is_authenticated %}
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  40)                     <button type="submit" class="btn btn-default"> <a href="/CreateWorkout"> New Workout </a> </button>
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  41)                     <button type="submit" class="btn btn-default"> <a href="/ProfilePage"> Profile Page </a> </button>
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  42)                     <button type="submit" class="btn btn-default"> <a href="/SignOut"> Sign Out </a> </button>
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  43) 
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  44)                     {% else %}
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  45)                     <button type="submit" class="btn btn-default"> <a href="/SignIn"> Sign In </a> </button>
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  46)                     {% endif %}
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  47)                     <button type="submit" class="btn btn-default"> <a href="/MoreInfo"> More Info </a> </button>
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  48)                 </ul>
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  49)             </div>
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  50)         </nav>
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  51)         <!--Floating Nav-->
+27c95b50 (mdew-abc     2022-10-13 09:25:50 -0400  52) 
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400  55)             <strong>Message:</strong> {{ message}}
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400  56)             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400  57)             <span aria-hidden="true">&times;</span>
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400  58)             </button>
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400  65)         {% if user.is_authenticated %}
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  66)         <h3> Hello {{ user.first_name }}, Welcome to WorkoutApp
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  67)         </h3>
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400  69)         {% else %}
+Please create an account</h3>
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400  74)         {% endif %}
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400  75) 
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  77)         <!--Image Carousel-->
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  78)         <div id="myCarousel" class="carousel slide" data-ride="carousel">
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  79)             <ol class="carousel-indicators">
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  80)               <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  81)               <li data-target="#myCarousel" data-slide-to="1"></li>
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  82)               <li data-target="#myCarousel" data-slide-to="2"></li>
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  83)             </ol>
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  84)           
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  85)             <div class="carousel-inner">
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  86)               <div class="carousel-item active">
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  87)                 <img src="{% static 'images/fitness.jpg' %}" alt="Fitness Logo">
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  88)               </div>
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  89)           
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  90)               <div class="carousel-item">
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  91)                 <img src="{% static 'images/gymicons.jpg' %}" alt="Gym Icons">
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  92)               </div>
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  93)           
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  94)               <div class="carousel-item">
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  95)                 <img src="{% static 'images/training.jpg' %}" alt="Training Logo">
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  96)               </div>
+6b96bf05 (mdew-abc     2022-10-27 18:05:50 -0400  97)             </div>
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  98)           
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  99)             <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500 100)               <span class="glyphicon glyphicon-chevron-left"></span>
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500 101)               <span class="sr-only">Previous</span>
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500 102)             </a>
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500 103)             <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500 104)               <span class="glyphicon glyphicon-chevron-right"></span>
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500 105)               <span class="sr-only">Next</span>
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500 106)             </a>
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500 107)           </div>
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500 108)           <!--Image Carousel-->
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400 109) 
+6b96bf05 (mdew-abc     2022-10-27 18:05:50 -0400 110) 
+6b96bf05 (mdew-abc     2022-10-27 18:05:50 -0400 111) 
+6b96bf05 (mdew-abc     2022-10-27 18:05:50 -0400 112) 
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400 113) 
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500 114)         <p>
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500 115)             WorkoutApp is a free workout and calorie tracker that helps you log, track, and view your fitness history.
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500 116)         </p>
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500 117) 
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500 118)         <br>
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400 119) 
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400 120)         <div id="footer">
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400 121)             
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400 122) 
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400 123)             <!--Implement buttons here, any credit needed, contact us, links to any socials, etc-->
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400 124)     
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400 125)         </div>
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400 126) 
+
+
+
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500 13)         
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500 15)         <!-- Bootstrap CSS -->
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500 16)         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500 17) 
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500 18)         <!-- jQuery from Bootstrap -->
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500 19)         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500 20)         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500 21)         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500 22)         
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500 28)         <!--Floating Nav-->
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500 29)         <nav class="navbar navbar-expand" style="background-color:lightskyblue;">
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500 30)             <div class="container-fluid">
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500 31)                 <div class="navbar-header">
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500 32)                     <a class="navbar-brand" href="/">WorkoutApp</a>
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500 33)                 </div>
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500 35)                 <ul class="nav navbar-nav">
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500 36)                     <button type="submit" class="btn btn-default"> <a href="/"> Home </a> </button>
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500 37)                     
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500 38)                     {% if user.is_authenticated %}
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500 39)                     <button type="submit" class="btn btn-default"> <a href="/CreateWorkout"> New Workout </a> </button>
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500 40)                     <button type="submit" class="btn btn-default"> <a href="/ProfilePage"> Profile Page </a> </button>
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500 41)                     <button type="submit" class="btn btn-default"> <a href="/SignOut"> Sign Out </a> </button>
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500 43)                     {% else %}
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500 44)                     <button type="submit" class="btn btn-default"> <a href="/SignIn"> Sign In </a> </button>
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500 45)                     {% endif %}
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500 46)                     <button type="submit" class="btn btn-default"> <a href="/MoreInfo"> More Info </a> </button>
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500 47)                 </ul>
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500 48)             </div>
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500 49)         </nav>
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500 50)         <!--Floating Nav-->
+
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  13) 
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  15)         <!-- Bootstrap CSS -->
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  16)         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  17) 
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  18)         <!-- jQuery from Bootstrap -->
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  19)         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  20)         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  21)         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  22)         
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  24) 
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  25) 
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  26) 
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  33)         <!--Floating Nav-->
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  34)         <nav class="navbar navbar-expand" style="background-color:lightskyblue;">
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  35)             <div class="container-fluid">
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  36)                 <div class="navbar-header">
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  37)                     <a class="navbar-brand" href="/">WorkoutApp</a>
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  38)                 </div>
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  40)                 <ul class="nav navbar-nav">
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  41)                     <button type="submit" class="btn btn-default"> <a href="/"> Home </a> </button>
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  42)                     
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  43)                     {% if user.is_authenticated %}
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  44)                     <button type="submit" class="btn btn-default"> <a href="/CreateWorkout"> New Workout </a> </button>
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  45)                     <button type="submit" class="btn btn-default"> <a href="/ProfilePage"> Profile Page </a> </button>
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  46)                     <button type="submit" class="btn btn-default"> <a href="/SignOut"> Sign Out </a> </button>
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  48)                     {% else %}
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  49)                     <button type="submit" class="btn btn-default"> <a href="/SignIn"> Sign In </a> </button>
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  50)                     {% endif %}
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  51)                     <button type="submit" class="btn btn-default"> <a href="/MoreInfo"> More Info </a> </button>
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  52)                 </ul>
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  53)             </div>
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  54)         </nav>
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  55)         <!--Floating Nav-->
+
+2501528a (mdew-abc 2022-11-10 14:14:14 -0500 13)         
+2501528a (mdew-abc 2022-11-10 14:14:14 -0500 15)         <!-- Bootstrap CSS -->
+2501528a (mdew-abc 2022-11-10 14:14:14 -0500 16)         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+2501528a (mdew-abc 2022-11-10 14:14:14 -0500 17) 
+2501528a (mdew-abc 2022-11-10 14:14:14 -0500 18)         <!-- jQuery from Bootstrap -->
+2501528a (mdew-abc 2022-11-10 14:14:14 -0500 19)         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+2501528a (mdew-abc 2022-11-10 14:14:14 -0500 20)         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+2501528a (mdew-abc 2022-11-10 14:14:14 -0500 21)         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+2501528a (mdew-abc 2022-11-10 14:14:14 -0500 22)         
+2501528a (mdew-abc 2022-11-10 14:14:14 -0500 23) 
+2501528a (mdew-abc 2022-11-10 14:14:14 -0500 24) 
+2501528a (mdew-abc 2022-11-10 14:14:14 -0500 25) 
+2501528a (mdew-abc 2022-11-10 14:14:14 -0500 30)     <!--Floating Nav-->
+2501528a (mdew-abc 2022-11-10 14:14:14 -0500 31)     <nav class="navbar navbar-expand" style="background-color:lightskyblue;">
+2501528a (mdew-abc 2022-11-10 14:14:14 -0500 32)         <div class="container-fluid">
+2501528a (mdew-abc 2022-11-10 14:14:14 -0500 33)             <div class="navbar-header">
+2501528a (mdew-abc 2022-11-10 14:14:14 -0500 34)                 <a class="navbar-brand" href="/">WorkoutApp</a>
+2501528a (mdew-abc 2022-11-10 14:14:14 -0500 35)             </div>
+2501528a (mdew-abc 2022-11-10 14:14:14 -0500 37)             <ul class="nav navbar-nav">
+2501528a (mdew-abc 2022-11-10 14:14:14 -0500 38)                 <button type="submit" class="btn btn-default"> <a href="/"> Home </a> </button>
+2501528a (mdew-abc 2022-11-10 14:14:14 -0500 39)                 
+2501528a (mdew-abc 2022-11-10 14:14:14 -0500 40)                 {% if user.is_authenticated %}
+2501528a (mdew-abc 2022-11-10 14:14:14 -0500 41)                 <button type="submit" class="btn btn-default"> <a href="/CreateWorkout"> New Workout </a> </button>
+2501528a (mdew-abc 2022-11-10 14:14:14 -0500 42)                 <button type="submit" class="btn btn-default"> <a href="/ProfilePage"> Profile Page </a> </button>
+2501528a (mdew-abc 2022-11-10 14:14:14 -0500 43)                 <button type="submit" class="btn btn-default"> <a href="/SignOut"> Sign Out </a> </button>
+2501528a (mdew-abc 2022-11-10 14:14:14 -0500 45)                 {% else %}
+2501528a (mdew-abc 2022-11-10 14:14:14 -0500 46)                 <button type="submit" class="btn btn-default"> <a href="/SignIn"> Sign In </a> </button>
+2501528a (mdew-abc 2022-11-10 14:14:14 -0500 47)                 {% endif %}
+2501528a (mdew-abc 2022-11-10 14:14:14 -0500 48)                 <button type="submit" class="btn btn-default"> <a href="/MoreInfo"> More Info </a> </button>
+2501528a (mdew-abc 2022-11-10 14:14:14 -0500 49)             </ul>
+2501528a (mdew-abc 2022-11-10 14:14:14 -0500 50)         </div>
+2501528a (mdew-abc 2022-11-10 14:14:14 -0500 51)     </nav>
+2501528a (mdew-abc 2022-11-10 14:14:14 -0500 52)     <!--Floating Nav-->
+2501528a (mdew-abc 2022-11-10 14:14:14 -0500 13) 
+2501528a (mdew-abc 2022-11-10 14:14:14 -0500 15)         <!-- Bootstrap CSS -->
+2501528a (mdew-abc 2022-11-10 14:14:14 -0500 16)         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+2501528a (mdew-abc 2022-11-10 14:14:14 -0500 17) 
+2501528a (mdew-abc 2022-11-10 14:14:14 -0500 18)         <!-- jQuery from Bootstrap -->
+2501528a (mdew-abc 2022-11-10 14:14:14 -0500 19)         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+2501528a (mdew-abc 2022-11-10 14:14:14 -0500 20)         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+2501528a (mdew-abc 2022-11-10 14:14:14 -0500 21)         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+2501528a (mdew-abc 2022-11-10 14:14:14 -0500 22)         
+2501528a (mdew-abc 2022-11-10 14:14:14 -0500 23) 
+2501528a (mdew-abc 2022-11-10 14:14:14 -0500 24) 
+2501528a (mdew-abc 2022-11-10 14:14:14 -0500 25) 
+2501528a (mdew-abc 2022-11-10 14:14:14 -0500 30)         <!--Floating Nav-->
+2501528a (mdew-abc 2022-11-10 14:14:14 -0500 31)         <nav class="navbar navbar-expand" style="background-color:lightskyblue;">
+2501528a (mdew-abc 2022-11-10 14:14:14 -0500 32)             <div class="container-fluid">
+2501528a (mdew-abc 2022-11-10 14:14:14 -0500 33)                 <div class="navbar-header">
+2501528a (mdew-abc 2022-11-10 14:14:14 -0500 34)                     <a class="navbar-brand" href="/">WorkoutApp</a>
+2501528a (mdew-abc 2022-11-10 14:14:14 -0500 35)                 </div>
+2501528a (mdew-abc 2022-11-10 14:14:14 -0500 36) 
+2501528a (mdew-abc 2022-11-10 14:14:14 -0500 37)                 <ul class="nav navbar-nav">
+2501528a (mdew-abc 2022-11-10 14:14:14 -0500 38)                     <button type="submit" class="btn btn-default"> <a href="/"> Home </a> </button>
+2501528a (mdew-abc 2022-11-10 14:14:14 -0500 39)                     
+2501528a (mdew-abc 2022-11-10 14:14:14 -0500 40)                     {% if user.is_authenticated %}
+2501528a (mdew-abc 2022-11-10 14:14:14 -0500 41)                     <button type="submit" class="btn btn-default"> <a href="/CreateWorkout"> New Workout </a> </button>
+2501528a (mdew-abc 2022-11-10 14:14:14 -0500 42)                     <button type="submit" class="btn btn-default"> <a href="/ProfilePage"> Profile Page </a> </button>
+2501528a (mdew-abc 2022-11-10 14:14:14 -0500 43)                     <button type="submit" class="btn btn-default"> <a href="/SignOut"> Sign Out </a> </button>
+2501528a (mdew-abc 2022-11-10 14:14:14 -0500 44) 
+2501528a (mdew-abc 2022-11-10 14:14:14 -0500 45)                     {% else %}
+2501528a (mdew-abc 2022-11-10 14:14:14 -0500 46)                     <button type="submit" class="btn btn-default"> <a href="/SignIn"> Sign In </a> </button>
+2501528a (mdew-abc 2022-11-10 14:14:14 -0500 47)                     {% endif %}
+2501528a (mdew-abc 2022-11-10 14:14:14 -0500 48)                     <button type="submit" class="btn btn-default"> <a href="/MoreInfo"> More Info </a> </button>
+2501528a (mdew-abc 2022-11-10 14:14:14 -0500 49)                 </ul>
+2501528a (mdew-abc 2022-11-10 14:14:14 -0500 50)             </div>
+2501528a (mdew-abc 2022-11-10 14:14:14 -0500 51)         </nav>
+2501528a (mdew-abc 2022-11-10 14:14:14 -0500 52)         <!--Floating Nav-->
+
+
+2501528a (mdew-abc      2022-11-10 14:14:14 -0500 13)         
+2501528a (mdew-abc      2022-11-10 14:14:14 -0500 15)         <!-- Bootstrap CSS -->
+2501528a (mdew-abc      2022-11-10 14:14:14 -0500 16)         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+2501528a (mdew-abc      2022-11-10 14:14:14 -0500 17) 
+2501528a (mdew-abc      2022-11-10 14:14:14 -0500 18)         <!-- jQuery from Bootstrap -->
+2501528a (mdew-abc      2022-11-10 14:14:14 -0500 19)         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+2501528a (mdew-abc      2022-11-10 14:14:14 -0500 20)         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+2501528a (mdew-abc      2022-11-10 14:14:14 -0500 21)         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+2501528a (mdew-abc      2022-11-10 14:14:14 -0500 22)         
+2501528a (mdew-abc      2022-11-10 14:14:14 -0500 26)         <!--Floating Nav-->
+2501528a (mdew-abc      2022-11-10 14:14:14 -0500 27)         <nav class="navbar navbar-expand" style="background-color:lightskyblue;">
+2501528a (mdew-abc      2022-11-10 14:14:14 -0500 28)             <div class="container-fluid">
+2501528a (mdew-abc      2022-11-10 14:14:14 -0500 29)                 <div class="navbar-header">
+2501528a (mdew-abc      2022-11-10 14:14:14 -0500 30)                     <a class="navbar-brand" href="/">WorkoutApp</a>
+2501528a (mdew-abc      2022-11-10 14:14:14 -0500 31)                 </div>
+2501528a (mdew-abc      2022-11-10 14:14:14 -0500 33)                 <ul class="nav navbar-nav">
+2501528a (mdew-abc      2022-11-10 14:14:14 -0500 34)                     <button type="submit" class="btn btn-default"> <a href="/"> Home </a> </button>
+2501528a (mdew-abc      2022-11-10 14:14:14 -0500 35)                     
+2501528a (mdew-abc      2022-11-10 14:14:14 -0500 36)                     {% if user.is_authenticated %}
+2501528a (mdew-abc      2022-11-10 14:14:14 -0500 37)                     <button type="submit" class="btn btn-default"> <a href="/CreateWorkout"> New Workout </a> </button>
+2501528a (mdew-abc      2022-11-10 14:14:14 -0500 38)                     <button type="submit" class="btn btn-default"> <a href="/ProfilePage"> Profile Page </a> </button>
+2501528a (mdew-abc      2022-11-10 14:14:14 -0500 39)                     <button type="submit" class="btn btn-default"> <a href="/SignOut"> Sign Out </a> </button>
+bf44c17a (Mgibso46      2022-10-27 12:57:45 -0400 40) 
+2501528a (mdew-abc      2022-11-10 14:14:14 -0500 41)                     {% else %}
+2501528a (mdew-abc      2022-11-10 14:14:14 -0500 42)                     <button type="submit" class="btn btn-default"> <a href="/SignIn"> Sign In </a> </button>
+2501528a (mdew-abc      2022-11-10 14:14:14 -0500 43)                     {% endif %}
+2501528a (mdew-abc      2022-11-10 14:14:14 -0500 44)                     <button type="submit" class="btn btn-default"> <a href="/MoreInfo"> More Info </a> </button>
+2501528a (mdew-abc      2022-11-10 14:14:14 -0500 45)                 </ul>
+2501528a (mdew-abc      2022-11-10 14:14:14 -0500 46)             </div>
+2501528a (mdew-abc      2022-11-10 14:14:14 -0500 47)         </nav>
+2501528a (mdew-abc      2022-11-10 14:14:14 -0500 48)         <!--Floating Nav-->
+
+
+
