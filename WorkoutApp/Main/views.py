@@ -188,33 +188,6 @@ def CreateCharts(request):
     context['graph'] = div
     return render(request, "CreateCharts.html", context)
 
-    
-    """
-    username = request.user.username
-    squat_vals = []
-    dates = []
-    all_workouts = WorkoutHistory.objects.get(user=str(username)).workout_set.all()
-   
-   # add data to the lists
-    for workout in all_workouts:
-        all_exercises = workout.objects.get(id=id).exercise_set.all()
-        for exercise in all_exercises:
-            if exercise.name == "Squat":
-                squat_vals.append(exercise.weight)
-                dates.append(workout.date)
-    
-    fig = plt.figure()
-    plt.plot(dates, squat_vals)
-
-    imgdata = StringIO()
-    fig.savefig(imgdata, format='svg')
-    imgdata.seek(0)
-
-    data = imgdata.getvalue()
-    
-    context['graph'] = data
-    return render(request, 'CreateCharts.html', context)
-    """
 
 
 """ WORK IN PROGRESS """
