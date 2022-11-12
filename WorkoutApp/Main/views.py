@@ -176,16 +176,46 @@ def Workout_Details(request, id=None):
 """ WORK IN PROGRESS """
 def CreateCharts(request):
 
+    user = request.user
+    username = user.username
+    all_workouts = None
+    try:
+        WorkoutHistory.objects.get(user=str(username)) is not None
+        all_workouts = WorkoutHistory.objects.get(user=str(username)).workout_set.all()
+    except WorkoutHistory.DoesNotExist:
+        raise Http404("User's WorkoutHistory does not exist")
+
+    exercise_names = []
+    exercise_weight = []
+    dates = []
+    for workout in all_workouts:
+        exercises = workout.objects.workout_set.all()
+        for exercise in exercises:
+            exercise_names.append(exercise.name)
+            exercise_weight.append(exercise.weight)
+            dates.append(workout.date)
+    
+
+    df = pd.DataFrame({
+        "Exercise": exercise_names,
+        "Weight" : exercise_weight,
+        "Dates": dates
+    })
+
+    """        
     df = pd.DataFrame({
         "Exercise": ["Bench Press", "Bench Press", "Bench Press", "Deadlift", "Deadlift", "Deadlift"],
         "Weight": [205, 225, 225, 365, 385, 375],
         "Dates": ["09-10-2022", "10-10-2022", "11-10-2022", "09-10-2022", "10-10-2022", "11-10-2022"]
     })
+    """
 
     fig = px.line(df, x='Dates', y='Weight', color='Exercise')
     div = plotly.offline.plot(fig, auto_open=False, output_type="div")
 
-    context = {'graph' : div}
+    context = {
+        'graph' : div
+    }
     return render(request, "CreateCharts.html", context)
 
 
