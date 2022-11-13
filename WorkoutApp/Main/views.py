@@ -1,6 +1,7 @@
 #from asyncio.windows_events import NULL
 from datetime import datetime
 import imp
+from turtle import width
 from django.http import HttpResponse, Http404
 from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth.models import User
@@ -14,6 +15,7 @@ from django import forms
 from django.contrib.auth.views import PasswordChangeView, PasswordChangeForm
 from matplotlib.style import context
 import plotly
+from pyparsing import ungroup
 from .models import WorkoutHistory, Workout, Exercise, Category
 from .forms import ExerciseForm, WorkoutForm, CalorieForm
 from django.http import HttpResponseRedirect
@@ -188,12 +190,13 @@ def CreateCharts(request):
     exercise_names = []
     exercise_weight = []
     dates = []
+    
     for workout in all_workouts:
-        exercises = workout.objects.workout_set.all()
+        exercises = Workout.objects.get(id=workout.id).exercise_set.all()
         for exercise in exercises:
-            exercise_names.append(exercise.name)
-            exercise_weight.append(exercise.weight)
             dates.append(workout.date)
+            exercise_weight.append(exercise.weight)
+            exercise_names.append(exercise.name)
     
 
     df = pd.DataFrame({
@@ -210,8 +213,9 @@ def CreateCharts(request):
     })
     """
 
-    fig = px.line(df, x='Dates', y='Weight', color='Exercise')
-    div = plotly.offline.plot(fig, auto_open=False, output_type="div")
+    fig = px.line(df, x='Dates', y='Weight', color='Exercise', markers=True,
+                  width=1300, height=600)
+    div = plotly.offline.plot(fig, auto_open=False, output_type="div",)
 
     context = {
         'graph' : div
