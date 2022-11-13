@@ -205,14 +205,6 @@ def CreateCharts(request):
         "Dates": dates
     })
 
-    """        
-    df = pd.DataFrame({
-        "Exercise": ["Bench Press", "Bench Press", "Bench Press", "Deadlift", "Deadlift", "Deadlift"],
-        "Weight": [205, 225, 225, 365, 385, 375],
-        "Dates": ["09-10-2022", "10-10-2022", "11-10-2022", "09-10-2022", "10-10-2022", "11-10-2022"]
-    })
-    """
-
     fig = px.line(df, x='Dates', y='Weight', color='Exercise', markers=True,
                   width=1300, height=600)
     div = plotly.offline.plot(fig, auto_open=False, output_type="div",)
