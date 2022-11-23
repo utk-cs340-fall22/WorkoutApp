@@ -1,7 +1,8 @@
 #from asyncio.windows_events import NULL
 from datetime import datetime
-from django.http import HttpResponse
-from django.http import Http404
+import imp
+from turtle import width
+from django.http import HttpResponse, Http404
 from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth.models import User
 from django.views import generic
@@ -12,10 +13,22 @@ from django.contrib.auth.forms import UserChangeForm
 from telnetlib import LOGOUT, Telnet
 from django import forms
 from django.contrib.auth.views import PasswordChangeView, PasswordChangeForm
+from matplotlib.style import context
+import plotly
+from pyparsing import ungroup
 from .models import WorkoutHistory, Workout, Exercise, Category
 from .forms import ExerciseForm, WorkoutForm, CalorieForm
 from django.http import HttpResponseRedirect
+import matplotlib as plt
+import numpy as py
+from io import StringIO
+import plotly.express as px
+import pandas as pd
 
+"""
+These three functions are used for user's to change some of their profile
+information such ass password, username, name, etc...
+"""
 class EditProfileForm(UserChangeForm):
     class Meta(UserChangeForm.Meta):
         fields = None
@@ -32,10 +45,19 @@ class PasswordsChangeView(PasswordChangeView):
     form_class = PasswordChangeForm
     success_url = reverse_lazy('PasswordSuccess')
 
-# Create your views here.
+
+
+""" returns the homepage """
 def home(request):
     return render(request, "homepage.html")
 
+
+
+"""
+This brings user to CreateAccount.html and opens a form to input account
+information. It also creates an instance of a Workouthistory to track their
+workouts
+"""
 def CreateAccount(request):
     if request.method == "POST":
         username = request.POST.get('username')
@@ -77,6 +99,12 @@ def CreateAccount(request):
         return redirect('home')
     return render(request, "CreateAccount.html")
 
+
+
+""" 
+This goes to SignIn.html and presents user with a login screen
+It sends an error message with the use of invalid credentials
+"""
 def SignIn(request):
     if request.method == "POST":
         username = request.POST.get('username')
@@ -94,11 +122,21 @@ def SignIn(request):
 
     return render(request, "SignIn.html")
 
+
+
+""" Logs user out of website and returns them to the homepage"""
 def SignOut(request):
     logout(request)
     messages.success(request, "Logged Out Successfully!")
     return redirect('home')
 
+
+
+""" 
+ProfilePage contains user information, and links to several important
+features such as EditProfile, WorkoutHistory, Workout Graphs, and
+calorie history
+"""
 def ProfilePage(request):
     user = request.user
     username = user.username
@@ -115,9 +153,10 @@ def ProfilePage(request):
         'all_workouts' : all_workouts,
         }
     return render(request, "ProfilePage.html", context)
-    #we need to create a WorkoutHistory and pair it to user when they create their account.
-    #right now this can result in error if user doesnt have wh.
 
+
+
+""" List the details of the specified workout """
 def Workout_Details(request, id=None):
     specific_workout = None
     all_exercises = None
@@ -134,15 +173,65 @@ def Workout_Details(request, id=None):
     }
     return render(request, "WorkoutDetails.html", context)
 
-def CreateCharts(request):
-    pass
 
+
+""" WORK IN PROGRESS """
+def CreateCharts(request):
+
+    user = request.user
+    username = user.username
+    all_workouts = None
+    try:
+        WorkoutHistory.objects.get(user=str(username)) is not None
+        all_workouts = WorkoutHistory.objects.get(user=str(username)).workout_set.all()
+    except WorkoutHistory.DoesNotExist:
+        raise Http404("User's WorkoutHistory does not exist")
+
+    exercise_names = []
+    exercise_weight = []
+    dates = []
+    
+    for workout in all_workouts:
+        exercises = Workout.objects.get(id=workout.id).exercise_set.all()
+        for exercise in exercises:
+            dates.append(workout.date)
+            exercise_weight.append(exercise.weight)
+            exercise_names.append(exercise.name)
+    
+
+    df = pd.DataFrame({
+        "Exercise": exercise_names,
+        "Weight" : exercise_weight,
+        "Dates": dates
+    })
+
+    fig = px.line(df, x='Dates', y='Weight', color='Exercise', markers=True,
+                  width=1300, height=600)
+    div = plotly.offline.plot(fig, auto_open=False, output_type="div",)
+
+    context = {
+        'graph' : div
+    }
+    return render(request, "CreateCharts.html", context)
+
+
+
+""" WORK IN PROGRESS """
 def ChartHistory(request):
     pass
 
+
+
+""" Navigates to the MoreInfo page """
 def MoreInfo(request):
     return render(request, "MoreInfo.html")
 
+
+
+""" 
+This adds an exercise to the given workout. User gives workout
+information via a form which then adds the exercise to the data table
+"""
 def CreateExercise(request, id):
 
     if request.method == 'POST':
@@ -169,14 +258,11 @@ def CreateExercise(request, id):
                 {'form' : form})   
     
 
-    """
-    exercisename = request.POST.get('CExercise')
-    if exercisename != '':
-        messages.success(request, "Exercise made!")
-    return render(request, "CreateWorkout.html", {'Exercisename' : exercisename})
-    """
-
-# Jacob Howard working here.
+"""
+Takes user to a page where they simply input the date of workout.
+This creates a new workout instance which they can fill with exercises
+using CreateExercise. Workouts are keyed on auto-generated ID
+"""
 def CreateWorkout(request):
 
     if request.method == 'POST':
@@ -202,6 +288,11 @@ def CreateWorkout(request):
                   {'form' : form})
 
 
+""" Page to test charts """
+def TestCharts(request):
+    return render(request, "TestCharts.html")
+
+""" ???? """
 def CreateWorkout2(request):
     Workoutname = request.POST.get('CWorkout')
     Workoutinfo = get_object_or_404(Workout, pk=1)
@@ -214,22 +305,52 @@ def CreateWorkout2(request):
         messages.success(request, "Workout made!")
     return render(request, "CreateExercise.html", {'WorkoutName' :Workoutinfo.date})
 
+
+
+""" Navigates to page after successful password change """
 def password_success(request):
     return render(request, 'PasswordSuccess.html',{})   
 
+
+""" Returns EditProfile Page """
 def EditProfile(request):
     return render(request, "EditProfile.html")
 
+
+""" Deletes a Exercise from its corresponding workout """
 def deleteItem(request, id):
     item = Exercise.objects.get(id=id)
     item.delete()
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
+
+""" Confirmation page to delete a Workout """
+def confirmWorkoutDelete(request,id=None):
+    specific_workout = None
+    all_exercises = None
+
+    try:    
+        specific_workout = Workout.objects.get(id=id)
+        all_exercises = Workout.objects.get(id=id).exercise_set.all()
+    except Workout.DoesNotExist:
+        raise Http404("User's Workout does not exist")
+
+    context = {
+        'specific_workout': specific_workout,
+        'all_exercises': all_exercises,
+    }
+    return render(request, "ConfirmWorkoutDelete.html", context)
+
+
+""" Deletes specified workout and all exercises within it """
 def deleteWorkout(request,id):
     item = Workout.objects.get(id=id)
     item.delete()
     return redirect('ProfilePage')
 
+
+
+""" Details of users calorie logs """
 def Calorie_Details(request, id=None):
     all_days = None
 
@@ -242,6 +363,8 @@ def Calorie_Details(request, id=None):
         'all_days': all_days
     }
     return render(request, "CalorieDetails.html", context)
-    
+
+
+""" returns calorie tracking page """   
 def calorie_tracker(request):
     return render(request, "CalorieTracker.html")

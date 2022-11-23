@@ -1,0 +1,496 @@
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  1) from unicodedata import name
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  2) from django.db import models
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  3) from django.core.validators import MaxValueValidator, MinValueValidator
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  4) 
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  5) # Create your models here.
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500  6) """ WorkoutHistory model links to user and contains all of their workouts """
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  7) class WorkoutHistory(models.Model):
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  8)     user = models.CharField(max_length = 50, primary_key=True)  #jhowar63 - sp2:made this primary key
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  9) 
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 10)     def __str__(self):
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 11)         return str(self.user) + ' WorkoutHistory'
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 12) 
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500 13) 
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500 14) """
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500 15) Workouts are linked to user via WorkoutHistory. They are a collection 
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500 16) of exercises, keyed on an ID, and contains the date of the workout
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500 17) """
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 18) class Workout(models.Model):
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500 19)     date = models.DateField()
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500 20)     user = models.CharField(max_length = 50)
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 21)     reffering_workouthistory = models.ForeignKey(WorkoutHistory, on_delete=models.CASCADE)
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 22)     
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 23)     def __str__(self):
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 24)         return str(self.user) + ': ' + str(self.date)
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 25)     
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 26) 
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500 27) """
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500 28) Exercises are elements of a workout. It has a preset library of names and
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500 29) contains postive integer fields for weight, reps, rpe, sets of the given exercise.
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500 30) This information will be obtained via forms
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500 31) """
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 32) class Exercise(models.Model):
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500 33)     
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 34)     EXERCISE_NAMES = (
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 35)         ('BP', 'Bench Press'), ('DL', 'Deadlift'),
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 36)         ('OHP', 'Overhead Press'), ('FS',  'Front Squat'),
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 37)         ('PU',  'Pullup'), ('RDL', 'Romanian Deadlift'),
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 38)         ('DOP', 'Dumbbell Overhead Press'), ('HPT', 'Hip Thrust'),
+b28b3a50 (Justin Bowers 2022-11-10 09:07:40 -0500 39)         ('SQT', 'Squat'),
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 40)     )
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 41)     
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 42)     reffering_workout = models.ForeignKey(Workout, on_delete=models.CASCADE)
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 43)     name = models.CharField(max_length=50, choices=EXERCISE_NAMES)
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 44)     reps = models.PositiveIntegerField()
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 45)     sets = models.PositiveIntegerField()
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 46)     weight = models.PositiveIntegerField()
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 47)     rpe = models.PositiveIntegerField(
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 48)         validators=[MinValueValidator(1), MaxValueValidator(10)]
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 49)     )
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 50) 
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500 51) 
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500 52) """ 
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500 53) Meal categories for calorie tracker along with date of meal and
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500 54) fields for the macros of the meal and quantity of them
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500 55) """
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400   1) #from asyncio.windows_events import NULL
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400   2) from datetime import datetime
+e4feb206 (Justin Bowers 2022-11-09 21:54:08 -0500   3) import imp
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500   4) from django.http import HttpResponse, Http404
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400   5) from django.shortcuts import get_object_or_404, render, redirect
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400   6) from django.contrib.auth.models import User
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400   7) from django.views import generic
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400   8) from django.urls import reverse_lazy
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400   9) from django.contrib import messages
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  10) from django.contrib.auth import authenticate, login, logout
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  11) from django.contrib.auth.forms import UserChangeForm
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  12) from telnetlib import LOGOUT, Telnet
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  13) from django import forms
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  14) from django.contrib.auth.views import PasswordChangeView, PasswordChangeForm
+96269944 (Justin Bowers 2022-11-09 22:17:00 -0500  15) from matplotlib.style import context
+688acf5c (Justin Bowers 2022-11-10 19:25:44 -0500  16) import plotly
+30b80e7f (Justin Bowers 2022-11-09 21:49:47 -0500  20) import matplotlib as plt
+30b80e7f (Justin Bowers 2022-11-09 21:49:47 -0500  21) import numpy as py
+e4feb206 (Justin Bowers 2022-11-09 21:54:08 -0500  22) from io import StringIO
+688acf5c (Justin Bowers 2022-11-10 19:25:44 -0500  23) import plotly.express as px
+688acf5c (Justin Bowers 2022-11-10 19:25:44 -0500  24) import pandas as pd
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  25) 
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500  26) """
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500  27) These three functions are used for user's to change some of their profile
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500  28) information such ass password, username, name, etc...
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500  29) """
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  30) class EditProfileForm(UserChangeForm):
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  31)     class Meta(UserChangeForm.Meta):
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  32)         fields = None
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  33)         exclude = ('groups','is_staff', 'is_active', 'user_permissions', 'is_superuser', 'password', 'last_login')
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  34) 
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  35) class UserEditView(generic.UpdateView):
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  36)     form_class = EditProfileForm
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  37)     template_name = 'EditProfile.html'
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  38)     success_url = reverse_lazy('home')
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  39)     def get_object(self):
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  40)         return self.request.user
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  41) 
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  42) class PasswordsChangeView(PasswordChangeView):
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  43)     form_class = PasswordChangeForm
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  44)     success_url = reverse_lazy('PasswordSuccess')
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  45) 
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500  46) 
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500  47) 
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500  48) """ returns the homepage """
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  49) def home(request):
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  50)     return render(request, "homepage.html")
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  51) 
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500  52) 
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500  53) 
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500  54) """
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500  55) This brings user to CreateAccount.html and opens a form to input account
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500  56) information. It also creates an instance of a Workouthistory to track their
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500  57) workouts
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500  58) """
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  59) def CreateAccount(request):
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  60)     if request.method == "POST":
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  61)         username = request.POST.get('username')
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  62)         fname = request.POST.get('fname')
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  63)         lname = request.POST.get('lname')
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  64)         email = request.POST.get('email')
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  65)         password = request.POST.get('password')
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  66)         confirm_password = request.POST.get('confirm_password')
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  67) 
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  68)         if User.objects.filter(username=username):
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  69)             messages.error(request, "Username already exists!")
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  70)             return redirect('home')
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  71) 
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  72)         if User.objects.filter(email=email):
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  73)             messages.error(request, "Email already exists!")
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  74)             return redirect('home')
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  75)         
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  76)         if len(username)>15:
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  77)             messages.error(request, "Username must be under 10 characters.")
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  78)             return redirect('home')
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  79) 
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  80)         if password != confirm_password:
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  81)             messages.error(request, "Passwords do not match.")
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  82)             return redirect('home')
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  83)         if not username.isalnum():
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  84)             messages.error(request, "Username must not contain special characters.")
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  85)             return redirect('home')
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  86) 
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  87)         myuser = User.objects.create_user(username, email, password)
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  88)         myuser.first_name = fname
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  89)         myuser.last_name = lname
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  90)         myuser.is_active = True
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  91)         myuser.save() 
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  92)         workouthistory = WorkoutHistory()
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  93)         workouthistory.user = username
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  94)         workouthistory.save()
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  95)         
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  96)         messages.success(request, "Your Account has been successfully created.")
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  97)         return redirect('home')
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  98)     return render(request, "CreateAccount.html")
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  99) 
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500 100) 
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500 101) 
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500 102) """ 
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500 103) This goes to SignIn.html and presents user with a login screen
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500 104) It sends an error message with the use of invalid credentials
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500 105) """
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 106) def SignIn(request):
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 107)     if request.method == "POST":
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 108)         username = request.POST.get('username')
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 109)         password = request.POST.get('password')
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 110) 
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 111)         user = authenticate(username=username, password=password)
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 112) 
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 113)         if user is not None:
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 114)             login(request, user)
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 115)             fname = user.first_name
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 116)             return redirect('home')
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 117)         else:
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 118)             messages.error(request, "Credentials Are Incorrect")
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 119)             return redirect('home')
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 120) 
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 121)     return render(request, "SignIn.html")
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 122) 
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500 123) 
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500 124) 
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500 125) """ Logs user out of website and returns them to the homepage"""
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 126) def SignOut(request):
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 127)     logout(request)
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 128)     messages.success(request, "Logged Out Successfully!")
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 129)     return redirect('home')
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 130) 
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500 131) 
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500 132) 
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500 133) """ 
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500 134) ProfilePage contains user information, and links to several important
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500 135) features such as EditProfile, WorkoutHistory, Workout Graphs, and
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500 136) calorie history
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500 137) """
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 138) def ProfilePage(request):
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 139)     user = request.user
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 140)     username = user.username
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 141)     workouthistory = None
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 142)     all_workouts = None
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 143)     try:
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 144)         WorkoutHistory.objects.get(user=str(username)) is not None
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 145)         workouthistory = WorkoutHistory.objects.get(user=str(username))
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 146)         all_workouts = WorkoutHistory.objects.get(user=str(username)).workout_set.all()
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 147)     except WorkoutHistory.DoesNotExist:
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 148)         raise Http404("User's WorkoutHistory does not exist")
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 149)     context = {
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 150)         'workouthistory': workouthistory,
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 151)         'all_workouts' : all_workouts,
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 152)         }
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 153)     return render(request, "ProfilePage.html", context)
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 154) 
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500 155) 
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500 156) 
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500 157) """ List the details of the specified workout """
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 158) def Workout_Details(request, id=None):
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 159)     specific_workout = None
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 160)     all_exercises = None
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 161) 
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 162)     try:    
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 163)         specific_workout = Workout.objects.get(id=id)
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 164)         all_exercises = Workout.objects.get(id=id).exercise_set.all()
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 165)     except Workout.DoesNotExist:
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 166)         raise Http404("User's Workout does not exist")
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 167) 
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 168)     context = {
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 169)         'specific_workout': specific_workout,
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 170)         'all_exercises': all_exercises,
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 171)     }
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 172)     return render(request, "WorkoutDetails.html", context)
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 173) 
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500 176) """ WORK IN PROGRESS """
+688acf5c (Justin Bowers 2022-11-10 19:25:44 -0500 177) def CreateCharts(request):
+688acf5c (Justin Bowers 2022-11-10 19:25:44 -0500 178) 
+688acf5c (Justin Bowers 2022-11-10 19:25:44 -0500 179)     df = pd.DataFrame({
+688acf5c (Justin Bowers 2022-11-10 19:25:44 -0500 180)         "Exercise": ["Bench Press", "Bench Press", "Bench Press", "Deadlift", "Deadlift", "Deadlift"],
+688acf5c (Justin Bowers 2022-11-10 19:25:44 -0500 181)         "Weight": [205, 225, 225, 365, 385, 375],
+688acf5c (Justin Bowers 2022-11-10 19:25:44 -0500 182)         "Dates": ["09-10-2022", "10-10-2022", "11-10-2022", "09-10-2022", "10-10-2022", "11-10-2022"]
+688acf5c (Justin Bowers 2022-11-10 19:25:44 -0500 183)     })
+688acf5c (Justin Bowers 2022-11-10 19:25:44 -0500 184) 
+688acf5c (Justin Bowers 2022-11-10 19:25:44 -0500 185)     fig = px.line(df, x='Dates', y='Weight', color='Exercise')
+688acf5c (Justin Bowers 2022-11-10 19:25:44 -0500 186)     div = plotly.offline.plot(fig, auto_open=False, output_type="div")
+688acf5c (Justin Bowers 2022-11-10 19:25:44 -0500 187) 
+688acf5c (Justin Bowers 2022-11-10 19:25:44 -0500 188)     context['graph'] = div
+688acf5c (Justin Bowers 2022-11-10 19:25:44 -0500 189)     return render(request, "CreateCharts.html", context)
+688acf5c (Justin Bowers 2022-11-10 19:25:44 -0500 190) 
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500 191) 
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500 192) 
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500 193) """ WORK IN PROGRESS """
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 194) def ChartHistory(request):
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 195)     pass
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 196) 
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500 197) 
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500 198) 
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500 199) """ Navigates to the MoreInfo page """
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 200) def MoreInfo(request):
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 201)     return render(request, "MoreInfo.html")
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 202) 
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500 203) 
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500 204) 
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500 205) """ 
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500 206) This adds an exercise to the given workout. User gives workout
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500 207) information via a form which then adds the exercise to the data table
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500 208) """
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 209) def CreateExercise(request, id):
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 210) 
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 211)     if request.method == 'POST':
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 212)         form = ExerciseForm(request.POST)
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 213) 
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 214)         if form.is_valid():
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 215)             exercise = Exercise()
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 216)             workout = Workout.objects.get(id=id)
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 217)             exercise.name = form.cleaned_data['name']
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 218)             exercise.reps = form.cleaned_data['reps']
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 219)             exercise.sets = form.cleaned_data['sets']
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 220)             exercise.weight = form.cleaned_data['weight']
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 221)             exercise.rpe = form.cleaned_data['rpe']
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 222)             exercise.reffering_workout = workout
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 223)             exercise.save()
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 224) 
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 225)             return redirect(request.path_info)
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 226)         
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 227)     else:
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 228)         form = ExerciseForm()
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 229)         
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 230)     return render(request,
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 231)                 "Createexercise.html",
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 232)                 {'form' : form})   
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 233)     
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 234) 
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500 235) """
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500 236) Takes user to a page where they simply input the date of workout.
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500 237) This creates a new workout instance which they can fill with exercises
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500 238) using CreateExercise. Workouts are keyed on auto-generated ID
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500 239) """
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 240) def CreateWorkout(request):
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 241) 
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 242)     if request.method == 'POST':
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 243)         form = WorkoutForm(request.POST)
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 244) 
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 245)         # create a workout instance and fill with form data
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 246)         if form.is_valid():
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 247)             workout = Workout()
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 248)             user = request.user
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 249)             username = user.username
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 250)             workout.date = form.cleaned_data['date']
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 251)             workout.user = username
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 252)             workout.reffering_workouthistory = WorkoutHistory.objects.get(user=str(username))
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 253)             workout.save()
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 254) 
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 255)             return redirect('ProfilePage')
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 256) 
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 257)     else:
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 258)         form = WorkoutForm()
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 259) 
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 260)     return render(request,
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 261)                   "CreateWorkout.html",
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 262)                   {'form' : form})
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 263) 
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500 264) 
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500 265) """ Page to test charts """
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500 269) """ ???? """
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 270) def CreateWorkout2(request):
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 271)     Workoutname = request.POST.get('CWorkout')
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 272)     Workoutinfo = get_object_or_404(Workout, pk=1)
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 273)     user = request.user
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 274)     
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 275)     Workoutinfo.date = Workoutname
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 276)     Workoutinfo.user = user
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 277) 
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 278)     if Workoutinfo.date != '':
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 279)         messages.success(request, "Workout made!")
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 280)     return render(request, "CreateExercise.html", {'WorkoutName' :Workoutinfo.date})
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 281) 
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500 282) 
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500 283) 
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500 284) """ Navigates to page after successful password change """
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 285) def password_success(request):
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 286)     return render(request, 'PasswordSuccess.html',{})   
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 287) 
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500 288) 
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500 289) """ Returns EditProfile Page """
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 290) def EditProfile(request):
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 291)     return render(request, "EditProfile.html")
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500 293) 
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500 294) """ Deletes a Exercise from its corresponding workout """
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500 300) 
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500 301) """ Confirmation page to delete a Workout """
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500 318) 
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500 319) """ Deletes specified workout and all exercises within it """
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500 325) 
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500 326) 
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500 327) """ Details of users calorie logs """
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500 340) 
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500 341) 
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500 342) """ returns calorie tracking page """   
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  1) from django import forms
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  3) 
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500  4) """ This is the form fields for making an exercise from user input """
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  5) class ExerciseForm(forms.Form):
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 11) 
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500 12) 
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500 13) """ Form fields for user to create workout (just date) """
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 14) class WorkoutForm(forms.Form):
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500 18) 
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500 19) """ Form fields for user to log meal information and calories/macros """
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  1) """WorkoutApp URL Configuration
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  2) 
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  3) The `urlpatterns` list routes URLs to views. For more information please see:
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  4)     https://docs.djangoproject.com/en/4.1/topics/http/urls/
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  5) Examples:
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  6) Function views
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  7)     1. Add an import:  from my_app import views
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  8)     2. Add a URL to urlpatterns:  path('', views.home, name='home')
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  9) Class-based views
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 10)     1. Add an import:  from other_app.views import Home
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 11)     2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 12) Including another URLconf
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 13)     1. Import the include() function: from django.urls import include, path
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 14)     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 15) """
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 16) from django.contrib import admin
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 17) from django.urls import path, include
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 18) from .views import ProfilePage, UserEditView, PasswordsChangeView, Workout_Details
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 19) from . import views
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 20) from django.contrib.auth import views as auth_views
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500 21) 
+8e64ea21 (Justin Bowers 2022-11-10 12:05:39 -0500 22) 
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 23) #Creating all the urls for the website
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 24) urlpatterns = [
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 25)     path('', views.home, name="home"),
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 26)     path('CreateAccount', views.CreateAccount, name='CreateAccount'),
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 27)     path('SignIn', views.SignIn, name='SignIn'),
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 28)     path('SignOut', views.SignOut, name='SignOut'),
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 29)     path('ProfilePage', views.ProfilePage, name='ProfilePage'),   #changing UserEditView.as_view() to views.ProfilePage
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 30)     path('CreateCharts', views.CreateCharts, name='CreateCharts'),
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 31)     path('ChartHistory', views.ChartHistory, name='ChartHistory'),
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 32)     path('MoreInfo', views.MoreInfo, name='MoreInfo'),
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 33)     path('CreateWorkout', views.CreateWorkout, name='CreateWorkout'),
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 34)     path('CreateWorkout2', views.CreateWorkout2, name='CreateWorkout2'),
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 35)     path('password/', PasswordsChangeView.as_view(template_name='ChangePassword.html')),
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 36)     path('password_success', views.password_success, name='PasswordSuccess'),
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 37)     path('ProfilePage/<int:id>/', views.Workout_Details),
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 38)     path('ProfilePage/<int:id>/add-exercise', views.CreateExercise),
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 39)     path('EditProfile', UserEditView.as_view(), name='EditProfile'),
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 45) ]
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400   1) <!DOCTYPE html>
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400   2) <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400   3) <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400   4) <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400   5) <!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400   6) <html>
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400   7)     <head>
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400   8)         <meta charset="utf-8">
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400   9)         <meta http-equiv="X-UA-Compatible" content="IE=edge">
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  10)         <title></title>
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  11)         <meta name="description" content="">
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  12)         <meta name="viewport" content="width=device-width, initial-scale=1">
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  14)         {% load static %}
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  28)     </head>
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  29)     <body>
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  36) 
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  44) 
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  53) 
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  54)         {% for message in messages %}
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  55)         <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  56)             <strong>Message:</strong> {{ message}}
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  57)             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  58)             <span aria-hidden="true">&times;</span>
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  59)             </button>
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  60)         </div>
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  61)         {% endfor %}
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  62)         <h3>{{user.username}}'s Profile</h3>
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  63)         <h4>Edit your profile here!</h4>
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  64)         <button type="submit"> <a href="/EditProfile"> Edit Profile </a></button>
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  71) 
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  72)         <!--jhowar63
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  73)         Create Workout button will bring authenticated users to the CreateWorkout page
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  74)         <h4>Future Create Workout Button</h4> -->
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  75)         
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  76)         <div id="footer">
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  77)             
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  78) 
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  79)             <!--Implement buttons here, any credit needed, contact us, links to any socials, etc-->
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  80)     
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  81)         </div>
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  82) 
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  83)         
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  84)         <script src="" async defer></script>
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  85) 
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  86)         <br/><br/>
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  87)         <h4>Feel free to view your workouts or add on to them<h4>
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  88)         <!--add workout stuff here-->
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  89)         <h4> {{ workouthistory.user }}'s Workout History:</h4>
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400  90) 
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 102)         <u1>
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 103)             {%for workout in all_workouts %}
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 104)                 <li><a href='/ProfilePage/{{workout.id}}'> {{workout.date}}</a> </li>
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 105)             {% endfor %}
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 106) 
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 107)         </u1>
+688acf5c (Justin Bowers 2022-11-10 19:25:44 -0500 109)         <button type="submit"> <a href="http://127.0.0.1:8000/CreateCharts"> View Graph </a></button>
+07938bef (Justin Bowers 2022-11-09 22:53:10 -0500 110) 
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 124) 
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 125)     </body>
+^2360713 (Justin Bowers 2022-10-27 21:30:30 -0400 197) </html>
+07938bef (Justin Bowers 2022-11-09 22:53:10 -0500  1) <!DOCTYPE html>
+07938bef (Justin Bowers 2022-11-09 22:53:10 -0500  2) <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+07938bef (Justin Bowers 2022-11-09 22:53:10 -0500  3) <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+07938bef (Justin Bowers 2022-11-09 22:53:10 -0500  4) <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+07938bef (Justin Bowers 2022-11-09 22:53:10 -0500  5) <!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+07938bef (Justin Bowers 2022-11-09 22:53:10 -0500  6) <html>
+07938bef (Justin Bowers 2022-11-09 22:53:10 -0500  7)     <head>
+07938bef (Justin Bowers 2022-11-09 22:53:10 -0500  8)         <meta charset="utf-8">
+07938bef (Justin Bowers 2022-11-09 22:53:10 -0500  9)         <meta http-equiv="X-UA-Compatible" content="IE=edge">
+07938bef (Justin Bowers 2022-11-09 22:53:10 -0500 10)         <title></title>
+07938bef (Justin Bowers 2022-11-09 22:53:10 -0500 11)         <meta name="description" content="">
+07938bef (Justin Bowers 2022-11-09 22:53:10 -0500 12)         <meta name="viewport" content="width=device-width, initial-scale=1">
+07938bef (Justin Bowers 2022-11-09 22:53:10 -0500 14)         {% load static %}
+07938bef (Justin Bowers 2022-11-09 22:53:10 -0500 17) 
+07938bef (Justin Bowers 2022-11-09 22:53:10 -0500 23) 
+07938bef (Justin Bowers 2022-11-09 22:53:10 -0500 24) 
+07938bef (Justin Bowers 2022-11-09 22:53:10 -0500 42) 
+07938bef (Justin Bowers 2022-11-09 22:53:10 -0500 51) 
+07938bef (Justin Bowers 2022-11-09 22:53:10 -0500 52)         {% for message in messages %}
+07938bef (Justin Bowers 2022-11-09 22:53:10 -0500 53)         <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+07938bef (Justin Bowers 2022-11-09 22:53:10 -0500 54)             <strong>Message:</strong> {{ message}}
+07938bef (Justin Bowers 2022-11-09 22:53:10 -0500 55)             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+07938bef (Justin Bowers 2022-11-09 22:53:10 -0500 56)             <span aria-hidden="true">&times;</span>
+07938bef (Justin Bowers 2022-11-09 22:53:10 -0500 57)             </button>
+07938bef (Justin Bowers 2022-11-09 22:53:10 -0500 58)         </div>
+07938bef (Justin Bowers 2022-11-09 22:53:10 -0500 59)         {% endfor %}
+07938bef (Justin Bowers 2022-11-09 22:53:10 -0500 60)         
+688acf5c (Justin Bowers 2022-11-10 19:25:44 -0500 61)         <div style="width:1000;height:100">
+688acf5c (Justin Bowers 2022-11-10 19:25:44 -0500 62)             {{ graph_div|safe }}
+688acf5c (Justin Bowers 2022-11-10 19:25:44 -0500 63)         </div>
+07938bef (Justin Bowers 2022-11-09 22:53:10 -0500 64) 
+07938bef (Justin Bowers 2022-11-09 22:53:10 -0500 65) 
+07938bef (Justin Bowers 2022-11-09 22:53:10 -0500 66) 
+07938bef (Justin Bowers 2022-11-09 22:53:10 -0500 67) 
+07938bef (Justin Bowers 2022-11-09 22:53:10 -0500 68)     </body>
+07938bef (Justin Bowers 2022-11-09 22:53:10 -0500 69) </html>

@@ -1,0 +1,134 @@
+Main/urls.py
+
+ab93bd8e (Mgibso46      2022-11-09 20:25:29 -0500 41)     path('ProfilePage/<int:id>/ConfirmDeletion', views.confirmWorkoutDelete, name="ConfirmDeletion")
+
+Main/views.py
+
+ba5fee4c (Mgibso46      2022-10-12 18:35:07 -0400 136) 
+ab93bd8e (Mgibso46      2022-11-09 20:25:29 -0500 137) 
+ab93bd8e (Mgibso46      2022-11-09 20:25:29 -0500 138) 
+ab93bd8e (Mgibso46      2022-11-09 20:25:29 -0500 230) def confirmWorkoutDelete(request,id=None):
+ab93bd8e (Mgibso46      2022-11-09 20:25:29 -0500 231)     specific_workout = None
+ab93bd8e (Mgibso46      2022-11-09 20:25:29 -0500 232)     all_exercises = None
+ab93bd8e (Mgibso46      2022-11-09 20:25:29 -0500 233) 
+ab93bd8e (Mgibso46      2022-11-09 20:25:29 -0500 234)     try:    
+ab93bd8e (Mgibso46      2022-11-09 20:25:29 -0500 235)         specific_workout = Workout.objects.get(id=id)
+ab93bd8e (Mgibso46      2022-11-09 20:25:29 -0500 236)         all_exercises = Workout.objects.get(id=id).exercise_set.all()
+ab93bd8e (Mgibso46      2022-11-09 20:25:29 -0500 237)     except Workout.DoesNotExist:
+ab93bd8e (Mgibso46      2022-11-09 20:25:29 -0500 238)         raise Http404("User's Workout does not exist")
+ab93bd8e (Mgibso46      2022-11-09 20:25:29 -0500 239) 
+ab93bd8e (Mgibso46      2022-11-09 20:25:29 -0500 240)     context = {
+ab93bd8e (Mgibso46      2022-11-09 20:25:29 -0500 241)         'specific_workout': specific_workout,
+ab93bd8e (Mgibso46      2022-11-09 20:25:29 -0500 242)         'all_exercises': all_exercises,
+ab93bd8e (Mgibso46      2022-11-09 20:25:29 -0500 243)     }
+ab93bd8e (Mgibso46      2022-11-09 20:25:29 -0500 244)     return render(request, "ConfirmWorkoutDelete.html", context)
+ab93bd8e (Mgibso46      2022-11-09 20:25:29 -0500 245) 
+
+Templates/ChangePassword.html
+
+ab93bd8e (Mgibso46 2022-11-09 20:25:29 -0500 27)         <button type="submit"><a href="/CreateWorkout"> New Workout </a></button>
+ab93bd8e (Mgibso46 2022-11-09 20:25:29 -0500 28)         <button type="submit"><a href="/ProfilePage"> Profile Page </a></button>
+
+Templates/ConfirmDeleteWorkout.html
+
+ab93bd8e (Mgibso46 2022-11-09 20:25:29 -0500  1) {%load static%}
+ab93bd8e (Mgibso46 2022-11-09 20:25:29 -0500  2) <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+ab93bd8e (Mgibso46 2022-11-09 20:25:29 -0500  3) <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+ab93bd8e (Mgibso46 2022-11-09 20:25:29 -0500  4) <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+ab93bd8e (Mgibso46 2022-11-09 20:25:29 -0500  5) <!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+ab93bd8e (Mgibso46 2022-11-09 20:25:29 -0500  6) <html>
+ab93bd8e (Mgibso46 2022-11-09 20:25:29 -0500  7)     <head>
+ab93bd8e (Mgibso46 2022-11-09 20:25:29 -0500  8)         <meta charset="utf-8">
+ab93bd8e (Mgibso46 2022-11-09 20:25:29 -0500  9)         <meta http-equiv="X-UA-Compatible" content="IE=edge">
+ab93bd8e (Mgibso46 2022-11-09 20:25:29 -0500 10)         <title></title>
+ab93bd8e (Mgibso46 2022-11-09 20:25:29 -0500 11)         <meta name="description" content="">
+ab93bd8e (Mgibso46 2022-11-09 20:25:29 -0500 12)         <meta name="viewport" content="width=device-width, initial-scale=1">
+ab93bd8e (Mgibso46 2022-11-09 20:25:29 -0500 13)         {% load static %}
+ab93bd8e (Mgibso46 2022-11-09 20:25:29 -0500 14)         <link rel="stylesheet" href="{% static 'WorkoutApp/styles.css' %}" />
+ab93bd8e (Mgibso46 2022-11-09 20:25:29 -0500 15)     </head>
+ab93bd8e (Mgibso46 2022-11-09 20:25:29 -0500 16)     <body>
+ab93bd8e (Mgibso46 2022-11-09 20:25:29 -0500 17)         <div id="header">
+ab93bd8e (Mgibso46 2022-11-09 20:25:29 -0500 18)             
+ab93bd8e (Mgibso46 2022-11-09 20:25:29 -0500 19)             <!--need to make a professional looking header here-->
+ab93bd8e (Mgibso46 2022-11-09 20:25:29 -0500 20)             <!--includes logo and site name-->
+ab93bd8e (Mgibso46 2022-11-09 20:25:29 -0500 21)         
+ab93bd8e (Mgibso46 2022-11-09 20:25:29 -0500 22)         </div>
+ab93bd8e (Mgibso46 2022-11-09 20:25:29 -0500 23)     
+ab93bd8e (Mgibso46 2022-11-09 20:25:29 -0500 24)     
+ab93bd8e (Mgibso46 2022-11-09 20:25:29 -0500 25)         <div id="floatingNav">
+ab93bd8e (Mgibso46 2022-11-09 20:25:29 -0500 26)             <button type="submit"><a href="/"> Home </a></button>
+ab93bd8e (Mgibso46 2022-11-09 20:25:29 -0500 27)             <button type="submit"><a href="/CreateWorkout"> New Workout </a></button>
+ab93bd8e (Mgibso46 2022-11-09 20:25:29 -0500 28)             <button type="submit"><a href="/ProfilePage"> Profile Page </a></button>
+ab93bd8e (Mgibso46 2022-11-09 20:25:29 -0500 29)     
+ab93bd8e (Mgibso46 2022-11-09 20:25:29 -0500 30)             {% if user.is_authenticated %}
+ab93bd8e (Mgibso46 2022-11-09 20:25:29 -0500 31)             <button type="submit"> <a href="/SignOut"> Sign Out </a> </button>
+ab93bd8e (Mgibso46 2022-11-09 20:25:29 -0500 32)                 
+ab93bd8e (Mgibso46 2022-11-09 20:25:29 -0500 33)             {% else %}
+ab93bd8e (Mgibso46 2022-11-09 20:25:29 -0500 34)             <button type="submit"> <a href="/SignIn"> Sign In </a> </button>
+ab93bd8e (Mgibso46 2022-11-09 20:25:29 -0500 35)             {% endif %}
+ab93bd8e (Mgibso46 2022-11-09 20:25:29 -0500 36)     
+ab93bd8e (Mgibso46 2022-11-09 20:25:29 -0500 37)             <button type="submit"><a href="/MoreInfo"> More Info </a></button>
+ab93bd8e (Mgibso46 2022-11-09 20:25:29 -0500 38)         </div> 
+ab93bd8e (Mgibso46 2022-11-09 20:25:29 -0500 39)     
+ab93bd8e (Mgibso46 2022-11-09 20:25:29 -0500 40)         {% for message in messages %}
+ab93bd8e (Mgibso46 2022-11-09 20:25:29 -0500 41)         <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+ab93bd8e (Mgibso46 2022-11-09 20:25:29 -0500 42)             <strong>Message:</strong> {{ message}}
+ab93bd8e (Mgibso46 2022-11-09 20:25:29 -0500 43)             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+ab93bd8e (Mgibso46 2022-11-09 20:25:29 -0500 44)             <span aria-hidden="true">&times;</span>
+ab93bd8e (Mgibso46 2022-11-09 20:25:29 -0500 45)             </button>
+ab93bd8e (Mgibso46 2022-11-09 20:25:29 -0500 46)         </div>
+ab93bd8e (Mgibso46 2022-11-09 20:25:29 -0500 47)         {% endfor %}
+ab93bd8e (Mgibso46 2022-11-09 20:25:29 -0500 48) 
+ab93bd8e (Mgibso46 2022-11-09 20:25:29 -0500 49) 
+ab93bd8e (Mgibso46 2022-11-09 20:25:29 -0500 50)         <h1> Are you sure you want to delete your workout on {{ specific_workout.date }}? </h1>
+ab93bd8e (Mgibso46 2022-11-09 20:25:29 -0500 51)         <button type="submit"> <a href={% url 'delete-workout' id=specific_workout.id %}> Yes, Delete Workout: {{specific_workout.date}} </a></button>
+
+Templates/CreateExercise.html
+
+ab93bd8e (Mgibso46      2022-11-09 20:25:29 -0500 27)             <button type="submit"><a href="/CreateWorkout"> New Workout </a></button>
+
+Templates/CreateWorkout.html
+
+ab93bd8e (Mgibso46      2022-11-09 20:25:29 -0500 27)             <button type="submit"><a href="/CreateWorkout"> New Workout </a></button>
+
+Templates/EditProfile.html
+
+ab93bd8e (Mgibso46 2022-11-09 20:25:29 -0500 27)             <button type="submit"><a href="/CreateWorkout"> New Workout </a></button>
+
+Templates/MoreInfo.html
+
+ab93bd8e (Mgibso46 2022-11-09 20:25:29 -0500 30)         <button type="submit"><a href="/CreateWorkout"> New Workout </a></button>
+
+Templates/ProfilePage.html
+
+ab93bd8e (Mgibso46     2022-11-09 20:25:29 -0500  27)             <button type="submit"><a href="/CreateWorkout"> New Workout </a></button>
+ab93bd8e (Mgibso46     2022-11-09 20:25:29 -0500  28)             <button type="submit"><a href="/ProfilePage"> Profile Page </a></button>
+
+Templates/WorkoutDetails.html
+
+ab93bd8e (Mgibso46      2022-11-09 20:25:29 -0500 28)         <button type="submit"><a href="/CreateWorkout"> New Workout </a></button>
+ab93bd8e (Mgibso46      2022-11-09 20:25:29 -0500 29)         <button type="submit"><a href="/ProfilePage"> Profile Page </a></button>
+ab93bd8e (Mgibso46      2022-11-09 20:25:29 -0500 65)     <button type="submit"> <a href="http://127.0.0.1:8000/ProfilePage/{{specific_workout.id}}/add-exercise"> Add an Exercise </a></button>
+ab93bd8e (Mgibso46      2022-11-09 20:25:29 -0500 67)     <button type="submit"> <a href={% url 'ConfirmDeletion' id=specific_workout.id %}> Delete Workout: {{specific_workout.date}} </a></button>
+ab93bd8e (Mgibso46      2022-11-09 20:25:29 -0500 68)     
+
+Templates/homepage.html
+
+ab93bd8e (Mgibso46     2022-11-09 20:25:29 -0500  26)             <button type="submit"><a href="/CreateWorkout"> New Workout </a></button>
+ab93bd8e (Mgibso46     2022-11-09 20:25:29 -0500  60)         
+ab93bd8e (Mgibso46     2022-11-09 20:25:29 -0500  61)         <h1>
+ab93bd8e (Mgibso46     2022-11-09 20:25:29 -0500  62)             Overview
+ab93bd8e (Mgibso46     2022-11-09 20:25:29 -0500  63)         </h1>
+ab93bd8e (Mgibso46     2022-11-09 20:25:29 -0500  64)         <p>
+ab93bd8e (Mgibso46     2022-11-09 20:25:29 -0500  65)             WorkoutApp is a free workout and calorie tracker that helps you log, track, and view your fitness history.
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400  66) 
+ab93bd8e (Mgibso46     2022-11-09 20:25:29 -0500  67) 
+ab93bd8e (Mgibso46     2022-11-09 20:25:29 -0500  68)         </p>
+ab93bd8e (Mgibso46     2022-11-09 20:25:29 -0500  69)         
+ab93bd8e (Mgibso46     2022-11-09 20:25:29 -0500  70)         <div id="header">
+ab93bd8e (Mgibso46     2022-11-09 20:25:29 -0500  84)             <!--<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+ab93bd8e (Mgibso46     2022-11-09 20:25:29 -0500  85)             <a class="next" onclick="plusSlides(1)">&#10095;</a>-->
+ab93bd8e (Mgibso46     2022-11-09 20:25:29 -0500  93)         </div>            
+ab93bd8e (Mgibso46     2022-11-09 20:25:29 -0500  94)         <!--need to make a professional looking header here-->
+ab93bd8e (Mgibso46     2022-11-09 20:25:29 -0500  95)         <!--includes logo and site name-->
+ab93bd8e (Mgibso46     2022-11-09 20:25:29 -0500  97)         </div>
