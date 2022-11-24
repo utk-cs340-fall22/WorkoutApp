@@ -162,11 +162,34 @@ def ProfilePage(request):
     except CalorieHistory.DoesNotExist:
         raise Http404("User's CalorieHistory does not exist")
 
+    exercise_names = []
+    exercise_weight = []
+    dates = []
+    
+    for workout in all_workouts:
+        exercises = Workout.objects.get(id=workout.id).exercise_set.all()
+        for exercise in exercises:
+            dates.append(workout.date)
+            exercise_weight.append(exercise.weight)
+            exercise_names.append(exercise.name)
+    
+
+    df = pd.DataFrame({
+        "Exercise": exercise_names,
+        "Weight" : exercise_weight,
+        "Dates": dates
+    })
+
+    fig = px.line(df, x='Dates', y='Weight', color='Exercise', markers=True,
+                  width=1300, height=600)
+    div = plotly.offline.plot(fig, auto_open=False, output_type="div",)
+
     context = {
         'workouthistory': workouthistory,
         'all_workouts' : all_workouts,
         'all_days' : all_days,
-        'caloriehistory' : caloriehistory
+        'caloriehistory' : caloriehistory,
+        'graph' : div
         }
     return render(request, "ProfilePage.html", context)
 
@@ -192,7 +215,7 @@ def Workout_Details(request, id=None):
 
 
 """ WORK IN PROGRESS """
-def CreateCharts(request):
+def CreateCharts():
 
     user = request.user
     username = user.username

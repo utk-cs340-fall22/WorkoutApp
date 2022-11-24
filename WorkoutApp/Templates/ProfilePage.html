@@ -86,9 +86,25 @@
 
         <br/><br/>
         <h4>Feel free to view your workouts or add on to them<h4>
+            <div style="width:1000;height:100">
+                {{ graph|safe }}
+            </div>
         <!--add workout stuff here-->
         <h4> {{ workouthistory.user }}'s Workout History:</h4>
+        <u1>
+            {%for workout in all_workouts %}
+                <li><a href='/ProfilePage/{{workout.id}}/Workouts'> {{workout.date}}</a> </li>
+            {% endfor %}
 
+        </u1>
+
+        <h4> {{ workouthistory.user }}'s Calorie History:</h4>
+        <u1>
+            {%for day in all_days %}
+                <li><a href='/ProfilePage/{{day.id}}/Meals'> {{day.date}}</a> </li>
+            {% endfor %}
+
+        </u1>
         <style>
             #chart-wrapper {
               display: inline-block;
@@ -100,98 +116,12 @@
             <canvas id="myChart"></canvas>
         </div> 
 
-        <u1>
-            {%for workout in all_workouts %}
-                <li><a href='/ProfilePage/{{workout.id}}/Workouts'> {{workout.date}}</a> </li>
-            {% endfor %}
-
-        </u1>
-
-        <button type="submit"> <a href="http://127.0.0.1:8000/CreateCharts"> View Graph </a></button>
-
-        <h4> {{ workouthistory.user }}'s Calorie History:</h4>
-
-        <u1>
-            {%for day in all_days %}
-                <li><a href='/ProfilePage/{{day.id}}/Meals'> {{day.date}}</a> </li>
-            {% endfor %}
-
-        </u1>
         
         <!-- This is currently named a date bc it does not have the functionality like workout
              Eventually it will be like that but for now it's a place holder
         -->
 
     </body>
-
-    <!-- jhowar63 - Basic Workout History Graph -->
-    <div class="col-md-6">
-        <div class="bg-white">
-            <canvas id="myChart" width="400" height="300"></canvas>
-            <script>
-                var ctx = document.getElementById('myChart').getContext('2d');
-                var myChart = new Chart(ctx, {
-                    type: 'line',
-                    data: {
-                        labels: ['10-23-2022', '10-30-2022', '10-31-2022', '11-05-2022', '11-08-2020', '11-09-2022'],
-                        datasets: [{ 
-                            data: [1, 4, 3, 6, 4, 7, 5],
-                            label: "Bench Press",
-                            borderColor: "#3e95cd",
-                            fill: false
-                          }, { 
-                            data: [1, 2, 3, 4, 5, 6, 7],
-                            label: "Deadlift",
-                            borderColor: "#8e5ea2",
-                            fill: false
-                          }, { 
-                            data: [3, 5, 7, 4, 6, 7, 2],
-                            label: "Overhead Press",
-                            borderColor: "#3cba9f",
-                            fill: false
-                          }, { 
-                            data: [4, 3, 5, 3, 7, 3, 6],
-                            label: "Front Squat",
-                            borderColor: "#e8c3b9",
-                            fill: false
-                          }, { 
-                            data: [2, 4, 6, 4, 6, 4, 6],
-                            label: "Pull Up",
-                            borderColor: "#c45850",
-                            fill: false
-                          }, { 
-                            data: [2, 4, 6, 4, 6, 4, 6],
-                            label: "Romainian Deadlift",
-                            borderColor: "#h65850",
-                            fill: false
-                          }, { 
-                            data: [2, 4, 6, 4, 6, 4, 6],
-                            label: "Dumbell Overhead Press",
-                            borderColor: "#8D77CF",
-                            fill: false
-                          }, { 
-                            data: [2, 4, 6, 4, 6, 4, 6],
-                            label: "Hip Thrust",
-                            borderColor: "#CF77C3",
-                            fill: false
-                          }
-                        ]
-                    },
-                    options: {
-                        scales: {
-                            yAxes: [{
-                                ticks: {
-                                    suggestedMin: 0,
-                                    suggestedMax: 10,
-                                    beginAtZero: true
-                                }
-                            }]
-                        }
-                    }
-                });
-            </script>
-        </div>
-    </div>
 
 
 </html>
