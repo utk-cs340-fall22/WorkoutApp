@@ -34,12 +34,17 @@ urlpatterns = [
     path('CreateWorkout2', views.CreateWorkout2, name='CreateWorkout2'),
     path('password/', PasswordsChangeView.as_view(template_name='ChangePassword.html')),
     path('password_success', views.password_success, name='PasswordSuccess'),
-    path('ProfilePage/<int:id>/', views.Workout_Details),
+    path('ProfilePage/<int:id>/Workouts', views.Workout_Details),
     path('ProfilePage/<int:id>/add-exercise', views.CreateExercise),
     path('EditProfile', UserEditView.as_view(), name='EditProfile'),
     path('delete-item/<int:id>', views.deleteItem, name="delete-item"),
     path('delete-workout/<int:id>', views.deleteWorkout, name="delete-workout"),
     path('ProfilePage/<int:id>/ConfirmDeletion', views.confirmWorkoutDelete, name="ConfirmDeletion"),
-    path('ProfilePage/Meals', views.calorie_tracker, name='CalorieTracker.html'),
-    path('ProfilePage/TestCharts', views.TestCharts, name='TestCharts')    #jhowar63 - for testing graph stuff.
+    path('ProfilePage/<int:id>/Meals', views.calorie_tracker, name='CalorieTracker.html'),
+    path('ProfilePage/TestCharts', views.TestCharts, name='TestCharts'),    #jhowar63 - for testing graph stuff.
+    path('CreateTracker', views.CreateTracker, name='CreateTracker'),
+    path('ProfilePage/<int:id>/add-meal', views.CreateMeal),
+    path('delete-meal/<int:id>', views.deleteMeal, name="delete-meal"),
+    path('ProfilePage/<int:id>/ConfirmMealDeletion', views.confirmMealDelete, name="ConfirmMealDeletion"),
+    path('delete-day/<int:id>', views.deleteDay, name="delete-day"),
 ]

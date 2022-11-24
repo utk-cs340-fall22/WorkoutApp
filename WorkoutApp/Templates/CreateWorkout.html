@@ -36,6 +36,7 @@
                     
                     {% if user.is_authenticated %}
                     <button type="submit" class="btn btn-default"> <a href="/CreateWorkout"> New Workout </a> </button>
+                    <button type="submit" class="btn btn-default"> <a href="/CreateTracker"> New Meal Date </a> </button>
                     <button type="submit" class="btn btn-default"> <a href="/ProfilePage"> Profile Page </a> </button>
                     <button type="submit" class="btn btn-default"> <a href="/SignOut"> Sign Out </a> </button>
 
@@ -59,7 +60,6 @@
         
         
         <h3>Create a Workout!</h3>
-        <h3>List of Workout:</h3>
 
         <form action="" method="post">
             {% csrf_token %}

@@ -42,6 +42,7 @@
                     
                     {% if user.is_authenticated %}
                     <button type="submit" class="btn btn-default"> <a href="/CreateWorkout"> New Workout </a> </button>
+                    <button type="submit" class="btn btn-default"> <a href="/CreateTracker"> New Meal Date </a> </button>
                     <button type="submit" class="btn btn-default"> <a href="/ProfilePage"> Profile Page </a> </button>
                     <button type="submit" class="btn btn-default"> <a href="/SignOut"> Sign Out </a> </button>
 
@@ -64,68 +65,27 @@
         {% endfor %}
         
         <h3>{{user.username}}'s Meal History</h3>
-        <h4>This displays the users meal history.
-            This page will eventually funciton like an individual workout in profile.
-            Displaying info about the days meals.
-        </h4>
+        <h1> {{ specific_day.user }}'s Workout on {{ specific_day.date }} </h1>
+
+        <h3> Summary</h3>
         
-
-        <style>
-            #chart-wrapper {
-              display: inline-block;
-              position: relative;
-              width: 50%;
-            }
-        </style>
-        <div id="chart-wrapper">
-            <canvas id="myChart"></canvas>
-        </div>
-
-
-
-    </body>
-
-    <div class="col-md-6">
-        <div class="bg-white">
-            <canvas id="myChart" width="400" height="300"></canvas>
-            <script>
-                var ctx = document.getElementById('myChart').getContext('2d');
-                var myChart = new Chart(ctx, {
-                    type: 'pie',
-                    data: {
-                        labels: ['Breakfast', 'Lunch', 'Dinner', 'Snacks'],
-                        datasets: [{
-                            label: 'Workout Intensity (Average RPE)',
-                            data: [7, 9, 3, 2],
-                            backgroundColor: [
-                                'rgba(255, 99, 132, 1)',
-                                'rgba(54, 162, 235, 1)',
-                                'rgba(255, 206, 86, 1)',
-                                'rgba(75, 192, 192, 1)',
-                                'rgba(153, 102, 255, 1)',
-                                'rgba(255, 159, 64, 1)'
-                            ],
-                            borderColor: [
-                                'rgba(255, 99, 132, 1)',
-                                'rgba(54, 162, 235, 1)',
-                                'rgba(255, 206, 86, 1)',
-                                'rgba(75, 192, 192, 1)',
-                                'rgba(153, 102, 255, 1)',
-                                'rgba(255, 159, 64, 1)'
-                            ],
-                            borderWidth: 1
-                        }]
-                    },
-                    options: {
-                        scales: {
-                        }
-                    }
-                });
-            </script>
-        </div>
-    </div>
-
-
+        {%for category in all_meals %}
+            <h2> {{ category.category }} </h2>
+                <h4>
+                Name:               {{category.name}}<br>
+                Carbohydrate:       {{category.carbohydrate}}<br>
+                Fats:               {{category.fats}}<br>
+                Protein:            {{category.protien}}<br>
+                Calories:           {{category.calorie}}<br>
+                Quantity:           {{category.quantity}}<br>
+                <a href="{% url 'delete-meal' id=category.id %}"> Delete {{category.category}}</a>
+                </h4>
+        {% endfor %}
+        <br><br>
+        <button type="submit"> <a href="http://127.0.0.1:8000/ProfilePage/{{specific_day.id}}/add-meal"> Add a Meal </a></button>
+        <br>
+        <button type="submit"> <a href={% url 'ConfirmMealDeletion' id=specific_day.id %}> Delete Day: {{specific_day.date}} </a></button>
+        
 
 
 

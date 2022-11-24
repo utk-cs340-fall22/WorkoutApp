@@ -14,14 +14,17 @@ class ExerciseForm(forms.Form):
 class WorkoutForm(forms.Form):
     date = forms.DateField(label='Enter Date of Workout')
 
+class DayForm(forms.Form):
+    date = forms.DateField(label='Enter the Date of Meals Eaten')
+
 
 
 """ Form fields for user to log meal information and calories/macros """
 class CalorieForm(forms.Form):
-    date = forms.DateField(label='Enter Date of Meals')
-    category = forms.CharField(label="Exercise Name", widget=forms.Select(choices=Category.options))
-    carbohydrate = forms.IntegerField(min_value=0, label="Amount of Carbs")
-    fats = forms.IntegerField(min_value=0, label="Amount of Fat")
-    protein = forms.IntegerField(min_value=0, label="Amount of Protein")
-    calorie= forms.IntegerField(min_value=0, label="Amount of Calories")
-    quantity = forms.IntegerField(min_value=0, label="Amount Consumed")
+    category = forms.CharField(label="Meal", widget=forms.Select(choices=Category.options))
+    name = forms.CharField(label="Food's Name")
+    carbohydrate = forms.DecimalField(min_value=0, label="Amount of Carbs (g)")
+    fats = forms.DecimalField(min_value=0, label="Amount of Fat (g)")
+    protein = forms.DecimalField(min_value=0, label="Amount of Protein (g)")
+    calorie= forms.DecimalField(min_value=0, label="Amount of Calories (g)")
+    quantity = forms.DecimalField(min_value=0, label="Amount Consumed (g)")

@@ -39,6 +39,7 @@
                     
                     {% if user.is_authenticated %}
                     <button type="submit" class="btn btn-default"> <a href="/CreateWorkout"> New Workout </a> </button>
+                    <button type="submit" class="btn btn-default"> <a href="/CreateTracker"> New Meal Date </a> </button>
                     <button type="submit" class="btn btn-default"> <a href="/ProfilePage"> Profile Page </a> </button>
                     <button type="submit" class="btn btn-default"> <a href="/SignOut"> Sign Out </a> </button>
 
@@ -97,11 +98,11 @@
         </style>
         <div id="chart-wrapper">
             <canvas id="myChart"></canvas>
-        </div>
+        </div> 
 
         <u1>
             {%for workout in all_workouts %}
-                <li><a href='/ProfilePage/{{workout.id}}'> {{workout.date}}</a> </li>
+                <li><a href='/ProfilePage/{{workout.id}}/Workouts'> {{workout.date}}</a> </li>
             {% endfor %}
 
         </u1>
@@ -112,7 +113,7 @@
 
         <u1>
             {%for day in all_days %}
-                <li><a href='/ProfilePage/{{day.id}}'> {{day.date}}</a> </li>
+                <li><a href='/ProfilePage/{{day.id}}/Meals'> {{day.date}}</a> </li>
             {% endfor %}
 
         </u1>
@@ -120,7 +121,6 @@
         <!-- This is currently named a date bc it does not have the functionality like workout
              Eventually it will be like that but for now it's a place holder
         -->
-        <li><a href="/ProfilePage/Meals"> Nov. 9, 2022 </a></li>
 
     </body>
 
