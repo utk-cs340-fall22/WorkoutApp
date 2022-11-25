@@ -64,8 +64,7 @@
         </div>
         {% endfor %}
         
-        <h3>{{user.username}}'s Meal History</h3>
-        <h1> {{ specific_day.user }}'s Workout on {{ specific_day.date }} </h1>
+        <h1> {{ specific_day.user }}'s Caloric Intake on {{ specific_day.date }} </h1>
 
         <h3> Summary</h3>
         
@@ -86,6 +85,9 @@
         <br>
         <button type="submit"> <a href={% url 'ConfirmMealDeletion' id=specific_day.id %}> Delete Day: {{specific_day.date}} </a></button>
         
+        <div style="width:100xw;height:100">
+            {{ graph|safe }}
+        </div>
 
 
 

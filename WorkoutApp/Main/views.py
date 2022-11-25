@@ -368,11 +368,43 @@ def calorie_tracker(request, id=None):
     except Day.DoesNotExist:
         raise Http404("User's Calorie History does not exist")
 
+    div = CreateCalorieChart(all_meals)
+
     context = {
         'specific_day': specific_day,
-        'all_meals': all_meals
+        'all_meals': all_meals,
+        'graph': div,
     }
     return render(request, "CalorieTracker.html", context)
+
+def CreateCalorieChart(all_meals):
+    
+    macros = []
+    kcal = []
+    
+    for meal in all_meals:
+        kcal_p = (meal.protein * 4 * meal.quantity)
+        macros.append("Protein")
+        kcal.append(kcal_p)
+
+        kcal_c = (meal.carbohydrate * 4 * meal.quantity)
+        macros.append("Carbohydrate")
+        kcal.append(kcal_c)
+
+        kcal_f = (meal.fats * 9 * meal.quantity)
+        macros.append("Fat")
+        kcal.append(kcal_f)
+
+    
+    df = pd.DataFrame({
+        "Macros": macros,
+        "Calories" : kcal,
+    })
+
+    fig = px.pie(df, values="Calories", names="Macros",)
+    div = plotly.offline.plot(fig, auto_open=False, output_type="div",)
+
+    return div
 
 
 def CreateTracker(request):
