@@ -26,5 +26,4 @@ class CalorieForm(forms.Form):
     carbohydrate = forms.DecimalField(min_value=0, label="Amount of Carbs (g)")
     fats = forms.DecimalField(min_value=0, label="Amount of Fat (g)")
     protein = forms.DecimalField(min_value=0, label="Amount of Protein (g)")
-    calorie= forms.DecimalField(min_value=0, label="Amount of Calories (g)")
-    quantity = forms.DecimalField(min_value=0, label="Amount Consumed (g)")
+    quantity = forms.DecimalField(min_value=0, label="Amount Consumed")

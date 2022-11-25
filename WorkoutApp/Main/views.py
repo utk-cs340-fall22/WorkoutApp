@@ -162,27 +162,7 @@ def ProfilePage(request):
     except CalorieHistory.DoesNotExist:
         raise Http404("User's CalorieHistory does not exist")
 
-    exercise_names = []
-    exercise_weight = []
-    dates = []
-    
-    for workout in all_workouts:
-        exercises = Workout.objects.get(id=workout.id).exercise_set.all()
-        for exercise in exercises:
-            dates.append(workout.date)
-            exercise_weight.append(exercise.weight)
-            exercise_names.append(exercise.name)
-    
-
-    df = pd.DataFrame({
-        "Exercise": exercise_names,
-        "Weight" : exercise_weight,
-        "Dates": dates
-    })
-
-    fig = px.line(df, x='Dates', y='Weight', color='Exercise', markers=True,
-                  width=1300, height=600)
-    div = plotly.offline.plot(fig, auto_open=False, output_type="div",)
+    div = CreateCharts(all_workouts)
 
     context = {
         'workouthistory': workouthistory,
@@ -215,16 +195,7 @@ def Workout_Details(request, id=None):
 
 
 """ WORK IN PROGRESS """
-def CreateCharts():
-
-    user = request.user
-    username = user.username
-    all_workouts = None
-    try:
-        WorkoutHistory.objects.get(user=str(username)) is not None
-        all_workouts = WorkoutHistory.objects.get(user=str(username)).workout_set.all()
-    except WorkoutHistory.DoesNotExist:
-        raise Http404("User's WorkoutHistory does not exist")
+def CreateCharts(all_workouts):
 
     exercise_names = []
     exercise_weight = []
@@ -248,10 +219,7 @@ def CreateCharts():
                   width=1300, height=600)
     div = plotly.offline.plot(fig, auto_open=False, output_type="div",)
 
-    context = {
-        'graph' : div
-    }
-    return render(request, "CreateCharts.html", context)
+    return div
 
 
 
@@ -444,8 +412,8 @@ def CreateMeal(request, id):
             meal.carbohydrate = form.cleaned_data['carbohydrate']
             meal.fats = form.cleaned_data['fats']
             meal.protein = form.cleaned_data['protein']
-            meal.calorie = form.cleaned_data['calorie']
             meal.quantity = form.cleaned_data['quantity']
+            meal.calorie = (4*meal.carbohydrate + 4*meal.protein + 9*meal.fats) * meal.quantity
             meal.reffering_day = day
             meal.save()
 
