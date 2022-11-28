@@ -244,7 +244,7 @@ def CreateExercise(request, id):
             exercise.reps = form.cleaned_data['reps']
             exercise.sets = form.cleaned_data['sets']
             exercise.weight = form.cleaned_data['weight']
-            exercise.rpe = form.cleaned_data['rpe']
+            exercise.rpe = form.cleaned_data['rpe(Rating of Perceived Exertion']
             exercise.reffering_workout = workout
             exercise.save()
 

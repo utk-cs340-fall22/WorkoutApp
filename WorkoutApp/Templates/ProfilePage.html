@@ -24,6 +24,11 @@
         <!--Chartjs CDN-->
         <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
 
+        <style>
+            div.bodyText{
+                padding: 25px;
+            }
+        </style>
 
     </head>
     <body>
@@ -59,68 +64,71 @@
             </button>
         </div>
         {% endfor %}
-        <h3>{{user.username}}'s Profile</h3>
-        <h4>Edit your profile here!</h4>
-        <button type="submit"> <a href="/EditProfile"> Edit Profile </a></button>
+        <div class="bodyText">
+
+            <h3>{{user.username}}'s Profile</h3>
+            <h4>Edit your profile here!</h4>
+            <button type="submit"> <a href="/EditProfile"> Edit Profile </a></button>
 
         <!-- jhowar63
             Here is where we begin with TestCharts
             This is not a permanent solution or home.
         -->
-        <button type="submit"> <a href="/ProfilePage/TestCharts"> Test Charts </a></button>
+            <button type="submit"> <a href="/ProfilePage/TestCharts"> Test Charts </a></button>
 
         <!--jhowar63
         Create Workout button will bring authenticated users to the CreateWorkout page
         <h4>Future Create Workout Button</h4> -->
         
+
+        
+            <script src="" async defer></script>
+
+            <br/><br/>
+            <h4>Feel free to view your workouts or add on to them</h4>
+            <!--add workout stuff here-->
+            <h4> {{ workouthistory.user }}'s Workout History:</h4>
+
+            <style>
+                #chart-wrapper {
+                display: inline-block;
+                position: relative;
+                width: 50%;
+                }
+            </style>
+            <div id="chart-wrapper">
+                <canvas id="myChart"></canvas>
+            </div>
+
+            <u1>
+                {%for workout in all_workouts %}
+                    <li><a href='/ProfilePage/{{workout.id}}'> {{workout.date}}</a> </li>
+                {% endfor %}
+
+            </u1>
+
+            <button type="submit"> <a href="http://127.0.0.1:8000/CreateCharts"> View Graph </a></button>
+
+            <h4> {{ workouthistory.user }}'s Calorie History:</h4>
+
+            <u1>
+                {%for day in all_days %}
+                    <li><a href='/ProfilePage/{{day.id}}'> {{day.date}}</a> </li>
+                {% endfor %}
+
+            </u1>
+        
+            <!-- This is currently named a date bc it does not have the functionality like workout
+                 Eventually it will be like that but for now it's a place holder
+            -->
+            <li><a href="/ProfilePage/Meals"> Nov. 9, 2022 </a></li>
+        </div>
         <div id="footer">
             
 
             <!--Implement buttons here, any credit needed, contact us, links to any socials, etc-->
     
         </div>
-
-        
-        <script src="" async defer></script>
-
-        <br/><br/>
-        <h4>Feel free to view your workouts or add on to them<h4>
-        <!--add workout stuff here-->
-        <h4> {{ workouthistory.user }}'s Workout History:</h4>
-
-        <style>
-            #chart-wrapper {
-              display: inline-block;
-              position: relative;
-              width: 50%;
-            }
-        </style>
-        <div id="chart-wrapper">
-            <canvas id="myChart"></canvas>
-        </div>
-
-        <u1>
-            {%for workout in all_workouts %}
-                <li><a href='/ProfilePage/{{workout.id}}'> {{workout.date}}</a> </li>
-            {% endfor %}
-
-        </u1>
-
-        <button type="submit"> <a href="http://127.0.0.1:8000/CreateCharts"> View Graph </a></button>
-
-        <h4> {{ workouthistory.user }}'s Calorie History:</h4>
-
-        <u1>
-            {%for day in all_days %}
-                <li><a href='/ProfilePage/{{day.id}}'> {{day.date}}</a> </li>
-            {% endfor %}
-
-        </u1>
-        
-        <!-- This is currently named a date bc it does not have the functionality like workout
-             Eventually it will be like that but for now it's a place holder
-        -->
-        <li><a href="/ProfilePage/Meals"> Nov. 9, 2022 </a></li>
 
     </body>
 
