@@ -1,20 +1,35 @@
 # WorkoutApp
 ## Group Members
-* Andrew Hines
-* Jacob Howard
-* Alex Shirran
-* Justin Bowers
-* Michael Gibson
+* Andrew Hines - [mdew-abc](https://github.com/mdew-abc)
+* Jacob Howard - [jhowar63](https://github.com/jhowar63)
+* Alex Shirran - [Ashirran](https://github.com/Ashirran)
+* Justin Bowers - [NutsRobin](https://github.com/NutsRobin)
+* Michael Gibson - [Mgibso46](https://github.com/Mgibso46)
 
 
 # About WorkoutApp
 
-### WorkoutApp is a web application built with Django that allows users to log and analyze their workouts and meals
+ WorkoutApp is a web application built with Django that allows users to log and analyze their workouts and meals
 
+#
 # How to run
 
-To run the product, you must download the files in this git hub. After the files are downloaded, activate the virtual environment within the first WorkoutApp file. From there, go into the second workoutapp file, and type "py manage.py runserver" if on windows, or "python manage.py runserver" for Linux/Mac. After that, open a web-broswer, and open the link http://127.0.0.1:8000. 
+1. Be sure to have [Python3](https://www.python.org/downloads/) installed on your machine.
 
+2. Clone the repo by runnning the command `git clone https://github.com/utk-cs340-fall22/WorkoutApp.git` in your terminal/command prompt.
+
+3. Create a [python virtual enviorment](https://docs.python.org/3/tutorial/venv.html) and activate it.
+
+4. Run the following commands
+   ```
+   pip install -r requirements.txt
+   cd WorkoutApp
+   python3 manage.py runserver
+   ```
+
+5. Now go to http://127.0.0.1:8000/ which should display the homepage. (add a screenshot here of final homepage)
+
+#
 # How to use
 
 To use are product, you must create a free account. To create a free WorkoutApp account, you must first make sure you are on the homepage at http://127.0.0.1:8000. Then, you must click the create account button, and enter your credentials. Once you are finished, click "Sign up!". This will send you back to the homepage. Once this is complete, or if you had an account from before, then click the "Sign In" button at the top left to sign in. After you put in your username and password, pressing the sign in button below will take you to your accounts home page.
@@ -25,7 +40,7 @@ Homepage simply is a page we use as a default for when there is no where else to
 
 ### Create new workout
 
-This is to create a new workout using a date. Either type the date as "Month#/day#/year#" or "Month day#, year#".
+This is to create a new workout using a date. Either type the date as "mm/dd/yyy" or "Month day, year".
 
 ### Create New Meal
 
