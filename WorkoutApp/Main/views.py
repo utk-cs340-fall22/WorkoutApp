@@ -221,7 +221,7 @@ def CreateCharts(all_workouts):
     })
 
     fig = px.line(df, x='Dates', y='Weight', color='Exercise', markers=True,
-                  width=1300, height=600)
+                  width=1160, height=600)
     div = plotly.offline.plot(fig, auto_open=False, output_type="div",)
 
     return div
