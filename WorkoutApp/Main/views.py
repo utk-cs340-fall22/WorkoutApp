@@ -16,14 +16,19 @@ from django.contrib.auth.views import PasswordChangeView, PasswordChangeForm
 from matplotlib.style import context
 import plotly
 from pyparsing import ungroup
-from .models import WorkoutHistory, Workout, Exercise, Category
-from .forms import ExerciseForm, WorkoutForm, CalorieForm
+from .models import WorkoutHistory, Workout, Exercise, Category, Day, CalorieHistory
+from .forms import ExerciseForm, WorkoutForm, CalorieForm, DayForm
 from django.http import HttpResponseRedirect
 import matplotlib as plt
 import numpy as py
 from io import StringIO
 import plotly.express as px
 import pandas as pd
+
+def index(request):
+    return render(request, "index.html")
+
+
 
 """
 These three functions are used for user's to change some of their profile
@@ -93,6 +98,9 @@ def CreateAccount(request):
         myuser.save() 
         workouthistory = WorkoutHistory()
         workouthistory.user = username
+        caloriehistory = CalorieHistory()
+        caloriehistory.user = username
+        caloriehistory.save()
         workouthistory.save()
         
         messages.success(request, "Your Account has been successfully created.")
@@ -142,15 +150,31 @@ def ProfilePage(request):
     username = user.username
     workouthistory = None
     all_workouts = None
+    caloriehistory = None
+    all_days = None
+
     try:
         WorkoutHistory.objects.get(user=str(username)) is not None
         workouthistory = WorkoutHistory.objects.get(user=str(username))
         all_workouts = WorkoutHistory.objects.get(user=str(username)).workout_set.all()
     except WorkoutHistory.DoesNotExist:
         raise Http404("User's WorkoutHistory does not exist")
+
+    try:
+        CalorieHistory.objects.get(user=str(username)) is not None
+        caloriehistory = CalorieHistory.objects.get(user=str(username))
+        all_days = CalorieHistory.objects.get(user=str(username)).day_set.all()
+    except CalorieHistory.DoesNotExist:
+        raise Http404("User's CalorieHistory does not exist")
+
+    div = CreateCharts(all_workouts)
+
     context = {
         'workouthistory': workouthistory,
         'all_workouts' : all_workouts,
+        'all_days' : all_days,
+        'caloriehistory' : caloriehistory,
+        'graph' : div
         }
     return render(request, "ProfilePage.html", context)
 
@@ -176,16 +200,7 @@ def Workout_Details(request, id=None):
 
 
 """ WORK IN PROGRESS """
-def CreateCharts(request):
-
-    user = request.user
-    username = user.username
-    all_workouts = None
-    try:
-        WorkoutHistory.objects.get(user=str(username)) is not None
-        all_workouts = WorkoutHistory.objects.get(user=str(username)).workout_set.all()
-    except WorkoutHistory.DoesNotExist:
-        raise Http404("User's WorkoutHistory does not exist")
+def CreateCharts(all_workouts):
 
     exercise_names = []
     exercise_weight = []
@@ -206,13 +221,10 @@ def CreateCharts(request):
     })
 
     fig = px.line(df, x='Dates', y='Weight', color='Exercise', markers=True,
-                  width=1300, height=600)
+                  width=1160, height=600)
     div = plotly.offline.plot(fig, auto_open=False, output_type="div",)
 
-    context = {
-        'graph' : div
-    }
-    return render(request, "CreateCharts.html", context)
+    return div
 
 
 
@@ -351,20 +363,130 @@ def deleteWorkout(request,id):
 
 
 """ Details of users calorie logs """
-def Calorie_Details(request, id=None):
-    all_days = None
+def calorie_tracker(request, id=None):
+    specific_day = None
+    all_meals = None
+
+    try:       
+        specific_day = Day.objects.get(id=id)
+        all_meals = Day.objects.get(id=id).category_set.all()
+    except Day.DoesNotExist:
+        raise Http404("User's Calorie History does not exist")
+
+    div = CreateCalorieChart(all_meals)
+
+    context = {
+        'specific_day': specific_day,
+        'all_meals': all_meals,
+        'graph': div,
+    }
+    return render(request, "CalorieTracker.html", context)
+
+def CreateCalorieChart(all_meals):
+    
+    macros = []
+    kcal = []
+    
+    for meal in all_meals:
+        kcal_p = (meal.protein * 4 * meal.quantity)
+        macros.append("Protein")
+        kcal.append(kcal_p)
+
+        kcal_c = (meal.carbohydrate * 4 * meal.quantity)
+        macros.append("Carbohydrate")
+        kcal.append(kcal_c)
+
+        kcal_f = (meal.fats * 9 * meal.quantity)
+        macros.append("Fat")
+        kcal.append(kcal_f)
+
+    
+    df = pd.DataFrame({
+        "Macros": macros,
+        "Calories" : kcal,
+    })
+
+    fig = px.pie(df, values="Calories", names="Macros",)
+    div = plotly.offline.plot(fig, auto_open=False, output_type="div",)
+
+    return div
+
+
+def CreateTracker(request):
+
+    if request.method == 'POST':
+        form = DayForm(request.POST)
+
+        if form.is_valid():
+            day = Day()
+            user = request.user
+            username = user.username
+            day.date = form.cleaned_data['date']
+            day.user = username
+            day.reffering_caloriehistory = CalorieHistory.objects.get(user=str(username))
+            day.save()
+
+            return redirect('ProfilePage')
+
+    else:
+        form = DayForm()
+
+    return render(request,
+                  "CreateTracker.html",
+                  {'form' : form})
+
+
+def CreateMeal(request, id):
+
+    if request.method == 'POST':
+        form = CalorieForm(request.POST)
+
+        if form.is_valid():
+            meal = Category()
+            day = Day.objects.get(id=id)
+            meal.category = form.cleaned_data['category']
+            meal.name = form.cleaned_data['name']
+            meal.carbohydrate = form.cleaned_data['carbohydrate']
+            meal.fats = form.cleaned_data['fats']
+            meal.protein = form.cleaned_data['protein']
+            meal.quantity = form.cleaned_data['quantity']
+            meal.calorie = (4*meal.carbohydrate + 4*meal.protein + 9*meal.fats) * meal.quantity
+            meal.reffering_day = day
+            meal.save()
+
+            return redirect(request.path_info)
+        
+    else:
+        form = CalorieForm()
+        
+    return render(request,
+                "CreateMeal.html",
+                {'form' : form})  
+
+def deleteMeal(request, id):
+    item = Category.objects.get(id=id)
+    item.delete()
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+
+def confirmMealDelete(request,id=None):
+    specific_day = None
+    all_meals = None
 
     try:    
-        all_days = Category.objects.get(id=id)
-    except Category.DoesNotExist:
+        specific_day = Day.objects.get(id=id)
+        all_meals = Day.objects.get(id=id).category_set.all()
+    except Day.DoesNotExist:
         raise Http404("User's Workout does not exist")
 
     context = {
-        'all_days': all_days
+        'specific_day': specific_day,
+        'all_meals': all_meals,
     }
-    return render(request, "CalorieDetails.html", context)
+    return render(request, "ConfirmMealDelete.html", context)
 
 
-""" returns calorie tracking page """   
-def calorie_tracker(request):
-    return render(request, "CalorieTracker.html")
+def deleteDay(request,id):
+    item = Day.objects.get(id=id)
+    item.delete()
+    return redirect('ProfilePage')
