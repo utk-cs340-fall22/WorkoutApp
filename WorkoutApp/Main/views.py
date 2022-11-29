@@ -25,6 +25,11 @@ from io import StringIO
 import plotly.express as px
 import pandas as pd
 
+def index(request):
+    return render(request, "index.html")
+
+
+
 """
 These three functions are used for user's to change some of their profile
 information such ass password, username, name, etc...

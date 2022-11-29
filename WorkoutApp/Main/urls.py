@@ -47,4 +47,5 @@ urlpatterns = [
     path('delete-meal/<int:id>', views.deleteMeal, name="delete-meal"),
     path('ProfilePage/<int:id>/ConfirmMealDeletion', views.confirmMealDelete, name="ConfirmMealDeletion"),
     path('delete-day/<int:id>', views.deleteDay, name="delete-day"),
+    path('index', views.index, name='index'),
 ]
