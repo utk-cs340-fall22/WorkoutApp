@@ -13,6 +13,7 @@ from django.contrib.auth.forms import UserChangeForm
 from telnetlib import LOGOUT, Telnet
 from django import forms
 from django.contrib.auth.views import PasswordChangeView, PasswordChangeForm
+from matplotlib.pyplot import autoscale
 from matplotlib.style import context
 import plotly
 from pyparsing import ungroup
