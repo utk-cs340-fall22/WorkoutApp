@@ -67,32 +67,56 @@
                       <!--<i class="fas fa-fw fa-tachometer-alt"></i>-->
                       <span>Profile Page</span></a>
               </li>
-              
               <!-- Divider -->
-              <hr class="sidebar-divider">
+                <hr class="sidebar-divider">
 
-              <!-- Heading -->
-              <div class="sidebar-heading">
-                  Addons
-              </div>
+                <!-- Heading -->
+                <div class="sidebar-heading">
+                    Interface
+                </div>
 
-              <!-- Nav Item - Pages Collapse Menu -->
-              <li class="nav-item">
-                  <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-                      aria-expanded="true" aria-controls="collapsePages">
-                      <i class="fas fa-fw fa-folder"></i>
-                      <span>Pages</span>
-                  </a>
-                  <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                      <div class="bg-white py-2 collapse-inner rounded">
-                          <h6 class="collapse-header">Login Screens:</h6>
-                          <a class="collapse-item" href="/SignIn">Login</a>
-                          <a class="collapse-item" href="/CreateAccount">Create Account</a>
-                          <a class="collapse-item" href="/password">Forgot Password</a>
-                          <div class="collapse-divider"></div>
-                      </div>
-                  </div>
-              </li>
+                <!-- Nav Item - Workouts Collapse Menu -->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                        aria-expanded="true" aria-controls="collapseTwo">
+                        <!--<i class="fas fa-fw fa-cog"></i>-->
+                        <span>Workouts</span>
+                    </a>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header">Add or View Workouts:</h6>
+                            <a class="collapse-item" href="/CreateWorkout">New Workout</a>
+                            <u1>
+                            {%for workout in all_workouts %}
+                                <a class="collapse-item" href="/ProfilePage/{{workout.id}}/Workouts"> {{workout.date}}</a>
+                            {% endfor %}
+                            </u1>
+                        </div>
+                    </div>
+                </li>
+
+                <!-- Nav Item - Meals Collapse Menu -->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+                        aria-expanded="true" aria-controls="collapseUtilities">
+                        <!--<i class="fas fa-fw fa-wrench"></i>-->
+                        <span>Meals</span>
+                    </a>
+                    <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                        data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header">Custom Utilities:</h6>
+                            <a class="collapse-item" href="/CreateTracker"> New Meal Date </a>
+                            <u1>
+                                {%for day in all_days %}
+                                <a class="collapse-item" href='/ProfilePage/{{day.id}}/Meals'> {{day.date}}</a>
+                                {% endfor %}
+                
+                            </u1> 
+                        </div>
+                    </div>
+                </li>
+              
 
               <!-- Divider -->
               <hr class="sidebar-divider my-0">

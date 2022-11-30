@@ -120,7 +120,7 @@ fields for the macros of the meal and quantity of them
 class Category(models.Model):
     options= (
         ('Breakfast','Breakfast'),
-        ('lunch','Lunch'),
+        ('Lunch','Lunch'),
         ('Dinner','Dinner'),
         ('Snacks','Snacks'),
     )
