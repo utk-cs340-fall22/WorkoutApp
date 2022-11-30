@@ -169,11 +169,13 @@ def ProfilePage(request):
         raise Http404("User's CalorieHistory does not exist")
 
     div = CreateCharts(all_workouts)
+    all_workouts_sorted = all_workouts.order_by('-date')
+    all_days_sorted = all_days.order_by('-date')
 
     context = {
         'workouthistory': workouthistory,
-        'all_workouts' : all_workouts,
-        'all_days' : all_days,
+        'all_workouts' : all_workouts_sorted,
+        'all_days' : all_days_sorted,
         'caloriehistory' : caloriehistory,
         'graph' : div
         }
@@ -212,6 +214,7 @@ def Workout_Details(request, id=None):
         all_exercises = Workout.objects.get(id=id).exercise_set.all()
     except Workout.DoesNotExist:
         raise Http404("User's Workout does not exist")
+    
 
     context = {
         'specific_workout': specific_workout,
