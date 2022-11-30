@@ -186,6 +186,27 @@ def Workout_Details(request, id=None):
     specific_workout = None
     all_exercises = None
 
+    user = request.user
+    username = user.username
+    workouthistory = None
+    all_workouts = None
+    caloriehistory = None
+    all_days = None
+
+    try:
+        WorkoutHistory.objects.get(user=str(username)) is not None
+        workouthistory = WorkoutHistory.objects.get(user=str(username))
+        all_workouts = WorkoutHistory.objects.get(user=str(username)).workout_set.all()
+    except WorkoutHistory.DoesNotExist:
+        raise Http404("User's WorkoutHistory does not exist")
+
+    try:
+        CalorieHistory.objects.get(user=str(username)) is not None
+        caloriehistory = CalorieHistory.objects.get(user=str(username))
+        all_days = CalorieHistory.objects.get(user=str(username)).day_set.all()
+    except CalorieHistory.DoesNotExist:
+        raise Http404("User's CalorieHistory does not exist")
+
     try:    
         specific_workout = Workout.objects.get(id=id)
         all_exercises = Workout.objects.get(id=id).exercise_set.all()
@@ -195,6 +216,10 @@ def Workout_Details(request, id=None):
     context = {
         'specific_workout': specific_workout,
         'all_exercises': all_exercises,
+        'workouthistory': workouthistory,
+        'all_workouts' : all_workouts,
+        'all_days' : all_days,
+        'caloriehistory' : caloriehistory,
     }
     return render(request, "WorkoutDetails.html", context)
 
@@ -247,6 +272,37 @@ information via a form which then adds the exercise to the data table
 """
 def CreateExercise(request, id):
 
+    user = request.user
+    username = user.username
+    workouthistory = None
+    all_workouts = None
+    caloriehistory = None
+    all_days = None
+
+    specific_workout = None
+    all_exercises = None
+
+    try:
+        WorkoutHistory.objects.get(user=str(username)) is not None
+        workouthistory = WorkoutHistory.objects.get(user=str(username))
+        all_workouts = WorkoutHistory.objects.get(user=str(username)).workout_set.all()
+    except WorkoutHistory.DoesNotExist:
+        raise Http404("User's WorkoutHistory does not exist")
+
+    try:
+        CalorieHistory.objects.get(user=str(username)) is not None
+        caloriehistory = CalorieHistory.objects.get(user=str(username))
+        all_days = CalorieHistory.objects.get(user=str(username)).day_set.all()
+    except CalorieHistory.DoesNotExist:
+        raise Http404("User's CalorieHistory does not exist")
+
+    try:    
+        specific_workout = Workout.objects.get(id=id)
+        all_exercises = Workout.objects.get(id=id).exercise_set.all()
+    except Workout.DoesNotExist:
+        raise Http404("User's Workout does not exist")
+
+
     if request.method == 'POST':
         form = ExerciseForm(request.POST)
 
@@ -265,10 +321,18 @@ def CreateExercise(request, id):
         
     else:
         form = ExerciseForm()
-        
-    return render(request,
-                "Createexercise.html",
-                {'form' : form})   
+
+    context = {
+        'workouthistory': workouthistory,
+        'all_workouts' : all_workouts,
+        'all_days' : all_days,
+        'caloriehistory' : caloriehistory,
+        'form' : form,
+        'specific_workout': specific_workout,
+        'all_exercises': all_exercises,
+    }    
+
+    return render(request, "Createexercise.html", context)   
     
 
 """
@@ -277,6 +341,28 @@ This creates a new workout instance which they can fill with exercises
 using CreateExercise. Workouts are keyed on auto-generated ID
 """
 def CreateWorkout(request):
+
+    user = request.user
+    username = user.username
+    workouthistory = None
+    all_workouts = None
+    caloriehistory = None
+    all_days = None
+
+    try:
+        WorkoutHistory.objects.get(user=str(username)) is not None
+        workouthistory = WorkoutHistory.objects.get(user=str(username))
+        all_workouts = WorkoutHistory.objects.get(user=str(username)).workout_set.all()
+    except WorkoutHistory.DoesNotExist:
+        raise Http404("User's WorkoutHistory does not exist")
+
+    try:
+        CalorieHistory.objects.get(user=str(username)) is not None
+        caloriehistory = CalorieHistory.objects.get(user=str(username))
+        all_days = CalorieHistory.objects.get(user=str(username)).day_set.all()
+    except CalorieHistory.DoesNotExist:
+        raise Http404("User's CalorieHistory does not exist")
+
 
     if request.method == 'POST':
         form = WorkoutForm(request.POST)
@@ -296,9 +382,15 @@ def CreateWorkout(request):
     else:
         form = WorkoutForm()
 
-    return render(request,
-                  "CreateWorkout.html",
-                  {'form' : form})
+    context = {
+        'workouthistory': workouthistory,
+        'all_workouts' : all_workouts,
+        'all_days' : all_days,
+        'caloriehistory' : caloriehistory,
+        'form' : form,
+    }    
+
+    return render(request, "CreateWorkout.html", context)
 
 
 """ Page to test charts """
@@ -327,7 +419,7 @@ def password_success(request):
 
 """ Returns EditProfile Page """
 def EditProfile(request):
-    return render(request, "EditProfile.html")
+    return render(request, "EditProfile.html", context)
 
 
 """ Deletes a Exercise from its corresponding workout """
@@ -368,6 +460,27 @@ def calorie_tracker(request, id=None):
     specific_day = None
     all_meals = None
 
+    user = request.user
+    username = user.username
+    workouthistory = None
+    all_workouts = None
+    caloriehistory = None
+    all_days = None
+
+    try:
+        WorkoutHistory.objects.get(user=str(username)) is not None
+        workouthistory = WorkoutHistory.objects.get(user=str(username))
+        all_workouts = WorkoutHistory.objects.get(user=str(username)).workout_set.all()
+    except WorkoutHistory.DoesNotExist:
+        raise Http404("User's WorkoutHistory does not exist")
+
+    try:
+        CalorieHistory.objects.get(user=str(username)) is not None
+        caloriehistory = CalorieHistory.objects.get(user=str(username))
+        all_days = CalorieHistory.objects.get(user=str(username)).day_set.all()
+    except CalorieHistory.DoesNotExist:
+        raise Http404("User's CalorieHistory does not exist")
+
     try:       
         specific_day = Day.objects.get(id=id)
         all_meals = Day.objects.get(id=id).category_set.all()
@@ -380,6 +493,10 @@ def calorie_tracker(request, id=None):
         'specific_day': specific_day,
         'all_meals': all_meals,
         'graph': div,
+        'workouthistory': workouthistory,
+        'all_workouts' : all_workouts,
+        'all_days' : all_days,
+        'caloriehistory' : caloriehistory,
     }
     return render(request, "CalorieTracker.html", context)
 
@@ -415,6 +532,31 @@ def CreateCalorieChart(all_meals):
 
 def CreateTracker(request):
 
+    specific_day = None
+    all_meals = None
+
+    user = request.user
+    username = user.username
+    workouthistory = None
+    all_workouts = None
+    caloriehistory = None
+    all_days = None
+
+    try:
+        WorkoutHistory.objects.get(user=str(username)) is not None
+        workouthistory = WorkoutHistory.objects.get(user=str(username))
+        all_workouts = WorkoutHistory.objects.get(user=str(username)).workout_set.all()
+    except WorkoutHistory.DoesNotExist:
+        raise Http404("User's WorkoutHistory does not exist")
+
+    try:
+        CalorieHistory.objects.get(user=str(username)) is not None
+        caloriehistory = CalorieHistory.objects.get(user=str(username))
+        all_days = CalorieHistory.objects.get(user=str(username)).day_set.all()
+    except CalorieHistory.DoesNotExist:
+        raise Http404("User's CalorieHistory does not exist")
+
+
     if request.method == 'POST':
         form = DayForm(request.POST)
 
@@ -432,12 +574,51 @@ def CreateTracker(request):
     else:
         form = DayForm()
 
-    return render(request,
-                  "CreateTracker.html",
-                  {'form' : form})
+    context = {
+        'specific_day': specific_day,
+        'all_meals': all_meals,
+        'workouthistory': workouthistory,
+        'all_workouts' : all_workouts,
+        'all_days' : all_days,
+        'caloriehistory' : caloriehistory,
+        'form' : form,
+    }
+
+    return render(request, "CreateTracker.html", context)
 
 
 def CreateMeal(request, id):
+
+    specific_day = None
+    all_meals = None
+
+    user = request.user
+    username = user.username
+    workouthistory = None
+    all_workouts = None
+    caloriehistory = None
+    all_days = None
+
+    try:
+        WorkoutHistory.objects.get(user=str(username)) is not None
+        workouthistory = WorkoutHistory.objects.get(user=str(username))
+        all_workouts = WorkoutHistory.objects.get(user=str(username)).workout_set.all()
+    except WorkoutHistory.DoesNotExist:
+        raise Http404("User's WorkoutHistory does not exist")
+
+    try:
+        CalorieHistory.objects.get(user=str(username)) is not None
+        caloriehistory = CalorieHistory.objects.get(user=str(username))
+        all_days = CalorieHistory.objects.get(user=str(username)).day_set.all()
+    except CalorieHistory.DoesNotExist:
+        raise Http404("User's CalorieHistory does not exist")
+
+    try:       
+        specific_day = Day.objects.get(id=id)
+        all_meals = Day.objects.get(id=id).category_set.all()
+    except Day.DoesNotExist:
+        raise Http404("User's Calorie History does not exist")
+
 
     if request.method == 'POST':
         form = CalorieForm(request.POST)
@@ -459,10 +640,18 @@ def CreateMeal(request, id):
         
     else:
         form = CalorieForm()
-        
-    return render(request,
-                "CreateMeal.html",
-                {'form' : form})  
+
+    context = {
+        'specific_day': specific_day,
+        'all_meals': all_meals,
+        'workouthistory': workouthistory,
+        'all_workouts' : all_workouts,
+        'all_days' : all_days,
+        'caloriehistory' : caloriehistory,
+        'form' : form,
+    }
+
+    return render(request, "CreateMeal.html", context)  
 
 def deleteMeal(request, id):
     item = Category.objects.get(id=id)

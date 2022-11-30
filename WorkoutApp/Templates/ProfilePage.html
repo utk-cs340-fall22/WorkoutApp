@@ -113,7 +113,7 @@
                             <a class="collapse-item" href="/CreateTracker"> New Meal Date </a>
                             <u1>
                                 {%for day in all_days %}
-                                <a class="collapse-item" href='/ProfilePage/{{day.id}}/Meals'> {{day.date}}</a>
+                                    <a class="collapse-item" href='/ProfilePage/{{day.id}}/Meals'> {{day.date}}</a>
                                 {% endfor %}
                 
                             </u1> 
@@ -128,7 +128,7 @@
                 <div class="sidebar-heading">
                     Addons
                 </div>
-
+                
                 <!-- Nav Item - Pages Collapse Menu -->
                 <li class="nav-item">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
@@ -143,13 +143,12 @@
                             <a class="collapse-item" href="/CreateAccount">Create Account</a>
                             <a class="collapse-item" href="/password">Forgot Password</a>
                             <div class="collapse-divider"></div>
-                            <h6 class="collapse-header">Other Pages:</h6>
-                            <a class="collapse-item" href="404.html">404 Page</a>
-                            <a class="collapse-item" href="blank.html">Blank Page</a>
                         </div>
                     </div>
                 </li>
-
+                
+                <!-- Divider -->
+                <hr class="sidebar-divider my-0">
                 <!-- Nav Item - Edit Profile -->
                 <li class="nav-item">
                     <a class="nav-link" href="/EditProfile">Edit Profile</a>
@@ -188,33 +187,6 @@
                             <h1>{{user.username}}'s Profile</h1>
                         </a>
                     </nav>
-                
-                    <!--Floating Nav-->
-                    <!--
-                    <nav class="navbar navbar-expand" style="background-color:lightskyblue;">
-                        <div class="container-fluid">
-                            <div class="navbar-header">
-                                <a class="navbar-brand" href="/">WorkoutApp</a>
-                            </div>
-
-                            <ul class="nav navbar-nav">
-                                <button type="submit" class="btn btn-default"> <a href="/"> Home </a> </button>
-                                
-                                {% if user.is_authenticated %}
-                                <button type="submit" class="btn btn-default"> <a href="/CreateWorkout"> New Workout </a> </button>
-                                <button type="submit" class="btn btn-default"> <a href="/CreateTracker"> New Meal Date </a> </button>
-                                <button type="submit" class="btn btn-default"> <a href="/ProfilePage"> Profile Page </a> </button>
-                                <button type="submit" class="btn btn-default"> <a href="/SignOut"> Sign Out </a> </button>
-
-                                {% else %}
-                                <button type="submit" class="btn btn-default"> <a href="/SignIn"> Sign In </a> </button>
-                                {% endif %}
-                                <button type="submit" class="btn btn-default"> <a href="/MoreInfo"> More Info </a> </button>
-                            </ul>
-                        </div>
-                    </nav>
-                    -->
-                    <!--Floating Nav-->
 
                     {% for message in messages %}
                     <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
