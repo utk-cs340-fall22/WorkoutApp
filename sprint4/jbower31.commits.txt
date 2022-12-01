@@ -1,0 +1,109 @@
+e5160dae (NutsRobin     2022-11-29 13:45:11 -0500  35)         ('Arnold Press', 'Arnold Press'),
+e5160dae (NutsRobin     2022-11-29 13:45:11 -0500  36)         ('Back EXT', 'Back Extension'),
+e5160dae (NutsRobin     2022-11-29 13:45:11 -0500  37)         ('BB Curl', 'Barbell Curl'),
+e5160dae (NutsRobin     2022-11-29 13:45:11 -0500  38)         ('BB Row', 'Barbell Row'),
+e5160dae (NutsRobin     2022-11-29 13:45:11 -0500  39)         ('Bench Press', 'Bench Press'),
+e5160dae (NutsRobin     2022-11-29 13:45:11 -0500  40)         ('Block Pull', 'Block Pull'),
+e5160dae (NutsRobin     2022-11-29 13:45:11 -0500  41)         ('BSS', 'Bulgarian Split Squat'),
+e5160dae (NutsRobin     2022-11-29 13:45:11 -0500  42)         ('Cable Crunch', 'Cable Crunch'),
+e5160dae (NutsRobin     2022-11-29 13:45:11 -0500  43)         ('Cable LR', 'Cable Lateral Raise'),
+e5160dae (NutsRobin     2022-11-29 13:45:11 -0500  44)         ('Cable Row', 'Cable Row'),
+e5160dae (NutsRobin     2022-11-29 13:45:11 -0500  45)         ('Seated CR', 'Calf Raise (seated)'),
+e5160dae (NutsRobin     2022-11-29 13:45:11 -0500  46)         ('Stand CR', 'Calf Raise (standing)'),
+e5160dae (NutsRobin     2022-11-29 13:45:11 -0500  47)         ('CPT', 'Cable Pull-Through'),
+e5160dae (NutsRobin     2022-11-29 13:45:11 -0500  48)         ('CG Bench Press', 'Close-Grip Bench Press'),
+e5160dae (NutsRobin     2022-11-29 13:45:11 -0500  49)         ('DB Bench', 'Dumbbell Bench Press'),
+e5160dae (NutsRobin     2022-11-29 13:45:11 -0500  50)         ('DB Curl', 'Dumbbell Curl'),
+e5160dae (NutsRobin     2022-11-29 13:45:11 -0500  51)         ('Deadlift', 'Deadlift'),
+e5160dae (NutsRobin     2022-11-29 13:45:11 -0500  52)         ('Dip', 'Dip'),
+e5160dae (NutsRobin     2022-11-29 13:45:11 -0500  53)         ('DB OHP', 'Dumbbell Overhead Press'),
+e5160dae (NutsRobin     2022-11-29 13:45:11 -0500  54)         ('Facepull', 'Facepull'),
+e5160dae (NutsRobin     2022-11-29 13:45:11 -0500  55)         ('Front Squat',  'Front Squat'),
+e5160dae (NutsRobin     2022-11-29 13:45:11 -0500  56)         ('GHR', 'Glute-Ham Raise'),
+e5160dae (NutsRobin     2022-11-29 13:45:11 -0500  57)         ('Hack Squat', 'Hack Squat'),
+e5160dae (NutsRobin     2022-11-29 13:45:11 -0500  58)         ('Hanging LR', 'Hanging Leg Raise'),
+e5160dae (NutsRobin     2022-11-29 13:45:11 -0500  59)         ('HPT', 'Hip Thrust'),
+e5160dae (NutsRobin     2022-11-29 13:45:11 -0500  60)         ('Incline BP', 'Incline Bench Press'),
+e5160dae (NutsRobin     2022-11-29 13:45:11 -0500  61)         ('Incline DBP', 'Incline Dumbbell Bench Press'),
+e5160dae (NutsRobin     2022-11-29 13:45:11 -0500  62)         ('Larsen Press', 'Larsen Press'),
+e5160dae (NutsRobin     2022-11-29 13:45:11 -0500  63)         ('LPD', 'Lat Pulldown'),
+e5160dae (NutsRobin     2022-11-29 13:45:11 -0500  64)         ('Lateral Raise', 'Lateral Raise'),
+e5160dae (NutsRobin     2022-11-29 13:45:11 -0500  65)         ('Leg Curl', 'Leg Curl'),
+e5160dae (NutsRobin     2022-11-29 13:45:11 -0500  66)         ('Leg EXT', 'Leg Extension'),
+e5160dae (NutsRobin     2022-11-29 13:45:11 -0500  67)         ('Leg Press', 'Leg Press'),
+e5160dae (NutsRobin     2022-11-29 13:45:11 -0500  68)         ('Machine CP', 'Machine Chest Press'),
+e5160dae (NutsRobin     2022-11-29 13:45:11 -0500  69)         ('Machine ICP', 'Machine Incline Chest Press'),
+e5160dae (NutsRobin     2022-11-29 13:45:11 -0500  70)         ('Machine Row', 'Machine Row'),
+e5160dae (NutsRobin     2022-11-29 13:45:11 -0500  71)         ('OHP', 'Overhead Press'), 
+e5160dae (NutsRobin     2022-11-29 13:45:11 -0500  72)         ('Pec Flye', 'Pec Flye'),
+e5160dae (NutsRobin     2022-11-29 13:45:11 -0500  73)         ('Pendlay Row', 'Pendlay Row'),
+e5160dae (NutsRobin     2022-11-29 13:45:11 -0500  74)         ('Pullup',  'Pullup'), 
+e5160dae (NutsRobin     2022-11-29 13:45:11 -0500  75)         ('Pushup', 'Pushup'),
+e5160dae (NutsRobin     2022-11-29 13:45:11 -0500  76)         ('Pin Squat', 'Pin Squat'),
+e5160dae (NutsRobin     2022-11-29 13:45:11 -0500  77)         ('RD Flye', 'Rear Delt Flye'),
+e5160dae (NutsRobin     2022-11-29 13:45:11 -0500  78)         ('RD Raise', 'Rear Delt Raise'),
+e5160dae (NutsRobin     2022-11-29 13:45:11 -0500  79)         ('RDL', 'Romanian Deadlift'),
+e5160dae (NutsRobin     2022-11-29 13:45:11 -0500  80)         ('SkullCrusher', 'SkullCrusher'),
+e5160dae (NutsRobin     2022-11-29 13:45:11 -0500  81)         ('Squat', 'Squat'),
+e5160dae (NutsRobin     2022-11-29 13:45:11 -0500  82)         ('BB Trap Raise', 'Trap Raise (Dumbbell)'),
+e5160dae (NutsRobin     2022-11-29 13:45:11 -0500  83)         ('C Trap Raise', 'Trap Raise (Cable)'),
+e5160dae (NutsRobin     2022-11-29 13:45:11 -0500  84)         ('DB Trap Raise', 'Trap Raise (Barbell)'),
+e5160dae (NutsRobin     2022-11-29 13:45:11 -0500  85)         ('Tri Pushdown', 'Tricep Pushdown'),
+e5160dae (NutsRobin     2022-11-29 13:45:11 -0500  86)         ('OH Tri', 'Overhead Tricep Extension'),
+e5160dae (NutsRobin     2022-11-29 13:45:11 -0500  87)         ('Uni PD', 'Unilateral Pulldown'),
+e5160dae (NutsRobin     2022-11-29 13:45:11 -0500  88)         ('Uni Row', 'Unilateral Row'),
+e5160dae (NutsRobin     2022-11-29 13:45:11 -0500  16) from matplotlib.pyplot import autoscale
+c6b920eb (NutsRobin     2022-11-25 15:24:34 -0600 171)     div = CreateCharts(all_workouts)
+d02928e2 (NutsRobin     2022-11-24 14:55:03 -0600 172) 
+d02928e2 (NutsRobin     2022-11-24 14:55:03 -0600 177)         'caloriehistory' : caloriehistory,
+d02928e2 (NutsRobin     2022-11-24 14:55:03 -0600 178)         'graph' : div
+c6b920eb (NutsRobin     2022-11-25 15:24:34 -0600 204) def CreateCharts(all_workouts):
+3122bdb7 (NutsRobin     2022-11-29 08:02:42 -0500 225)                   width=1160, height=600)
+c6b920eb (NutsRobin     2022-11-25 15:24:34 -0600 228)     return div
+6655faff (NutsRobin     2022-11-25 16:36:29 -0600 377)     div = CreateCalorieChart(all_meals)
+6655faff (NutsRobin     2022-11-25 16:36:29 -0600 378) 
+6655faff (NutsRobin     2022-11-25 16:36:29 -0600 381)         'all_meals': all_meals,
+6655faff (NutsRobin     2022-11-25 16:36:29 -0600 382)         'graph': div,
+6655faff (NutsRobin     2022-11-25 16:36:29 -0600 386) def CreateCalorieChart(all_meals):
+6655faff (NutsRobin     2022-11-25 16:36:29 -0600 387)     
+6655faff (NutsRobin     2022-11-25 16:36:29 -0600 388)     macros = []
+6655faff (NutsRobin     2022-11-25 16:36:29 -0600 389)     kcal = []
+6655faff (NutsRobin     2022-11-25 16:36:29 -0600 390)     
+6655faff (NutsRobin     2022-11-25 16:36:29 -0600 391)     for meal in all_meals:
+6655faff (NutsRobin     2022-11-25 16:36:29 -0600 392)         kcal_p = (meal.protein * 4 * meal.quantity)
+6655faff (NutsRobin     2022-11-25 16:36:29 -0600 393)         macros.append("Protein")
+6655faff (NutsRobin     2022-11-25 16:36:29 -0600 394)         kcal.append(kcal_p)
+6655faff (NutsRobin     2022-11-25 16:36:29 -0600 395) 
+6655faff (NutsRobin     2022-11-25 16:36:29 -0600 396)         kcal_c = (meal.carbohydrate * 4 * meal.quantity)
+6655faff (NutsRobin     2022-11-25 16:36:29 -0600 397)         macros.append("Carbohydrate")
+6655faff (NutsRobin     2022-11-25 16:36:29 -0600 398)         kcal.append(kcal_c)
+6655faff (NutsRobin     2022-11-25 16:36:29 -0600 399) 
+6655faff (NutsRobin     2022-11-25 16:36:29 -0600 400)         kcal_f = (meal.fats * 9 * meal.quantity)
+6655faff (NutsRobin     2022-11-25 16:36:29 -0600 401)         macros.append("Fat")
+6655faff (NutsRobin     2022-11-25 16:36:29 -0600 402)         kcal.append(kcal_f)
+6655faff (NutsRobin     2022-11-25 16:36:29 -0600 403) 
+6655faff (NutsRobin     2022-11-25 16:36:29 -0600 404)     
+6655faff (NutsRobin     2022-11-25 16:36:29 -0600 405)     df = pd.DataFrame({
+6655faff (NutsRobin     2022-11-25 16:36:29 -0600 406)         "Macros": macros,
+6655faff (NutsRobin     2022-11-25 16:36:29 -0600 407)         "Calories" : kcal,
+6655faff (NutsRobin     2022-11-25 16:36:29 -0600 408)     })
+6655faff (NutsRobin     2022-11-25 16:36:29 -0600 409) 
+6655faff (NutsRobin     2022-11-25 16:36:29 -0600 410)     fig = px.pie(df, values="Calories", names="Macros",)
+6655faff (NutsRobin     2022-11-25 16:36:29 -0600 411)     div = plotly.offline.plot(fig, auto_open=False, output_type="div",)
+6655faff (NutsRobin     2022-11-25 16:36:29 -0600 412) 
+6655faff (NutsRobin     2022-11-25 16:36:29 -0600 413)     return div
+6655faff (NutsRobin     2022-11-25 16:36:29 -0600 414) 
+c6b920eb (NutsRobin     2022-11-25 15:24:34 -0600 454)             meal.calorie = (4*meal.carbohydrate + 4*meal.protein + 9*meal.fats) * meal.quantity
+c6b920eb (NutsRobin     2022-11-25 15:24:34 -0600 29)     quantity = forms.DecimalField(min_value=0, label="Amount Consumed")
+3122bdb7 (NutsRobin     2022-11-29 08:02:42 -0500 234)                             <div style="width:500;height:100">
+d02928e2 (NutsRobin     2022-11-24 14:55:03 -0600 292)             </div>
+d02928e2 (NutsRobin     2022-11-24 14:55:03 -0600 297) 
+6655faff (NutsRobin     2022-11-25 16:36:29 -0600 67)         <h1> {{ specific_day.user }}'s Caloric Intake on {{ specific_day.date }} </h1>
+6655faff (NutsRobin     2022-11-25 16:36:29 -0600 88)         <div style="width:100xw;height:100">
+6655faff (NutsRobin     2022-11-25 16:36:29 -0600 89)             {{ graph|safe }}
+6655faff (NutsRobin     2022-11-25 16:36:29 -0600 90)         </div>
+2f619936 (NutsRobin    2022-11-30 17:07:43 -0500 195)     all_workouts_sorted = all_workouts.order_by('-date')
+2f619936 (NutsRobin    2022-11-30 17:07:43 -0500 196)     all_days_sorted = all_days.order_by('-date')
+2f619936 (NutsRobin    2022-11-30 17:07:43 -0500 200)         'all_workouts' : all_workouts_sorted,
+2f619936 (NutsRobin    2022-11-30 17:07:43 -0500 201)         'all_days' : all_days_sorted,
+2f619936 (NutsRobin    2022-11-30 17:07:43 -0500 240)     
