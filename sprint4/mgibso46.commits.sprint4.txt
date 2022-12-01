@@ -1,0 +1,78 @@
+WorkoutApp/homepage.html
+
+388533f8 (Mgibso46     2022-11-30 19:26:22 -0500 233)                   
+388533f8 (Mgibso46     2022-11-30 19:26:22 -0500 234)                   {% if user.is_authenticated %}
+388533f8 (Mgibso46     2022-11-30 19:26:22 -0500 235)                   <h3>Homepage</h3>
+388533f8 (Mgibso46     2022-11-30 19:26:22 -0500 236)                   <div class="bodyPadding">
+388533f8 (Mgibso46     2022-11-30 19:26:22 -0500 237)                     <p>
+388533f8 (Mgibso46     2022-11-30 19:26:22 -0500 238)                       Homepage simply is a page we use as a default for when there is no where else to go. Not much is done here.
+388533f8 (Mgibso46     2022-11-30 19:26:22 -0500 239)                     </p>
+388533f8 (Mgibso46     2022-11-30 19:26:22 -0500 240)                   </div>
+388533f8 (Mgibso46     2022-11-30 19:26:22 -0500 241)                   <h3>Create new workout</h3>
+388533f8 (Mgibso46     2022-11-30 19:26:22 -0500 242)                   <div class="bodyPadding">
+388533f8 (Mgibso46     2022-11-30 19:26:22 -0500 243)                     <p>
+388533f8 (Mgibso46     2022-11-30 19:26:22 -0500 244)                       This is to create a new workout using a date. Either type the date as "mm/dd/yyy" or "Month day, year".
+388533f8 (Mgibso46     2022-11-30 19:26:22 -0500 245)                     </p>
+388533f8 (Mgibso46     2022-11-30 19:26:22 -0500 246)                   </div>
+388533f8 (Mgibso46     2022-11-30 19:26:22 -0500 247)                   <h3>Create New Meal</h3>
+388533f8 (Mgibso46     2022-11-30 19:26:22 -0500 248)                     <div class="bodyPadding">
+388533f8 (Mgibso46     2022-11-30 19:26:22 -0500 249)                       <p>
+388533f8 (Mgibso46     2022-11-30 19:26:22 -0500 250)                         Same as Create New Workout, but for meals.
+388533f8 (Mgibso46     2022-11-30 19:26:22 -0500 251)                       </p>
+388533f8 (Mgibso46     2022-11-30 19:26:22 -0500 252)                     </div>  
+388533f8 (Mgibso46     2022-11-30 19:26:22 -0500 253)                     <h3>Profile Page</h3>
+388533f8 (Mgibso46     2022-11-30 19:26:22 -0500 254)                     <div class="bodyPadding">
+388533f8 (Mgibso46     2022-11-30 19:26:22 -0500 255)                       <p>
+388533f8 (Mgibso46     2022-11-30 19:26:22 -0500 256)                         Profile Page has many options to choose from. You are able to change your account information using the Edit Profile button. You can also use the chart under the Edit Profile button to see how you are doing with your workouts. Below that, there is a history of workouts and meals listed by date, which you can click individually to add exercises/meal into them. When you add an Exercise, you must input the exercise name, set amount, rep amount, weight, and RPE. Once added, you can add another exercise to the same workout, or go back to the profile page. Doing this will adjust the plot to show you more information on how you are doing. You can also delete exercises and workouts, however workouts require extra confirmation.
+388533f8 (Mgibso46     2022-11-30 19:26:22 -0500 257)                       </p>
+388533f8 (Mgibso46     2022-11-30 19:26:22 -0500 258)                     </div>  
+388533f8 (Mgibso46     2022-11-30 19:26:22 -0500 259)                     <h3>Sign out</h3>
+388533f8 (Mgibso46     2022-11-30 19:26:22 -0500 260)                     <div class="bodyPadding">
+388533f8 (Mgibso46     2022-11-30 19:26:22 -0500 261)                       <p>
+388533f8 (Mgibso46     2022-11-30 19:26:22 -0500 262)                         Signs you out of your account.
+388533f8 (Mgibso46     2022-11-30 19:26:22 -0500 263)                       </p>
+388533f8 (Mgibso46     2022-11-30 19:26:22 -0500 264)                     </div>  
+388533f8 (Mgibso46     2022-11-30 19:26:22 -0500 265)                     <h3>More info</h3>
+388533f8 (Mgibso46     2022-11-30 19:26:22 -0500 266)                     <div class="bodyPadding">
+388533f8 (Mgibso46     2022-11-30 19:26:22 -0500 267)                       <p>
+388533f8 (Mgibso46     2022-11-30 19:26:22 -0500 268)                         Gives information on how to be more effective at working out and eating healthy.
+388533f8 (Mgibso46     2022-11-30 19:26:22 -0500 269)                       </p>
+388533f8 (Mgibso46     2022-11-30 19:26:22 -0500 270)                     </div>  
+388533f8 (Mgibso46     2022-11-30 19:26:22 -0500 272)                     </p>
+388533f8 (Mgibso46     2022-11-30 19:26:22 -0500 273)                   </div>
+388533f8 (Mgibso46     2022-11-30 19:26:22 -0500 274)                   {% endif %}
+
+WorkoutApp/Templates/CalorieTracker.html
+
+388533f8 (Mgibso46     2022-11-30 19:26:22 -0500 171)                                             Protein:            {{category.protein}}<br>
+
+Readme.md
+
+81e29b1a (Mgibso46             2022-11-28 13:38:57 -0500 15) # How to run
+51572b7a (Mgibso46             2022-11-28 13:14:29 -0500 16) 
+81e29b1a (Mgibso46             2022-11-28 13:38:57 -0500 33) # How to use
+81e29b1a (Mgibso46             2022-11-28 13:38:57 -0500 35) To use are product, you must create a free account. To create a free WorkoutApp account, you must first make sure you are on the homepage at http://127.0.0.1:8000. Then, you must click the create account button, and enter your credentials. Once you are finished, click "Sign up!". This will send you back to the homepage. Once this is complete, or if you had an account from before, then click the "Sign In" button at the top left to sign in. After you put in your username and password, pressing the sign in button below will take you to your accounts home page.
+81e29b1a (Mgibso46             2022-11-28 13:38:57 -0500 36) 
+81e29b1a (Mgibso46             2022-11-28 13:38:57 -0500 37) ### Homepage
+81e29b1a (Mgibso46             2022-11-28 13:38:57 -0500 38) 
+81e29b1a (Mgibso46             2022-11-28 13:38:57 -0500 39) Homepage simply is a page we use as a default for when there is no where else to go. Not much is done here.
+81e29b1a (Mgibso46             2022-11-28 13:38:57 -0500 40) 
+81e29b1a (Mgibso46             2022-11-28 13:38:57 -0500 41) ### Create new workout
+81e29b1a (Mgibso46             2022-11-28 13:38:57 -0500 42) 
+2880ff1e (NutsRobin            2022-11-28 21:13:35 -0500 43) This is to create a new workout using a date. Either type the date as "mm/dd/yyy" or "Month day, year".
+81e29b1a (Mgibso46             2022-11-28 13:38:57 -0500 44) 
+81e29b1a (Mgibso46             2022-11-28 13:38:57 -0500 45) ### Create New Meal
+81e29b1a (Mgibso46             2022-11-28 13:38:57 -0500 46) 
+81e29b1a (Mgibso46             2022-11-28 13:38:57 -0500 47) Same as Create New Workout, but for meals.
+81e29b1a (Mgibso46             2022-11-28 13:38:57 -0500 48) 
+81e29b1a (Mgibso46             2022-11-28 13:38:57 -0500 49) ### Profile Page
+81e29b1a (Mgibso46             2022-11-28 13:38:57 -0500 50) 
+81e29b1a (Mgibso46             2022-11-28 13:38:57 -0500 51) Profile Page has many options to choose from. You are able to change your account information using the Edit Profile button. You can also use the chart under the Edit Profile button to see how you are doing with your workouts. Below that, there is a history of workouts and meals listed by date, which you can click individually to add exercises/meal into them. When you add an Exercise, you must input the exercise name, set amount, rep amount, weight, and RPE. Once added, you can add another exercise to the same workout, or go back to the profile page. Doing this will adjust the plot to show you more information on how you are doing. You can also delete exercises and workouts, however workouts require extra confirmation.
+81e29b1a (Mgibso46             2022-11-28 13:38:57 -0500 52) 
+81e29b1a (Mgibso46             2022-11-28 13:38:57 -0500 53) ### Sign out
+81e29b1a (Mgibso46             2022-11-28 13:38:57 -0500 54) 
+81e29b1a (Mgibso46             2022-11-28 13:38:57 -0500 55) Signs you out of your account. 
+81e29b1a (Mgibso46             2022-11-28 13:38:57 -0500 56) 
+81e29b1a (Mgibso46             2022-11-28 13:38:57 -0500 57) ### More info
+81e29b1a (Mgibso46             2022-11-28 13:38:57 -0500 58) 
+81e29b1a (Mgibso46             2022-11-28 13:38:57 -0500 59) Gives information on how to be more effective at working out and eating healthy.
