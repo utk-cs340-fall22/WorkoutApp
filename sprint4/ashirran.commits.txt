@@ -1,0 +1,263 @@
+WorkoutApp/Main/forms.py
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 17) class DayForm(forms.Form):
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 18)     date = forms.DateField(label='Enter the Date of Meals Eaten')
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 19) 
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 24)     category = forms.CharField(label="Meal", widget=forms.Select(choices=Category.options))
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 25)     name = forms.CharField(label="Food's Name")
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 26)     carbohydrate = forms.DecimalField(min_value=0, label="Amount of Carbs (g)")
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 27)     fats = forms.DecimalField(min_value=0, label="Amount of Fat (g)")
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 28)     protein = forms.DecimalField(min_value=0, label="Amount of Protein (g)")
+c6b920eb (NutsRobin     2022-11-25 15:24:34 -0600 29)     quantity = forms.DecimalField(min_value=0, label="Amount Consumed")
+
+WorkoutApp/Main/models.py
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500  27) """exercise_set
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 101) 
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 102) class CalorieHistory(models.Model):
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 103)     user = models.CharField(max_length = 50)
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 104) 
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 105)     def __str__(self):
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 106)         return str(self.user) + ' CalorieHistory'
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 107) 
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 108) class Day(models.Model):
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 109)     date = models.DateField()
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 110)     user = models.CharField(max_length = 50)
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 111)     reffering_caloriehistory = models.ForeignKey(CalorieHistory, on_delete=models.CASCADE)
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 112)     
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 113)     def __str__(self):
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 114)         return str(self.user) + ': ' + str(self.date)
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 115) 
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 122)         ('Breakfast','Breakfast'),
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 123)         ('lunch','Lunch'),
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 124)         ('Dinner','Dinner'),
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 125)         ('Snacks','Snacks'),
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 127)     reffering_day = models.ForeignKey(Day, on_delete=models.CASCADE)
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 129)     name = models.CharField(max_length = 50)
+
+WorkoutApp/Main/urls.py
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 43)     path('ProfilePage/<int:id>/Meals', views.calorie_tracker, name='CalorieTracker.html'),
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 44)     path('ProfilePage/TestCharts', views.TestCharts, name='TestCharts'),    #jhowar63 - for testing graph stuff.
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 45)     path('CreateTracker', views.CreateTracker, name='CreateTracker'),
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 46)     path('ProfilePage/<int:id>/add-meal', views.CreateMeal),
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 47)     path('delete-meal/<int:id>', views.deleteMeal, name="delete-meal"),
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 48)     path('ProfilePage/<int:id>/ConfirmMealDeletion', views.confirmMealDelete, name="ConfirmMealDeletion"),
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 49)     path('delete-day/<int:id>', views.deleteDay, name="delete-day"),
+
+WorkoutApp/Main/views.py
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500  20) from .models import WorkoutHistory, Workout, Exercise, Category, Day, CalorieHistory
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500  21) from .forms import ExerciseForm, WorkoutForm, CalorieForm, DayForm
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 102)         caloriehistory = CalorieHistory()
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 103)         caloriehistory.user = username
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 104)         caloriehistory.save()
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 154)     caloriehistory = None
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 155)     all_days = None
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 156) 
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 163) 
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 164)     try:
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 165)         CalorieHistory.objects.get(user=str(username)) is not None
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 166)         caloriehistory = CalorieHistory.objects.get(user=str(username))
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 167)         all_days = CalorieHistory.objects.get(user=str(username)).day_set.all()
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 168)     except CalorieHistory.DoesNotExist:
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 169)         raise Http404("User's CalorieHistory does not exist")
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 170) 
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 176)         'all_days' : all_days,
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 459) def calorie_tracker(request, id=None):
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 460)     specific_day = None
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 461)     all_meals = None
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 462) 
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 484)     try:       
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 485)         specific_day = Day.objects.get(id=id)
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 486)         all_meals = Day.objects.get(id=id).category_set.all()
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 487)     except Day.DoesNotExist:
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 488)         raise Http404("User's Calorie History does not exist")
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 489) 
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 492)     context = {
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 493)         'specific_day': specific_day,
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 500)     }
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 501)     return render(request, "CalorieTracker.html", context)
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 502) 
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 532) 
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 533) def CreateTracker(request):
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 534) 
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 560)     if request.method == 'POST':
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 561)         form = DayForm(request.POST)
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 562) 
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 563)         if form.is_valid():
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 564)             day = Day()
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 565)             user = request.user
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 566)             username = user.username
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 567)             day.date = form.cleaned_data['date']
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 568)             day.user = username
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 569)             day.reffering_caloriehistory = CalorieHistory.objects.get(user=str(username))
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 570)             day.save()
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 571) 
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 572)             return redirect('ProfilePage')
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 573) 
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 574)     else:
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 575)         form = DayForm()
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 576) 
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 588) 
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 589) 
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 590) def CreateMeal(request, id):
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 591) 
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 623)     if request.method == 'POST':
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 624)         form = CalorieForm(request.POST)
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 625) 
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 626)         if form.is_valid():
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 627)             meal = Category()
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 628)             day = Day.objects.get(id=id)
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 629)             meal.category = form.cleaned_data['category']
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 630)             meal.name = form.cleaned_data['name']
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 631)             meal.carbohydrate = form.cleaned_data['carbohydrate']
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 632)             meal.fats = form.cleaned_data['fats']
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 633)             meal.protein = form.cleaned_data['protein']
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 634)             meal.quantity = form.cleaned_data['quantity']
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 636)             meal.reffering_day = day
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 637)             meal.save()
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 638) 
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 639)             return redirect(request.path_info)
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 640)         
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 641)     else:
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 642)         form = CalorieForm()
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 655) 
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 656) def deleteMeal(request, id):
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 657)     item = Category.objects.get(id=id)
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 658)     item.delete()
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 659)     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 660) 
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 661) 
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 662) def confirmMealDelete(request,id=None):
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 663)     specific_day = None
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 667)         specific_day = Day.objects.get(id=id)
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 668)         all_meals = Day.objects.get(id=id).category_set.all()
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 669)     except Day.DoesNotExist:
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 673)         'specific_day': specific_day,
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 674)         'all_meals': all_meals,
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 676)     return render(request, "ConfirmMealDelete.html", context)
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 679) def deleteDay(request,id):
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 680)     item = Day.objects.get(id=id)
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 681)     item.delete()
+635cdbed (Ashirran      2022-11-23 21:47:05 -0500 682)     return redirect('ProfilePage')
+
+WorkoutApp/Templates/ChangePassword.html
+635cdbed (Ashirran     2022-11-23 21:47:05 -0500  39)			<button type="submit" class="btn btn-default"> <a href="/CreateTracker"> New Meal Date </a> </button>
+
+WorkoutApp/Templates/ConfirmMealDelete.html
+635cdbed (Ashirran     2022-11-23 21:47:05 -0500   1) {%load static%}
+635cdbed (Ashirran     2022-11-23 21:47:05 -0500  13) 
+635cdbed (Ashirran     2022-11-23 21:47:05 -0500  24) 
+635cdbed (Ashirran     2022-11-23 21:47:05 -0500  25) 
+635cdbed (Ashirran     2022-11-23 21:47:05 -0500  29)     
+635cdbed (Ashirran     2022-11-23 21:47:05 -0500  30)     
+635cdbed (Ashirran     2022-11-23 21:47:05 -0500  65) <h1> Are you sure you want to delete your meals on {{ specific_day.date }}? </h1>
+635cdbed (Ashirran     2022-11-23 21:47:05 -0500  66) <button type="submit"> <a href={% url 'delete-day' id=specific_day.id %}> Yes, Delete: {{specific_day.date}} </a></button>
+
+WorkoutApp/Templates/ConfirmWorkoutDelete.html
+(Ashirran     2022-11-23 21:47:05 -0500  42)                    <button type="submit" class="btn btn-default"> <a href="/CreateTracker"> New Meal Date </a> </button>
+
+WorkoutApp/Templates/CreateAccount.html
+635cdbed WorkoutApp/Templates/ConfirmMealDelete.html (Ashirran     2022-11-23 21:47:05 -0500  40)
+
+WorkoutApp/Templates/CreateExercise.html
+(Ashirran     2022-11-23 21:47:05 -0500  42)                    <button type="submit" class="btn btn-default"> <a href="/CreateTracker"> New Meal Date </a> </button>
+
+WorkoutApp/Templates/CreateMeal.html
+635cdbed (Ashirran     2022-11-23 21:47:05 -0500  28)         
+635cdbed (Ashirran     2022-11-23 21:47:05 -0500  31)         <div id="wrapper">
+635cdbed (Ashirran     2022-11-23 21:47:05 -0500  46)                 <li class="nav-item active">
+635cdbed (Ashirran     2022-11-23 21:47:05 -0500  52)                 <!-- Divider -->
+635cdbed (Ashirran     2022-11-23 21:47:05 -0500  55)                 <!-- Heading -->
+635cdbed (Ashirran     2022-11-23 21:47:05 -0500  62)                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+635cdbed (Ashirran     2022-11-23 21:47:05 -0500  67)                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+635cdbed (Ashirran     2022-11-23 21:47:05 -0500  68)                         <div class="bg-white py-2 collapse-inner rounded">
+635cdbed (Ashirran     2022-11-23 21:47:05 -0500  69)                             <h6 class="collapse-header">Add or View Workouts:</h6>
+635cdbed (Ashirran     2022-11-23 21:47:05 -0500  72)                             {%for workout in all_workouts %}
+635cdbed (Ashirran     2022-11-23 21:47:05 -0500  73)                                 <a class="collapse-item" href="/ProfilePage/{{workout.id}}/Workouts"> {{workout.date}}</a>
+635cdbed (Ashirran     2022-11-23 21:47:05 -0500  77)                     </div>
+635cdbed (Ashirran     2022-11-23 21:47:05 -0500  79) 
+635cdbed (Ashirran     2022-11-23 21:47:05 -0500  80)                 <!-- Nav Item - Meals Collapse Menu -->
+635cdbed (Ashirran     2022-11-23 21:47:05 -0500  82)                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+635cdbed (Ashirran     2022-11-23 21:47:05 -0500  83)                         aria-expanded="true" aria-controls="collapseUtilities">
+635cdbed (Ashirran     2022-11-23 21:47:05 -0500  84)                         <!--<i class="fas fa-fw fa-wrench"></i>-->
+635cdbed (Ashirran     2022-11-23 21:47:05 -0500  85)                         <span>Meals</span>
+635cdbed (Ashirran     2022-11-23 21:47:05 -0500  87)                     <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+635cdbed (Ashirran     2022-11-23 21:47:05 -0500  88)                         data-parent="#accordionSidebar">
+635cdbed (Ashirran     2022-11-23 21:47:05 -0500  89)                         <div class="bg-white py-2 collapse-inner rounded">
+635cdbed (Ashirran     2022-11-23 21:47:05 -0500  90)                             <h6 class="collapse-header">Custom Utilities:</h6>
+635cdbed (Ashirran     2022-11-23 21:47:05 -0500  91)                             <a class="collapse-item" href="/CreateTracker"> New Meal Date </a>
+635cdbed (Ashirran     2022-11-23 21:47:05 -0500  93)                                 {%for day in all_days %}
+635cdbed (Ashirran     2022-11-23 21:47:05 -0500  94)                                 <a class="collapse-item" href='/ProfilePage/{{day.id}}/Meals'> {{day.date}}</a>
+635cdbed (Ashirran     2022-11-23 21:47:05 -0500 101) 
+635cdbed (Ashirran     2022-11-23 21:47:05 -0500 121) 
+635cdbed (Ashirran     2022-11-23 21:47:05 -0500 145)                         <strong>Message:</strong> {{ message}}
+635cdbed (Ashirran     2022-11-23 21:47:05 -0500 147)                         <span aria-hidden="true">&times;</span>
+635cdbed (Ashirran     2022-11-23 21:47:05 -0500 148)                         </button>
+635cdbed (Ashirran     2022-11-23 21:47:05 -0500 153)                         <h3>Meal Editor</h3>
+635cdbed (Ashirran     2022-11-23 21:47:05 -0500 155)                         <form action="" method="post">
+635cdbed (Ashirran     2022-11-23 21:47:05 -0500 156)                             {% csrf_token %}
+635cdbed (Ashirran     2022-11-23 21:47:05 -0500 157)                             {{ form.as_p }}
+635cdbed (Ashirran     2022-11-23 21:47:05 -0500 158)                             <input type="submit" value="Submit">
+635cdbed (Ashirran     2022-11-23 21:47:05 -0500 161)                         <button type="submit"> <a href="/ProfilePage">Cancel</a> </button>
+635cdbed (Ashirran     2022-11-23 21:47:05 -0500 182)                     Eventually it will be like that but for now it's a place holder
+
+WorkoutApp/Templates/CreateTracker.html
+635cdbed (Ashirran     2022-11-23 21:47:05 -0500  39)                 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
+635cdbed (Ashirran     2022-11-23 21:47:05 -0500  82)                 <!-- Nav Item - Meals Collapse Menu -->
+635cdbed (Ashirran     2022-11-23 21:47:05 -0500  90)                         data-parent="#accordionSidebar">
+635cdbed (Ashirran     2022-11-23 21:47:05 -0500  93)                             <a class="collapse-item" href="/CreateTracker"> New Meal Date </a>
+635cdbed (Ashirran     2022-11-23 21:47:05 -0500  95)                                 {%for day in all_days %}
+635cdbed (Ashirran     2022-11-23 21:47:05 -0500  96)                                 <a class="collapse-item" href='/ProfilePage/{{day.id}}/Meals'> {{day.date}}</a>
+635cdbed (Ashirran     2022-11-23 21:47:05 -0500  97)                                 {% endfor %}
+635cdbed (Ashirran     2022-11-23 21:47:05 -0500 104)                 <!-- Divider -->
+635cdbed (Ashirran     2022-11-23 21:47:05 -0500 105)                 <hr class="sidebar-divider">
+635cdbed (Ashirran     2022-11-23 21:47:05 -0500 110)                     <a class="nav-link" href="/EditProfile">Edit Profile</a>
+635cdbed (Ashirran     2022-11-23 21:47:05 -0500 115)                     <a class="nav-link" href="/MoreInfo">More Info</a>
+635cdbed (Ashirran     2022-11-23 21:47:05 -0500 120)                     <a class="nav-link" href="/SignOut">Sign Out</a>
+635cdbed (Ashirran     2022-11-23 21:47:05 -0500 126)                 <!-- Sidebar Toggler (Sidebar) -->
+635cdbed (Ashirran     2022-11-23 21:47:05 -0500 127)                 <div class="text-center d-none d-md-inline">
+635cdbed (Ashirran     2022-11-23 21:47:05 -0500 128)                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
+635cdbed (Ashirran     2022-11-23 21:47:05 -0500 134)             <!-- Content Wrapper -->
+635cdbed (Ashirran     2022-11-23 21:47:05 -0500 141)                     <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+635cdbed (Ashirran     2022-11-23 21:47:05 -0500 143)                             <h1>{{ specific_day.user }}'s Caloric Intake on {{ specific_day.date }}</h1>
+635cdbed (Ashirran     2022-11-23 21:47:05 -0500 147)                     {% for message in messages %}
+635cdbed (Ashirran     2022-11-23 21:47:05 -0500 149)                         <strong>Message:</strong> {{ message}}
+635cdbed (Ashirran     2022-11-23 21:47:05 -0500 150)                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+635cdbed (Ashirran     2022-11-23 21:47:05 -0500 154)                     {% endfor %}
+635cdbed (Ashirran     2022-11-23 21:47:05 -0500 157)                         <h1> Summary</h1>
+635cdbed (Ashirran     2022-11-23 21:47:05 -0500 158)         
+635cdbed (Ashirran     2022-11-23 21:47:05 -0500 163)                                         <h3 class="m-0 font-weight-bold text-primary">{{ category.category }}</h3>
+635cdbed (Ashirran     2022-11-23 21:47:05 -0500 168)                                             Name:               {{category.name}}<br>
+635cdbed (Ashirran     2022-11-23 21:47:05 -0500 169)                                             Carbohydrate:       {{category.carbohydrate}}<br>
+635cdbed (Ashirran     2022-11-23 21:47:05 -0500 170)                                             Fats:               {{category.fats}}<br>
+635cdbed (Ashirran     2022-11-23 21:47:05 -0500 171)                                             Protein:            {{category.protien}}<br>
+635cdbed (Ashirran     2022-11-23 21:47:05 -0500 172)                                             Calories:           {{category.calorie}}<br>
+635cdbed (Ashirran     2022-11-23 21:47:05 -0500 173)                                             Quantity:           {{category.quantity}}<br>
+635cdbed (Ashirran     2022-11-23 21:47:05 -0500 174)                                             <a href="{% url 'delete-meal' id=category.id %}"> Delete {{category.category}}</a>
+635cdbed (Ashirran     2022-11-23 21:47:05 -0500 179)                         {% endfor %}
+635cdbed (Ashirran     2022-11-23 21:47:05 -0500 180)                         <button type="submit"> <a href="http://127.0.0.1:8000/ProfilePage/{{specific_day.id}}/add-meal"> Add a Meal </a></button>
+635cdbed (Ashirran     2022-11-23 21:47:05 -0500 207)                     Eventually it will be like that but for now it's a place holder
+
+WorkoutApp/Templates/CreateWorkout.html
+635cdbed (Ashirran     2022-11-23 21:47:05 -0500  )			<button type="submit" class="btn btn-default"> <a href="/CreateTracker"> New Meal Date </a> </button>
+
+WorkoutApp/Templates/EditProfile.html
+635cdbed (Ashirran     2022-11-23 21:47:05 -0500  38)			<button type="submit" class="btn btn-default"> <a href="/CreateTracker"> New Meal Date </a> </button>
+
+WorkoutApp/Templates/MoreInfo.html
+635cdbed (Ashirran     2022-11-23 21:47:05 -0500  )			<button type="submit" class="btn btn-default"> <a href="/CreateTracker"> New Meal Date </a> </button>
+
+WorkoutApp/Templates/PasswordSuccess.html
+635cdbed (Ashirran     2022-11-23 21:47:05 -0500  )			<button type="submit" class="btn btn-default"> <a href="/CreateTracker"> New Meal Date </a> </button>
+
+WorkoutApp/Templates/ProfilePage.html
+635cdbed (Ashirran     2022-11-23 21:47:05 -0500  )			<button type="submit" class="btn btn-default"> <a href="/CreateTracker"> New Meal Date </a> </button>
+
+WorkoutApp/Templates/SignIn.html
+635cdbed (Ashirran     2022-11-23 21:47:05 -0500  )			<button type="submit" class="btn btn-default"> <a href="/CreateTracker"> New Meal Date </a> </button>
+
+WorkoutApp/Templates/TestCharts.html
+635cdbed (Ashirran     2022-11-23 21:47:05 -0500  )			<button type="submit" class="btn btn-default"> <a href="/CreateTracker"> New Meal Date </a> </button>
+
+WorkoutApp/Templates/WorkoutDetails.html
+635cdbed (Ashirran     2022-11-23 21:47:05 -0500  )			<button type="submit" class="btn btn-default"> <a href="/CreateTracker"> New Meal Date </a> </button>
+WorkoutApp/Templates/homepage.html
+635cdbed (Ashirran     2022-11-23 21:47:05 -0500  )			<button type="submit" class="btn btn-default"> <a href="/CreateTracker"> New Meal Date </a> </button>
