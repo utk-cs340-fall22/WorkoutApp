@@ -41,3 +41,8 @@ Group Name: WorkoutApp
 - Workoutapp/static/vendor/
 
 ### What you accomplished.
+
+This semester I have worked at least a little bit on almost every facet of this project. My goal was to become familiar with tools/languages I had not used before. I also hoped to work on both the front and back end.
+I started out having to become familiar with Django, python, html, etc. From their I started work on the backend, creating the foundation on which we would store a user's WorkoutHistory which consist of individual Workouts that are made up of Exercises. From there I made ways to display the WorkoutHistory and the workouts and exercises that make up the history. Next I worked in the initial implementation of graphing the WorkoutHistory, which was later scrapped though. Finally I worked on applying a standard page format to the website.
+
+
