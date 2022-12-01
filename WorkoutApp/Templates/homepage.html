@@ -184,7 +184,46 @@
 
                 </div>
               </div> <!--End Main Content-->
-              
+              {% if user.is_authenticated %}
+                   <h3>Homepage</h3>
+                   <div class="bodyPadding">
+                     <p>
+                       Homepage simply is a page we use as a default for when there is no where else to go. Not much is done here.
+                     </p>
+                   </div>
+                   <h3>Create new workout</h3>
+                   <div class="bodyPadding">
+                     <p>
+                       This is to create a new workout using a date. Either type the date as "mm/dd/yyy" or "Month day, year".
+                     </p>
+                   </div>
+                   <h3>Create New Meal</h3>
+                     <div class="bodyPadding">
+                       <p>
+                         Same as Create New Workout, but for meals.
+                       </p>
+                     </div>  
+                     <h3>Profile Page</h3>
+                     <div class="bodyPadding">
+                       <p>
+                         Profile Page has many options to choose from. You are able to change your account information using the Edit Profile button. You can also use the chart under the Edit Profile button to see how you are doing with your workouts. Below that, there is a history of workouts and meals listed by date, which you can click individually to add exercises/meal into them. When you add an Exercise, you must input the exercise name, set amount, rep amount, weight, and RPE. Once added, you can add another exercise to the same workout, or go back to the profile page. Doing this will adjust the plot to show you more information on how you are doing. You can also delete exercises and workouts, however workouts require extra confirmation.
+                       </p>
+                     </div>  
+                     <h3>Sign out</h3>
+                     <div class="bodyPadding">
+                       <p>
+                         Signs you out of your account.
+                       </p>
+                     </div>  
+                     <h3>More info</h3>
+                     <div class="bodyPadding">
+                       <p>
+                         Gives information on how to be more effective at working out and eating healthy.
+                       </p>
+                     </div>  
+                     </p>
+                   </div>
+                   {% endif %}
               <!-- Footer -->
               <footer class="sticky-footer bg-white">
                   <div class="container my-auto">
