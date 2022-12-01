@@ -43,3 +43,7 @@ information to learn more about different workouts and diets other people do.
 * Bootstrap - Bootstrap is a free open source front-end-framework to develop faster,easier,responsive web pages, and mobile-first websites. 
 * VScode - Visual Studio Code, also commonly referred to as VS Code, is a source-code editor made by Microsoft with the Electron Framework, for Windows, Linux and macOS.
 * GitHub - GitHub is a distributed version-control platform where users can collaborate on or adopt open source code projects, fork code, share ideas and more.
+* Pandas - Pandas is an open source Python package that is most widely used for data science/data analysis and machine learning tasks.
+* Scikit-learn - Scikit-learn is a free software machine learning library for the Python programming language
+* Numpy - NumPy is a library for the Python programming language, adding support for large, multi-dimensional arrays and matrices, along with a large collection of high-level mathematical functions to operate on these arrays.
+* CSS - Cascading Style Sheets (CSS) is a style sheet language used for describing the presentation of a document written in a markup language such as HTML
