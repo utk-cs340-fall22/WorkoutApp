@@ -4,7 +4,9 @@ Michael Gibson, mgibso46, WorkoutApp
 ## File I worked on
 
 Readme.md
+
 /WorkoutApp/Templates/homepage.html
+
 /WorkoutApp/Templates/ProfilePage.html
 
 ## What I accomplished
