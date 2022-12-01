@@ -7,7 +7,7 @@ Readme.md
 
 ## What I accomplished
 
--Created Presentation slides for our presentation
--Created Script for our presentation
--Started license
--Created most of Readme.md
+This sprint, I did not do much if any code, as I was completely focused on our presentation and licensing.
+I created the presentation slides for our presentation, as well the script we plan on using, including
+deciding who will work on which parts. I also started working on the licensing needed for our 
+project, and created the majority of the readme.md we have currently. 
