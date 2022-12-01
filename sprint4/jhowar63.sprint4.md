@@ -16,7 +16,6 @@ Group Name: WorkoutApp
 - WorkoutApp/Templates/ProfilePage.html 
 - WorkoutApp/Templates/WorkoutDetails.html 
 - WorkoutApp/Templates/CalorieTracker.html 
-- WorkoutApp/Templates/index.html 
 - WorkoutApp/Templates/CreateAccount.html 
 - WorkoutApp/Templates/CreateExercise.html 
 - WorkoutApp/Templates/CreateMeal.html 
