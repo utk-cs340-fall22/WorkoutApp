@@ -1,0 +1,540 @@
+Templates/Calorietrack.html
+6caedb7b (Andrew Hines 2022-11-30 15:27:25 -0500  40)                     <img src="static/images/workouticon.png" width="35px" height="35px" />
+
+3008af53 (Andrew Hines 2022-11-30 15:43:43 -0500 198)                             <span>Copyright &copy; Workout App 2022</span>
+
+
+Templates/Createaccount.html
+
+3008af53 (Andrew Hines 2022-11-30 15:43:43 -0500 132)                         <span>Copyright &copy; Workout App 2022</span>
+330be149 (mdew-abc     2022-10-13 10:23:25 -0400 138)         </div>
+
+Templates/ChangePassword.html
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500  15)         <!-- Custom fonts for this template-->
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500  16)         <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500  17)         <link
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500  18)             href="{% static 'https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i' %}"
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500  19)             rel="stylesheet">
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  20) 
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500  21)         <!-- Custom styles for this template-->
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500  22)         <link href="{% static 'css/sb-admin-2.min.css' %}" rel="stylesheet">
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  23)         
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  24) 
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  25) 
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  26) 
+
+
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500  31)         <div id="wrapper">
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500  32) 
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500  33)             <!-- Sidebar -->
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500  34)             <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500  35) 
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500  36)                 <!-- Sidebar - Brand -->
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500  37)                 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500  38)                     <img src="static/images/workouticon.png" width="35px" height="35px" />
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500  39)                     <div class="sidebar-brand-text mx-3">Workout App</div>
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500  40)                 </a>
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500  41) 
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500  42)                 <!-- Divider -->
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500  43)                 <hr class="sidebar-divider my-0">
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500  44) 
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500  45)                 <!-- Nav Item - Dashboard -->
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500  46)                 <li class="nav-item active">
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500  47)                     <a class="nav-link" href="/ProfilePage">
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500  48)                         <!--<i class="fas fa-fw fa-tachometer-alt"></i>-->
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500  49)                         <span>Profile Page</span></a>
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500  50)                 </li>
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500  51) 
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500  52)                 <!-- Divider -->
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500  53)                 <hr class="sidebar-divider">
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500  54) 
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500  55)                 <!-- Heading -->
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500  56)                 <div class="sidebar-heading">
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500  57)                     Interface
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500  58)                 </div>
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500  59) 
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500  60)                 <!-- Nav Item - Workouts Collapse Menu -->
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500  61)                 <li class="nav-item">
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500  62)                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500  63)                         aria-expanded="true" aria-controls="collapseTwo">
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500  64)                         <!--<i class="fas fa-fw fa-cog"></i>-->
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500  65)                         <span>Workouts</span>
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500  66)                     </a>
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500  67)                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500  68)                         <div class="bg-white py-2 collapse-inner rounded">
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500  69)                             <h6 class="collapse-header">Add or View Workouts:</h6>
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500  70)                             <a class="collapse-item" href="/CreateWorkout">New Workout</a>
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500  71)                             <u1>
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500  72)                             {%for workout in all_workouts %}
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500  73)                                 <a class="collapse-item" href="/ProfilePage/{{workout.id}}/Workouts"> {{workout.date}}</a>
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500  74)                             {% endfor %}
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500  75)                             </u1>
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500  76)                         </div>
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500  77)                     </div>
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500  78)                 </li>
+8501d430 (Ashirran     2022-10-25 19:17:51 -0400  79) 
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500  80)                 <!-- Nav Item - Meals Collapse Menu -->
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500  81)                 <li class="nav-item">
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500  82)                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500  83)                         aria-expanded="true" aria-controls="collapseUtilities">
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500  84)                         <!--<i class="fas fa-fw fa-wrench"></i>-->
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500  85)                         <span>Meals</span>
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500  86)                     </a>
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500  87)                     <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500  88)                         data-parent="#accordionSidebar">
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500  89)                         <div class="bg-white py-2 collapse-inner rounded">
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500  90)                             <h6 class="collapse-header">Custom Utilities:</h6>
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500  91)                             <a class="collapse-item" href="/CreateTracker"> New Meal Date </a>
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500  92)                             <u1>
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500  93)                                 {%for day in all_days %}
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500  94)                                 <a class="collapse-item" href='/ProfilePage/{{day.id}}/Meals'> {{day.date}}</a>
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500  95)                                 {% endfor %}
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  96)                 
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500  97)                             </u1> 
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500  98)                         </div>
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500  99)                     </div>
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500 100)                 </li>
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500 101) 
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500 102) 
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500 103) 
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500 104)                 <!-- Nav Item - Edit Profile -->
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500 105)                 <li class="nav-item">
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500 106)                     <a class="nav-link" href="/EditProfile">Edit Profile</a>
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500 107)                 </li>
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500 108) 
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500 109)                 <!-- Nav Item - More Info -->
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500 110)                 <li class="nav-item">
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500 111)                     <a class="nav-link" href="/MoreInfo">More Info</a>
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500 112)                 </li>
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500 113) 
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500 114)                 <!-- Nav Item - Sign Out -->
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500 115)                 <li class="nav-item">
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500 116)                     <a class="nav-link" href="/SignOut">Sign Out</a>
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500 117)                 </li>
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500 118) 
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500 119)                 <!-- Divider -->
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500 120)                 <hr class="sidebar-divider d-none d-md-block">
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500 121) 
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500 122)                 <!-- Sidebar Toggler (Sidebar) -->
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500 123)                 <div class="text-center d-none d-md-inline">
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500 124)                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500 125)                 </div>
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500 126) 
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500 127)             </ul>
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500 128)             <!-- End of Sidebar -->
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500 129) 
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500 130)             <!-- Content Wrapper -->
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500 131)             <div id="content-wrapper" class="d-flex flex-column">
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500 132) 
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500 133)                 <!-- Main Content S-->
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500 134)                 <div id="content">
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500 135) 
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500 136)                     <!-- Nav Bar -->
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500 137)                     <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500 138)                         <a class="d-flex align-items-center justify-content-center">
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500 139)                             <h1>Change Your Password</h1>
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500 140)                         </a>
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500 141)                     </nav>
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500 142)                     {% for message in messages %}
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500 143)                     <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500 144)                         <strong>Message:</strong> {{ message}}
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500 145)                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500 146)                             <span aria-hidden="true">&times;</span>
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500 147)                         </button>
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500 148)                     </div>
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500 149)                     {% endfor %}
+a9bc8e81 (Andrew Hines 2022-11-30 17:08:13 -0500 150)                     <div class="container-fluid">
+a9bc8e81 (Andrew Hines 2022-11-30 17:08:13 -0500 151)                         <div>
+a9bc8e81 (Andrew Hines 2022-11-30 17:08:13 -0500 152)                             <form method="post">
+a9bc8e81 (Andrew Hines 2022-11-30 17:08:13 -0500 153)                                 {%csrf_token%}
+a9bc8e81 (Andrew Hines 2022-11-30 17:08:13 -0500 154)                                 {{form.as_p}}
+a9bc8e81 (Andrew Hines 2022-11-30 17:08:13 -0500 155)                             </form>
+a9bc8e81 (Andrew Hines 2022-11-30 17:08:13 -0500 156)                             <button class="btn btn-secondary">Update Profile</button>
+a9bc8e81 (Andrew Hines 2022-11-30 17:08:13 -0500 157)                         </div>
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500 158)                     </div>
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500 159)                 </div>
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500 160) 
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500 161)                 <!-- Footer -->
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500 162)                 <footer class="sticky-footer bg-white">
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500 163)                     <div class="container my-auto">
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500 164)                         <div class="copyright text-center my-auto">
+3008af53 (Andrew Hines 2022-11-30 15:43:43 -0500 165)                             <span>Copyright &copy; Workout App 2022</span>
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500 166)                         </div>
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500 167)                     </div>
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500 168)                 </footer>
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500 169)                 <!-- End of Footer -->
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500 170)             </div>
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500 171)         </div>
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500 172)     </body>
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500 173) 
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500 174) 
+8501d430 (Ashirran     2022-10-25 19:17:51 -0400 175)         <script src="" async defer></script>
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500 176) 
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500 177)         <!-- Bootstrap core JavaScript-->
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500 178)         <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500 179)         <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500 180) 
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500 181)         <!-- Core plugin JavaScript-->
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500 182)         <script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500 183) 
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500 184)         <!-- Custom scripts for all pages-->
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500 185)         <script src="{% static 'js/sb-admin-2.min.js' %}"></script>
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500 186) 
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500 187)         <!-- Page level plugins -->
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500 188)         <script src="{% static 'vendor/chart.js/Chart.min.js' %}"></script>
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500 189) 
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500 190)         <!-- Page level custom scripts -->
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500 191)         <script src="{% static 'js/demo/chart-area-demo.js' %}"></script>
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500 192)         <script src="{% static 'js/demo/chart-pie-demo.js' %}"></script>
+da1d6915 (Andrew Hines 2022-11-30 15:38:36 -0500 193) 
+
+
+Templates/homepage.html
+f608b172 (mdew-abc     2022-11-29 09:30:45 -0500  38)         <style>
+f608b172 (mdew-abc     2022-11-29 09:30:45 -0500  39)           div.bodyPadding{
+f608b172 (mdew-abc     2022-11-29 09:30:45 -0500  40)             padding-left:25px;
+f608b172 (mdew-abc     2022-11-29 09:30:45 -0500  41)             padding-right:25px;
+f608b172 (mdew-abc     2022-11-29 09:30:45 -0500  42)           }
+f608b172 (mdew-abc     2022-11-29 09:30:45 -0500  43) 
+f608b172 (mdew-abc     2022-11-29 09:30:45 -0500  44)         </style>
+27c95b50 (mdew-abc     2022-10-13 09:25:50 -0400  45)   
+
+Templates/confirmmealdelete'
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500  15)         <!-- Custom fonts for this template-->
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500  16)         <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500  17)         <link
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500  18)             href="{% static 'https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i' %}"
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500  19)             rel="stylesheet">
+2501528a WorkoutApp/Templates/CalorieDetails.html    (mdew-abc     2022-11-10 14:14:14 -0500  20) 
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500  21)         <!-- Custom styles for this template-->
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500  22)         <link href="{% static 'css/sb-admin-2.min.css' %}" rel="stylesheet">
+2501528a WorkoutApp/Templates/CalorieDetails.html    (mdew-abc     2022-11-10 14:14:14 -0500  23)
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500  31)         <!-- Page Wrapper -->        
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500  32)         <div id="wrapper">
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500  33) 
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500  34)             <!-- Sidebar -->
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500  35)             <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500  36) 
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500  37)                 <!-- Sidebar - Brand -->
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500  38)                 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500  39)                     <img src="static/images/workouticon.png" width="35px" height="35px" />
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500  40)                     <div class="sidebar-brand-text mx-3">Workout App</div>
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500  41)                 </a>
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500  42) 
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500  43)                 <!-- Divider -->
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500  44)                 <hr class="sidebar-divider my-0">
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500  45) 
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500  46)                 <!-- Nav Item - Dashboard -->
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500  47)                 <li class="nav-item active">
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500  48)                     <a class="nav-link" href="/ProfilePage">
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500  49)                         <!--<i class="fas fa-fw fa-tachometer-alt"></i>-->
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500  50)                         <span>Profile Page</span></a>
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500  51)                 </li>
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500  52) 
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500  53)                 <!-- Divider -->
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500  54)                 <hr class="sidebar-divider">
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500  55) 
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500  56)                 <!-- Heading -->
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500  57)                 <div class="sidebar-heading">
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500  58)                     Interface
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500  59)                 </div>
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500  60) 
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500  61)                 <!-- Nav Item - Workouts Collapse Menu -->
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500  62)                 <li class="nav-item">
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500  63)                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500  64)                         aria-expanded="true" aria-controls="collapseTwo">
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500  65)                         <!--<i class="fas fa-fw fa-cog"></i>-->
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500  66)                         <span>Workouts</span>
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500  67)                     </a>
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500  68)                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500  69)                         <div class="bg-white py-2 collapse-inner rounded">
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500  70)                             <h6 class="collapse-header">Add or View Workouts:</h6>
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500  71)                             <a class="collapse-item" href="/CreateWorkout">New Workout</a>
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500  72)                             <u1>
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500  73)                             {%for workout in all_workouts %}
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500  74)                                 <a class="collapse-item" href="/ProfilePage/{{workout.id}}/Workouts"> {{workout.date}}</a>
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500  75)                             {% endfor %}
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500  76)                             </u1>
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500  77)                         </div>
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500  78)                     </div>
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500  79)                 </li>
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500  80) 
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500  81)                 <!-- Nav Item - Meals Collapse Menu -->
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500  82)                 <li class="nav-item">
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500  83)                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500  84)                         aria-expanded="true" aria-controls="collapseUtilities">
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500  85)                         <!--<i class="fas fa-fw fa-wrench"></i>-->
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500  86)                         <span>Meals</span>
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500  87)                     </a>
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500  88)                     <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500  89)                         data-parent="#accordionSidebar">
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500  90)                         <div class="bg-white py-2 collapse-inner rounded">
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500  91)                             <h6 class="collapse-header">Custom Utilities:</h6>
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500  92)                             <a class="collapse-item" href="/CreateTracker"> New Meal Date </a>
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500  93)                             <u1>
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500  94)                                 {%for day in all_days %}
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500  95)                                     <a class="collapse-item" href='/ProfilePage/{{day.id}}/Meals'> {{day.date}}</a>
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500  96)                                 {% endfor %}
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500  97)                 
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500  98)                             </u1> 
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500  99)                         </div>
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500 100)                     </div>
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500 101)                 </li>
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500 102) 
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500 103) 
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500 104)                 
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500 105)                 <!-- Divider -->
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500 106)                 <hr class="sidebar-divider my-0">
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500 107)                 <!-- Nav Item - Edit Profile -->
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500 108)                 <li class="nav-item">
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500 109)                     <a class="nav-link" href="/EditProfile">Edit Profile</a>
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500 110)                 </li>
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500 111) 
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500 112)                 <!-- Nav Item - More Info -->
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500 113)                 <li class="nav-item">
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500 114)                     <a class="nav-link" href="/MoreInfo">More Info</a>
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500 115)                 </li>
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500 116) 
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500 117)                 <!-- Nav Item - Sign Out -->
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500 118)                 <li class="nav-item">
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500 119)                     <a class="nav-link" href="/SignOut">Sign Out</a>
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500 120)                 </li>
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500 121) 
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500 122)                 <!-- Divider -->
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500 123)                 <hr class="sidebar-divider d-none d-md-block">
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500 124) 
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500 125)                 <!-- Sidebar Toggler (Sidebar) -->
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500 126)                 <div class="text-center d-none d-md-inline">
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500 127)                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
+2501528a WorkoutApp/Templates/CalorieDetails.html    (mdew-abc     2022-11-10 14:14:14 -0500 128)                 </div>
+71b417f3 WorkoutApp/Templates/CalorieDetails.html    (Jacob Howard 2022-11-10 02:32:30 -0500 129) 
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500 130)             </ul>
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500 131)             <!-- End of Sidebar -->
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500 132) 
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500 133)             <!-- Content Wrapper -->
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500 134)             <div id="content-wrapper" class="d-flex flex-column">
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500 135) 
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500 136)                 <!-- Main Content S-->
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500 137)                 <div id="content">
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500 138) 
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500 139)                     <!-- Nav Bar -->
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500 140)                     <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500 141)                         <a class="d-flex align-items-center justify-content-center">
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500 142)                             <h1>{{user.username}}'s Profile</h1>
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500 143)                         </a>
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500 144)                     </nav>
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500 145) 
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500 146)                     {% for message in messages %}
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500 147)                     <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500 148)                         <strong>Message:</strong> {{ message}}
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500 149)                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500 150)                         <span aria-hidden="true">&times;</span>
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500 151)                         </button>
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500 152)                     </div>
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500 153)                     {% endfor %}
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500 154)                 
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500 155)                     <div class="container-fluid">
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500 156)                         <h1> Are you sure you want to delete your meals on {{ specific_day.date }}? </h1>
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500 157)                         <button type="submit"> <a href={% url 'delete-day' id=specific_day.id %}> Yes, Delete Meal: {{specific_day.date}} </a></button>
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500 158)                         <button type="submit"> <a href="/ProfilePage"> No, take me back to my profile </a></button>
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500 159)                     </div>
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500 160)                 </div>
+2501528a WorkoutApp/Templates/CalorieDetails.html    (mdew-abc     2022-11-10 14:14:14 -0500 161)             </div>
+71b417f3 WorkoutApp/Templates/CalorieDetails.html    (Jacob Howard 2022-11-10 02:32:30 -0500 162)         </div>
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500 163)     </body>
+d9396b14 WorkoutApp/Templates/ConfirmMealDelete.html (Andrew Hines 2022-11-30 18:10:01 -0500 164) </html>
+
+Templates/ConfirmWorkoutDelete
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  15)         <!-- Custom fonts for this template-->
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  16)         <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  17)         <link
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  18)             href="{% static 'https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i' %}"
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  19)             rel="stylesheet">
+9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  22)         <link href="{% static 'css/sb-admin-2.min.css' %}" rel="stylesheet">
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  23)         
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  24) 
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  25) 
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  26) 
+ab93bd8e (Mgibso46     2022-11-09 20:25:29 -0500  27)     </head>
+ab93bd8e (Mgibso46     2022-11-09 20:25:29 -0500  28)     <body>
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  29)         <!-- Page Wrapper -->        
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  30)         <div id="wrapper">
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  31) 
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  32)             <!-- Sidebar -->
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  33)             <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  34) 
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  35)                 <!-- Sidebar - Brand -->
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  36)                 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  37)                     <img src="static/images/workouticon.png" width="35px" height="35px" />
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  38)                     <div class="sidebar-brand-text mx-3">Workout App</div>
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  39)                 </a>
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  40) 
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  41)                 <!-- Divider -->
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  42)                 <hr class="sidebar-divider my-0">
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  43) 
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  44)                 <!-- Nav Item - Dashboard -->
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  45)                 <li class="nav-item active">
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  46)                     <a class="nav-link" href="/ProfilePage">
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  47)                         <!--<i class="fas fa-fw fa-tachometer-alt"></i>-->
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  48)                         <span>Profile Page</span></a>
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  49)                 </li>
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  50) 
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  51)                 <!-- Divider -->
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  52)                 <hr class="sidebar-divider">
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  53) 
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  54)                 <!-- Heading -->
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  55)                 <div class="sidebar-heading">
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  56)                     Interface
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  57)                 </div>
+2501528a (mdew-abc     2022-11-10 14:14:14 -0500  58) 
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  59)                 <!-- Nav Item - Workouts Collapse Menu -->
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  60)                 <li class="nav-item">
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  61)                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  62)                         aria-expanded="true" aria-controls="collapseTwo">
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  63)                         <!--<i class="fas fa-fw fa-cog"></i>-->
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  64)                         <span>Workouts</span>
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  65)                     </a>
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  66)                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  67)                         <div class="bg-white py-2 collapse-inner rounded">
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  68)                             <h6 class="collapse-header">Add or View Workouts:</h6>
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  69)                             <a class="collapse-item" href="/CreateWorkout">New Workout</a>
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  70)                             <u1>
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  71)                             {%for workout in all_workouts %}
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  72)                                 <a class="collapse-item" href="/ProfilePage/{{workout.id}}/Workouts"> {{workout.date}}</a>
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  73)                             {% endfor %}
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  74)                             </u1>
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  75)                         </div>
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  76)                     </div>
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  77)                 </li>
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  78) 
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  79)                 <!-- Nav Item - Meals Collapse Menu -->
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  80)                 <li class="nav-item">
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  81)                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  82)                         aria-expanded="true" aria-controls="collapseUtilities">
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  83)                         <!--<i class="fas fa-fw fa-wrench"></i>-->
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  84)                         <span>Meals</span>
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  85)                     </a>
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  86)                     <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  87)                         data-parent="#accordionSidebar">
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  88)                         <div class="bg-white py-2 collapse-inner rounded">
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  89)                             <h6 class="collapse-header">Custom Utilities:</h6>
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  90)                             <a class="collapse-item" href="/CreateTracker"> New Meal Date </a>
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  91)                             <u1>
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  92)                                 {%for day in all_days %}
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  93)                                     <a class="collapse-item" href='/ProfilePage/{{day.id}}/Meals'> {{day.date}}</a>
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  94)                                 {% endfor %}
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  95)                 
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  96)                             </u1> 
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  97)                         </div>
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  98)                     </div>
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  99)                 </li>
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500 100) 
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500 101) 
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500 102)                 
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500 103)                 <!-- Divider -->
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500 104)                 <hr class="sidebar-divider my-0">
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500 105)                 <!-- Nav Item - Edit Profile -->
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500 106)                 <li class="nav-item">
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500 107)                     <a class="nav-link" href="/EditProfile">Edit Profile</a>
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500 108)                 </li>
+ab93bd8e (Mgibso46     2022-11-09 20:25:29 -0500 109) 
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500 110)                 <!-- Nav Item - More Info -->
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500 111)                 <li class="nav-item">
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500 112)                     <a class="nav-link" href="/MoreInfo">More Info</a>
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500 113)                 </li>
+ab93bd8e (Mgibso46     2022-11-09 20:25:29 -0500 114) 
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500 115)                 <!-- Nav Item - Sign Out -->
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500 116)                 <li class="nav-item">
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500 117)                     <a class="nav-link" href="/SignOut">Sign Out</a>
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500 118)                 </li>
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500 119) 
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500 120)                 <!-- Divider -->
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500 121)                 <hr class="sidebar-divider d-none d-md-block">
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500 122) 
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500 123)                 <!-- Sidebar Toggler (Sidebar) -->
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500 124)                 <div class="text-center d-none d-md-inline">
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500 125)                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500 126)                 </div>
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500 127) 
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500 128)             </ul>
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500 129)             <!-- End of Sidebar -->
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500 130) 
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500 131)             <!-- Content Wrapper -->
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500 132)             <div id="content-wrapper" class="d-flex flex-column">
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500 133) 
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500 134)                 <!-- Main Content S-->
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500 135)                 <div id="content">
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500 136) 
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500 137)                     <!-- Nav Bar -->
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500 138)                     <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500 139)                         <a class="d-flex align-items-center justify-content-center">
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500 140)                             <h1>{{user.username}}'s Profile</h1>
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500 141)                         </a>
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500 142)                     </nav>
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500 143) 
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500 144)                     {% for message in messages %}
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500 145)                     <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500 146)                         <strong>Message:</strong> {{ message}}
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500 147)                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500 148)                         <span aria-hidden="true">&times;</span>
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500 149)                         </button>
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500 150)                     </div>
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500 151)                     {% endfor %}
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500 152)                 
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500 153)                     <div class="container-fluid">
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500 154)                         <h1> Are you sure you want to delete your workout on {{ specific_workout.date }}? </h1>
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500 155)                         <button type="submit"> <a href={% url 'delete-workout' id=specific_workout.id %}> Yes, Delete Workout: {{specific_workout.date}} </a></button>
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500 156)                         <button type="submit"> <a href="/ProfilePage"> No, take me back to my profile </a></button>
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500 157)                     </div>
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500 158)                 </div>
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500 159)             </div>
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500 160)         </div>
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500 161)     </body>
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500 162) </html>
+
+Templates/moreinfo.html
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  56)                     Interface
+dda52384 (Jacob Howard 2022-11-29 23:46:13 -0500  57)                 </div>
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  58) 
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  59)                 <!-- Nav Item - Workouts Collapse Menu -->
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  60)                 <li class="nav-item">
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  61)                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  62)                         aria-expanded="true" aria-controls="collapseTwo">
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  63)                         <!--<i class="fas fa-fw fa-cog"></i>-->
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  64)                         <span>Workouts</span>
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  65)                     </a>
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  66)                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  67)                         <div class="bg-white py-2 collapse-inner rounded">
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  68)                             <h6 class="collapse-header">Add or View Workouts:</h6>
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  69)                             <a class="collapse-item" href="/CreateWorkout">New Workout</a>
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  70)                             <u1>
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  71)                             {%for workout in all_workouts %}
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  72)                                 <a class="collapse-item" href="/ProfilePage/{{workout.id}}/Workouts"> {{workout.date}}</a>
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  73)                             {% endfor %}
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  74)                             </u1>
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  75)                         </div>
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  76)                     </div>
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  77)                 </li>
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  78) 
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  79)                 <!-- Nav Item - Meals Collapse Menu -->
+dda52384 (Jacob Howard 2022-11-29 23:46:13 -0500  80)                 <li class="nav-item">
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  81)                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  82)                         aria-expanded="true" aria-controls="collapseUtilities">
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  83)                         <!--<i class="fas fa-fw fa-wrench"></i>-->
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  84)                         <span>Meals</span>
+dda52384 (Jacob Howard 2022-11-29 23:46:13 -0500  85)                     </a>
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  86)                     <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  87)                         data-parent="#accordionSidebar">
+dda52384 (Jacob Howard 2022-11-29 23:46:13 -0500  88)                         <div class="bg-white py-2 collapse-inner rounded">
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  89)                             <h6 class="collapse-header">Custom Utilities:</h6>
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  90)                             <a class="collapse-item" href="/CreateTracker"> New Meal Date </a>
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  91)                             <u1>
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  92)                                 {%for day in all_days %}
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  93)                                 <a class="collapse-item" href='/ProfilePage/{{day.id}}/Meals'> {{day.date}}</a>
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  94)                                 {% endfor %}
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  95)                 
+d9396b14 (Andrew Hines 2022-11-30 18:10:01 -0500  96)                             </u1> 
+
+
+
+         
