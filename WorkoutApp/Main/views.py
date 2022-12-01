@@ -55,30 +55,7 @@ class PasswordsChangeView(PasswordChangeView):
 
 """ returns the homepage """
 def home(request):
-    user = request.user
-    username = user.username
-    workouthistory = None
-    caloriehistory = None
-
-    try:
-        WorkoutHistory.objects.get(user=str(username)) is not None
-        workouthistory = WorkoutHistory.objects.get(user=str(username))
-        all_workouts = WorkoutHistory.objects.get(user=str(username)).workout_set.all()
-    except WorkoutHistory.DoesNotExist:
-        raise Http404("User's WorkoutHistory does not exist")
-
-    try:
-        CalorieHistory.objects.get(user=str(username)) is not None
-        caloriehistory = CalorieHistory.objects.get(user=str(username))
-        all_days = CalorieHistory.objects.get(user=str(username)).day_set.all()
-    except CalorieHistory.DoesNotExist:
-        raise Http404("User's CalorieHistory does not exist")
-
-    context = {
-        'workouthistory': workouthistory,
-        'caloriehistory': caloriehistory,
-    }
-    return render(request, "homepage.html",context)
+    return render(request, "homepage.html")
 
 
 
