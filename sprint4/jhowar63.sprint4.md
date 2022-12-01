@@ -7,7 +7,7 @@ Github ID: jhowar63
 Group Name: WorkoutApp
 
 
-### Files you worked on.
+## Files you worked on.
 - WorkoutApp/Main/urls.py 
 - WorkoutApp/Main/views.py 
 
@@ -33,6 +33,6 @@ Group Name: WorkoutApp
 - Workoutapp/static/scss/
 - Workoutapp/static/vendor/
 
-### What you accomplished.
+## What you accomplished.
 
 This sprint I was focused primarily on the front end, specifically making the website more visually pleasing. To do so I applied a bootstrap theme, creating and integrating a useful and interactive navigation bar with drop down menus and other to titles that serve as links to the most important and heavily frequented pages on the website. Then I added this new default side navigation bar to all pages of the website, as I was doing so I tidied up the pages so that they are properly spaced and displays the respective information in an organized and efficient way.
