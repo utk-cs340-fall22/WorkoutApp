@@ -11,6 +11,8 @@
 
  WorkoutApp is a web application built with Django that allows users to log and analyze their workouts and meals
 
+![Heres the logo](/WorkoutApp/static/images/workouticon.png)
+
 #
 # How to run
 
